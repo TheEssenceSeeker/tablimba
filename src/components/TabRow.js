@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import TabNote from "./TabNote";
 
 const TabRow = ({note, tuning}) => {
@@ -8,7 +8,9 @@ const TabRow = ({note, tuning}) => {
     }
 
     return (
-        <div className="kalimba-row" onContextMenu={onRtClk}>
+        <div className="kalimba-row tab-row"
+             onContextMenu={onRtClk}
+        >
             {
                 tuning.map((tNote, i) => <TabNote filled={tNote === note} key={i} />)
             }

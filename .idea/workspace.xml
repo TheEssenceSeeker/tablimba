@@ -17,13 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27786f81-29e4-4678-acb0-13ec29067e42" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sound/playTab.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Tab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Tablimba.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Tablimba.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/playNote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/playNote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TabNote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TabNote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TabRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TabRow.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597977859276</updated>
       <workItem from="1597977860796" duration="239000" />
-      <workItem from="1597978273436" duration="17350000" />
+      <workItem from="1597978273436" duration="18085000" />
     </task>
     <servers />
   </component>

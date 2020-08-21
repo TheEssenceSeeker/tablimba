@@ -14,6 +14,10 @@ div.kalimba-row {
   align-items: flex-start;
 }
 
+div.tab-row:hover {
+  border: 1px solid #000;
+}
+
 /*div.kalimba-row:nth-child(4n) {*/
 /*  border-top: 1px solid #000;*/
 /*}*/
