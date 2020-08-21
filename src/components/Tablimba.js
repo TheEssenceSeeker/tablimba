@@ -9,7 +9,7 @@ const Tablimba = props => {
     const initialTab = []
 
     const [tab, setTab] = useState(initialTab)
-    const [highlightedNotes, setHighlightedNotes] = useState(['A4', 'C4'])
+    const [highlightedNotes, setHighlightedNotes] = useState(['G5', 'A4', 'C4', 'B4', 'A5'])
 
     const addNote = note => {
         playNote(note)
@@ -54,14 +54,20 @@ const Tablimba = props => {
 
     return (
         <>
-
+            <div className="kalibma-row">
+                {
+                    tuning.map(note =>
+                        <div className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
+                            {note}
+                        </div>)
+                }
+            </div>
             <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>
                 <button onClick={playMelody} >Play Tab</button>
                 <button onClick={addPause} >+</button>
-                <button onClick={() => editNote(tab.length - 1, 'C4')} >Change last note to C4</button>
             </div>
             {/*<div className="kalimba-row">*/}
             {/*    {tab.join('->')}*/}
