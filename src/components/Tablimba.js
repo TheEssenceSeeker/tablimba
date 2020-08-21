@@ -52,6 +52,14 @@ const Tablimba = props => {
         setTab(prevState => prevState.filter((row, i) => i !== index))
     }
 
+    const insertRow = (index) => {
+        setTab(prevState => {
+            let tab = prevState.slice()
+            tab.splice(index, 0, [''])
+            return tab
+        })
+    }
+
     return (
         <>
             <div className="kalibma-row">
@@ -62,7 +70,7 @@ const Tablimba = props => {
                         </div>)
                 }
             </div>
-            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow}></Tab>
+            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>

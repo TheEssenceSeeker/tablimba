@@ -36,9 +36,18 @@ div.tab-row:hover .tabkey:not(.filled) {
   height: 20px;
   width: 20px;
   right: -20px;
-  color: #ff7575;
   transition: all .25s ease;
   opacity: 0;
+}
+
+.tab-row .delBtn {
+  right: -20px;
+  color: #ff7575;
+}
+
+.tab-row .addBtn {
+  right: -40px;
+  color: #078f5c;
 }
 
 .tab-row:hover .fas {
