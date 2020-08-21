@@ -11,9 +11,13 @@ const Tablimba = props => {
     const [tab, setTab] = useState(initialTab)
     const [highlightedNotes, setHighlightedNotes] = useState(['A4', 'C4'])
 
-    const onPlayNote = note => {
+    const addNote = note => {
         playNote(note)
         setTab(prevState => [...prevState, note])
+    }
+
+    const addPause = () => {
+        setTab(prevState => [...prevState, ''])
     }
 
     const resetTab = () => {
@@ -34,21 +38,30 @@ const Tablimba = props => {
         })
     }
 
+    const editNote = (tabIndex, note) => {
+        if (tabIndex >= tab.length || tabIndex < 0) {
+            console.error('editNote(): index is out of range')
+            return
+        }
+        const newNote = tab[tabIndex] === note ? '' : note
+        setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
+        playNote(newNote)
+    }
+
     const deleteRow = (index) => {
 
     }
 
     return (
         <>
-            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes}></Tab>
-            <Kalimba tuning={tuning} onPlayNote={onPlayNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
+
+            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote}></Tab>
+            <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>
                 <button onClick={playMelody} >Play Tab</button>
-                <button onClick={() => {
-                    toggleHighlight('C4')
-                }
-                } >Toggle C4</button>
+                <button onClick={addPause} >+</button>
+                <button onClick={() => editNote(tab.length - 1, 'C4')} >Change last note to C4</button>
             </div>
             {/*<div className="kalimba-row">*/}
             {/*    {tab.join('->')}*/}

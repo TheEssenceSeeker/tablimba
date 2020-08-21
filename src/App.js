@@ -8,8 +8,6 @@ function App() {
     return (
         <div className={'main-wrapper'}>
             <h1>Hello, I'm Tablimba!</h1>
-            <h1>This is a working kalimba!</h1>
-
             <Tablimba tuning={tuning} />
         </div>
     );
