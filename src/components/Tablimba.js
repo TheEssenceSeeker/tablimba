@@ -45,7 +45,7 @@ const Tablimba = props => {
         }
         const newNote = tab[tabIndex] === note ? '' : note
         setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
-        playNote(newNote)
+        if(newNote !== '') playNote(newNote)
     }
 
     const deleteRow = (index) => {
