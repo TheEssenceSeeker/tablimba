@@ -12,6 +12,12 @@ div.main-wrapper {
   align-items: center;
 }
 
+div.tab {
+  display: flex;
+  flex-direction: column-reverse;
+
+}
+
 div.kalimba-row {
   display: flex;
   justify-content: center;
@@ -20,6 +26,10 @@ div.kalimba-row {
 
 div.tab-row {
   position: relative;
+}
+
+div.tab-row:nth-child(4n) {
+  border-top: 1px solid #000;
 }
 
 div.tab-row:hover,

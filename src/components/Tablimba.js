@@ -9,6 +9,7 @@ const Tablimba = props => {
     const initialTab = []
 
     const [tab, setTab] = useState(initialTab)
+    const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState(['G5', 'A4', 'C4', 'B4', 'A5'])
 
     const addNote = note => {
@@ -60,8 +61,25 @@ const Tablimba = props => {
         })
     }
 
+    const handleTextTabChange = (event) => {
+        const [name, tab] = event.target.value.trim().split('|')
+        console.log(`name ${name} tab ${tab}`)
+        setTabName(name)
+        setTab(tab.split(','))
+    }
+
     return (
         <>
+        <h1>Tablimba<br/>-<br/>{tabName}</h1>
+            <div className="kalibma-row">
+                <button onClick={resetTab} >Reset Tab</button>
+                <button onClick={playMelody} >Play Tab</button>
+                <button onClick={addPause} >+</button>
+            </div>
+            <div className="kalimba-row">
+                <textarea value={tab} onChange={handleTextTabChange} />
+            </div>
+            <br/>
             <div className="kalibma-row">
                 {
                     tuning.map((note, i) =>
@@ -72,15 +90,6 @@ const Tablimba = props => {
             </div>
             <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
-            <div className="kalibma-row">
-                <button onClick={resetTab} >Reset Tab</button>
-                <button onClick={playMelody} >Play Tab</button>
-                <button onClick={addPause} >+</button>
-                {/*<button onClick={() => deleteRow(tab.length-1)} >Delete last row</button>*/}
-            </div>
-            {/*<div className="kalimba-row">*/}
-            {/*    {tab.join('->')}*/}
-            {/*</div>*/}
         </>
     )
 }
