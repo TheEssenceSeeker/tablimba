@@ -56,8 +56,8 @@ const Tablimba = props => {
         <>
             <div className="kalibma-row">
                 {
-                    tuning.map(note =>
-                        <div className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
+                    tuning.map((note, i) =>
+                        <div key={i} className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
                             {note}
                         </div>)
                 }

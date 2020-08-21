@@ -5,6 +5,7 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index}) => {
 
     return (
         <div className="kalimba-row tab-row">
+            <i className="fas fa-times-circle fa-lg" onClick={() => console.log('delete button clicked')}></i>
             {
                 tuning.map((tNote, i) => (
                     <TabNote filled={tNote === note}

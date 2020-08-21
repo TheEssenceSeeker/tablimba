@@ -18,15 +18,36 @@ div.kalimba-row {
   align-items: flex-start;
 }
 
-div.tab-row:hover,
-div.tab-row:hover .tabkey:not(.filled) {
-  /*border: 1px solid #000;*/
-  background: deepskyblue;
+div.tab-row {
+  position: relative;
 }
 
-/*div.kalimba-row:nth-child(4n) {*/
-/*  border-top: 1px solid #000;*/
-/*}*/
+div.tab-row:hover,
+div.tab-row:hover .tabkey:not(.filled) {
+  background: deepskyblue;
+  transition: background-color .25s ease;
+}
+
+.tab-row .fas {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  right: -20px;
+  color: #ff7575;
+  transition: all .25s ease;
+  opacity: 0;
+}
+
+.tab-row:hover .fas {
+  opacity: 1;
+}
+
+.tab-row .fas:hover {
+  /*transform: rotate(180deg);*/
+}
 
 div.key {
   display: inline-flex;
