@@ -1,18 +1,17 @@
 import React, {useState} from 'react'
 import TabNote from "./TabNote";
 
-const TabRow = ({note, tuning}) => {
-    const onRtClk = e => {
-        e.preventDefault()
-        console.log('rtclk')
-    }
+const TabRow = ({note, tuning, highlightedNotes}) => {
 
     return (
-        <div className="kalimba-row tab-row"
-             onContextMenu={onRtClk}
-        >
+        <div className="kalimba-row tab-row">
             {
-                tuning.map((tNote, i) => <TabNote filled={tNote === note} key={i} />)
+                tuning.map((tNote, i) => (
+                    <TabNote filled={tNote === note}
+                             key={i}
+                             isHighlighted={highlightedNotes.includes(tNote)}
+                    />
+                    ))
             }
         </div>
     )

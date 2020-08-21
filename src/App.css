@@ -37,9 +37,13 @@ div.key {
   user-select: none;
 }
 
-div.key.highlighted {
-  background: #ff7575;
+.highlighted {
+  background: #ff7575 !important;
 }
+
+/*div.key.highlighted {*/
+/*  background: #ff7575;*/
+/*}*/
 
 div.key:last-child,
 div.tabkey:last-child {

@@ -2,7 +2,7 @@ import React from 'react'
 import Key from "./Key";
 
 const Kalimba = props => {
-    const {tuning, onPlayNote} = props
+    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick} = props
 
     const renderKeys = (tuning, minH, heightStep) => {
         let height = minH
@@ -10,7 +10,12 @@ const Kalimba = props => {
         tuning.forEach((key, i) => {
             height = (i <= Math.floor(tuning.length / 2)) ? height + heightStep : height - heightStep
             if (i === Math.floor(tuning.length / 2)) height -= heightStep / 2
-            keysArray.push(<Key note={key} key={i} height={height} onPlayNote={onPlayNote}/>)
+            keysArray.push(<Key note={key}
+                                key={i} height={height}
+                                onPlayNote={onPlayNote}
+                                isHighlighted={highlightedNotes.includes(key)}
+                                onRtClick={onKeyRtClick}
+            />)
         })
         return keysArray
     }

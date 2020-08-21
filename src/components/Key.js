@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 
 const Key = props => {
-    const {note, height, onPlayNote} = props
-    const [isHighlighted, setIsHighlighted] = useState(false)
+    const {note, height, onPlayNote, isHighlighted, onRtClick} = props
 
     return (
         <div className={`key${isHighlighted ? ' highlighted' : ''}`}
@@ -10,7 +9,7 @@ const Key = props => {
              onContextMenu={(e) =>
              {
                  e.preventDefault()
-                 setIsHighlighted(prevState => !prevState)
+                 onRtClick(note)
              }}
              style={{height: height}}
         >
