@@ -3,8 +3,7 @@ import './App.css'
 import Tablimba from './components/Tablimba'
 
 function App() {
-    // const tuning = ['D6', 'B5', 'G5', 'E5', 'C5', 'A4', 'F4', 'D4', 'C4', 'E4', 'G4', 'B4', 'D5', 'F5', 'A5', 'C6', 'E6']
-    const tuning = ['A6', 'B5', 'C5', 'D5', 'F5', 'G4', 'F4', 'D4', 'C4', 'E4', 'G4', 'B4', 'D5', 'F5', 'A5', 'C6', 'E6']
+    const tuning = ['D6', 'B5', 'G5', 'E5', 'C5', 'A4', 'F4', 'D4', 'C4', 'E4', 'G4', 'B4', 'D5', 'F5', 'A5', 'C6', 'E6']
 
     return (
         <div className={'main-wrapper'}>
