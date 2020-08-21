@@ -49,7 +49,7 @@ const Tablimba = props => {
     }
 
     const deleteRow = (index) => {
-
+        setTab(prevState => prevState.filter((row, i) => i !== index))
     }
 
     return (
@@ -62,12 +62,13 @@ const Tablimba = props => {
                         </div>)
                 }
             </div>
-            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote}></Tab>
+            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>
                 <button onClick={playMelody} >Play Tab</button>
                 <button onClick={addPause} >+</button>
+                {/*<button onClick={() => deleteRow(tab.length-1)} >Delete last row</button>*/}
             </div>
             {/*<div className="kalimba-row">*/}
             {/*    {tab.join('->')}*/}

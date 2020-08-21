@@ -1,11 +1,11 @@
 import React from 'react'
 import TabNote from "./TabNote";
 
-const TabRow = ({note, tuning, highlightedNotes, editNote, index}) => {
+const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow}) => {
 
     return (
         <div className="kalimba-row tab-row">
-            <i className="fas fa-times-circle fa-lg" onClick={() => console.log('delete button clicked')}></i>
+            <i className="fas fa-times-circle fa-lg" onClick={() => deleteRow(index)}></i>
             {
                 tuning.map((tNote, i) => (
                     <TabNote filled={tNote === note}
