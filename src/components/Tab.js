@@ -2,12 +2,11 @@ import React from 'react'
 import TabRow from "./TabRow"
 
 const Tab = props => {
-    const {tab, tuning} = props
-
+    const {tab, tuning, highlightedNotes} = props
     return (
-        <div>
+        <div className='tab'>
             {
-                tab.map((tNote, i) => <TabRow note={tNote} tuning={tuning} key={i} />).reverse()
+                tab.map((tNote, i) => <TabRow note={tNote} tuning={tuning} key={i} highlightedNotes={highlightedNotes} />).reverse()
             }
         </div>
     )
