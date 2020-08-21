@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import TabNote from "./TabNote";
 
-const TabRow = ({note, tuning, highlightedNotes}) => {
+const TabRow = ({note, tuning, highlightedNotes, editNote, index}) => {
 
     return (
         <div className="kalimba-row tab-row">
@@ -10,6 +10,9 @@ const TabRow = ({note, tuning, highlightedNotes}) => {
                     <TabNote filled={tNote === note}
                              key={i}
                              isHighlighted={highlightedNotes.includes(tNote)}
+                             editNote={editNote}
+                             note={tNote}
+                             index={index}
                     />
                     ))
             }

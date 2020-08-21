@@ -1,8 +1,15 @@
 import React from 'react'
 
-const TabNote = ({filled = false, isHighlighted}) =>
+const TabNote = ({filled = false, isHighlighted, note, editNote, index}) =>
     (
-        <div className={`tabkey${isHighlighted ? ' highlighted' : ''}`}>
+        <div
+            className={`tabkey${isHighlighted ? ' highlighted' : ''}`}
+            onClick={() => {
+                console.log(`index ${index} note ${note}`)
+                editNote(index, note)
+
+            }}
+        >
             {
                 filled && <div className={'tabkey filled'}></div>
             }
