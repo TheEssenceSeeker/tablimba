@@ -9,7 +9,7 @@ const Tablimba = props => {
     const initialTab = []
 
     const [tab, setTab] = useState(initialTab)
-    const [highlightedNotes, setHighlightedNotes] = useState(['A4', 'C4'])
+    const [highlightedNotes, setHighlightedNotes] = useState(['G5', 'A4', 'C4', 'B4', 'A5'])
 
     const addNote = note => {
         playNote(note)
@@ -45,23 +45,38 @@ const Tablimba = props => {
         }
         const newNote = tab[tabIndex] === note ? '' : note
         setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
-        playNote(newNote)
+        if(newNote !== '') playNote(newNote)
     }
 
     const deleteRow = (index) => {
+        setTab(prevState => prevState.filter((row, i) => i !== index))
+    }
 
+    const insertRow = (index) => {
+        setTab(prevState => {
+            let tab = prevState.slice()
+            tab.splice(index, 0, [''])
+            return tab
+        })
     }
 
     return (
         <>
-
-            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote}></Tab>
+            <div className="kalibma-row">
+                {
+                    tuning.map((note, i) =>
+                        <div key={i} className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
+                            {note}
+                        </div>)
+                }
+            </div>
+            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>
                 <button onClick={playMelody} >Play Tab</button>
                 <button onClick={addPause} >+</button>
-                <button onClick={() => editNote(tab.length - 1, 'C4')} >Change last note to C4</button>
+                {/*<button onClick={() => deleteRow(tab.length-1)} >Delete last row</button>*/}
             </div>
             {/*<div className="kalimba-row">*/}
             {/*    {tab.join('->')}*/}

@@ -1,5 +1,9 @@
 * {
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
+}
+
+div {
+  font-size: 14px;
 }
 
 div.main-wrapper {
@@ -14,13 +18,45 @@ div.kalimba-row {
   align-items: flex-start;
 }
 
-div.tab-row:hover {
-  border: 1px solid #000;
+div.tab-row {
+  position: relative;
 }
 
-/*div.kalimba-row:nth-child(4n) {*/
-/*  border-top: 1px solid #000;*/
-/*}*/
+div.tab-row:hover,
+div.tab-row:hover .tabkey:not(.filled) {
+  background: deepskyblue;
+  transition: background-color .25s ease;
+}
+
+.tab-row .fas {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  right: -20px;
+  transition: all .25s ease;
+  opacity: 0;
+}
+
+.tab-row .delBtn {
+  right: -20px;
+  color: #ff7575;
+}
+
+.tab-row .addBtn {
+  right: -40px;
+  color: #078f5c;
+}
+
+.tab-row:hover .fas {
+  opacity: 1;
+}
+
+.tab-row .fas:hover {
+  /*transform: rotate(180deg);*/
+}
 
 div.key {
   display: inline-flex;
@@ -46,7 +82,8 @@ div.key {
 /*}*/
 
 div.key:last-child,
-div.tabkey:last-child {
+div.tabkey:last-child,
+div.tab-note-hint:last-child {
   margin-right: 0;
 }
 
@@ -64,4 +101,16 @@ div.tabkey {
 div.tabkey.filled {
   border-radius: 50%;
   background: #000;
+}
+
+div.tab-note-hint {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  /*border-radius: 50%;*/
+  border: 1px solid #000;
+  border-left: 1px solid #000;
+  margin-right: 5px;
+  background: #fff;
 }
