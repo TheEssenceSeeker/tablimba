@@ -14,7 +14,7 @@ const Tab = props => {
                                               index={i}
                                               deleteRow={deleteRow}
                                               insertRow={insertRow}
-                />).reverse()
+                />)
             }
         </div>
     )

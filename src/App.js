@@ -7,7 +7,6 @@ function App() {
 
     return (
         <div className={'main-wrapper'}>
-            <h1>Hello, I'm Tablimba!</h1>
             <Tablimba tuning={tuning} />
         </div>
     );
