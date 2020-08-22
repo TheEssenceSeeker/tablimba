@@ -5,9 +5,9 @@ import Kalimba from './Kalimba'
 import playTab from "../sound/playTab"
 
 const Tablimba = props => {
-    const {tuning} = props
     const initialTab = []
 
+    const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState(['G5', 'A4', 'C4', 'B4', 'A5'])
@@ -16,19 +16,15 @@ const Tablimba = props => {
         playNote(note)
         setTab(prevState => [...prevState, note])
     }
-
     const addPause = () => {
         setTab(prevState => [...prevState, ''])
     }
-
     const resetTab = () => {
         setTab(initialTab)
     }
-
     const playMelody = () => {
         playTab(tab)
     }
-
     const toggleHighlight = note => {
         setHighlightedNotes(prevState => {
             if (prevState.includes(note)) {
@@ -38,7 +34,6 @@ const Tablimba = props => {
             }
         })
     }
-
     const editNote = (tabIndex, note) => {
         if (tabIndex >= tab.length || tabIndex < 0) {
             console.error('editNote(): index is out of range')
@@ -48,11 +43,9 @@ const Tablimba = props => {
         setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
         if(newNote !== '') playNote(newNote)
     }
-
     const deleteRow = (index) => {
         setTab(prevState => prevState.filter((row, i) => i !== index))
     }
-
     const insertRow = (index) => {
         setTab(prevState => {
             let tab = prevState.slice()
@@ -60,36 +53,51 @@ const Tablimba = props => {
             return tab
         })
     }
-
     const handleTextTabChange = (event) => {
         const [name, tab] = event.target.value.trim().split('|')
         console.log(`name ${name} tab ${tab}`)
         setTabName(name)
         setTab(tab.split(','))
     }
+    const changeTuningNote = (event) => {
+        const newNote = event.target.value
+        const index = event.target.getAttribute('data-index')
+        console.log(newNote, index)
+        setTuning(prevState => prevState.map((note, i) => i == index ? newNote : note))
+    }
+    const resetTuning = () => {
+        setTuning(props.tuning)
+    }
 
     return (
         <>
-        <h1>Tablimba<br/>-<br/>{tabName}</h1>
+            <h1>Tablimba - {tabName}</h1>
             <div className="kalibma-row">
                 <button onClick={resetTab} >Reset Tab</button>
+                <button onClick={resetTuning}>Reset tuning</button>
                 <button onClick={playMelody} >Play Tab</button>
                 <button onClick={addPause} >+</button>
             </div>
-            <div className="kalimba-row">
-                <textarea value={tab} onChange={handleTextTabChange} />
-            </div>
+
             <br/>
             <div className="kalibma-row">
                 {
                     tuning.map((note, i) =>
                         <div key={i} className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
-                            {note}
+                            <input className='tuning-note' type='text' value={note} key={i}
+                                   onChange={changeTuningNote}
+                                   data-index={i}
+                            />
+                            {/*{note}*/}
                         </div>)
                 }
             </div>
             <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
             <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
+            <br/>
+            <div className="kalimba-row">
+                <textarea value={tab} onChange={handleTextTabChange} />
+            </div>
         </>
     )
 }
