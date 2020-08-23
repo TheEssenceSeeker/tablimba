@@ -5,7 +5,7 @@ import Kalimba from './Kalimba'
 import playTab from "../sound/playTab"
 
 const Tablimba = props => {
-    const initialTab = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    const initialTab = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',]
 
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
@@ -14,9 +14,15 @@ const Tablimba = props => {
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
 
     useEffect(() => {
-        console.log('scrolling to bottom')
+        window.addEventListener("scroll", () => {
+            console.log('scroll')
+            if(window.scrollY === 0) {
+                setTab(prevState => [...prevState, '', '', '', ''])
+                window.scrollTo(0, 1)
+            }
+        })
         window.scrollTo(0, document.body.scrollHeight)
-    })
+    }, [])
 
     const addNote = note => {
         playNote(note)
@@ -88,8 +94,8 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
-                    <button onClick={addPause} >+</button>
-                    <button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>
+                    {/*<button onClick={addPause} >+</button>*/}
+                    {/*<button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>*/}
                 </div>
                 <br/>
                 <div className="kalibma-row">
