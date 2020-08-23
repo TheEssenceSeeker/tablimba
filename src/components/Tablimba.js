@@ -10,7 +10,7 @@ const Tablimba = props => {
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
-    const [highlightedNotes, setHighlightedNotes] = useState(['G5', 'A4', 'C4', 'B4', 'A5'])
+    const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
 
     const addNote = note => {
         playNote(note)
@@ -83,7 +83,7 @@ const Tablimba = props => {
             <div className="kalibma-row">
                 {
                     tuning.map((note, i) =>
-                        <div key={i} className={`tab-note-hint${highlightedNotes.includes(note) ? ' highlighted' : ''}`}>
+                        <div key={i} className={`tab-note-hint${highlightedNotes.includes(i) ? ' highlighted' : ''}`}>
                             <input className='tuning-note' type='text' value={note} key={i}
                                    onChange={changeTuningNote}
                                    data-index={i}

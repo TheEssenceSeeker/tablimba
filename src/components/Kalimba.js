@@ -13,7 +13,7 @@ const Kalimba = props => {
             keysArray.push(<Key note={key}
                                 key={i} height={height}
                                 onPlayNote={onPlayNote}
-                                isHighlighted={highlightedNotes.includes(key)}
+                                isHighlighted={highlightedNotes.includes(i)}
                                 onRtClick={onKeyRtClick}
             />)
         })
