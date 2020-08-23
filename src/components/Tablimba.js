@@ -1,17 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Tab from './Tab'
 import playNote from "../sound/playNote"
 import Kalimba from './Kalimba'
 import playTab from "../sound/playTab"
 
 const Tablimba = props => {
-    const initialTab = ['', '', '', '', '', '', '', '', '', '', '', '']
+    const initialTab = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
+
+    useEffect(() => {
+        console.log('scrolling to bottom')
+        window.scrollTo(0, document.body.scrollHeight)
+    })
 
     const addNote = note => {
         playNote(note)
@@ -63,8 +68,10 @@ const Tablimba = props => {
     const changeTuningNote = (event) => {
         const newNote = event.target.value
         const index = event.target.getAttribute('data-index')
-        console.log(newNote, index)
-        setTuning(prevState => prevState.map((note, i) => i == index ? newNote : note))
+        const oldNote = tuning[index]
+        console.log('oldnote', oldNote)
+        setTuning(prevState => prevState.map((note, i) => i === parseInt(index) ? newNote : note))
+        setTab(prevState => prevState.map(note => note === oldNote ? newNote : note ))
     }
     const resetTuning = () => {
         setTuning(props.tuning)
@@ -75,47 +82,50 @@ const Tablimba = props => {
 
     return (
         <>
-            <h1>Tablimba - {tabName}</h1>
-            <div className="kalibma-row">
-                <button onClick={resetTab} >Reset Tab</button>
-                <button onClick={resetTuning}>Reset tuning</button>
-                <button onClick={playMelody} >Play Tab</button>
-                <button onClick={addPause} >+</button>
-                <button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>
+            <div className="header">
+                <h1>Tablimba - {tabName}</h1>
+                <div className="kalibma-row">
+                    <button onClick={resetTab} >Reset Tab</button>
+                    <button onClick={resetTuning}>Reset tuning</button>
+                    <button onClick={playMelody} >Play Tab</button>
+                    <button onClick={addPause} >+</button>
+                    <button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>
+                </div>
+                <br/>
+                <div className="kalibma-row">
+                    {
+                        tuning.map((note, i) =>
+                            <div key={i} className={`tab-note-hint${highlightedNotes.includes(i) ? ' highlighted' : ''}`}>
+                                <input className='tuning-note' type='text' value={note} key={i}
+                                       onChange={changeTuningNote}
+                                       data-index={i}
+                                />
+                                {/*{note}*/}
+                            </div>)
+                    }
+                </div>
             </div>
 
-            <br/>
-            <div className="kalibma-row">
-                {
-                    tuning.map((note, i) =>
-                        <div key={i} className={`tab-note-hint${highlightedNotes.includes(i) ? ' highlighted' : ''}`}>
-                            <input className='tuning-note' type='text' value={note} key={i}
-                                   onChange={changeTuningNote}
-                                   data-index={i}
-                            />
-                            {/*{note}*/}
-                        </div>)
-                }
+            <div className="tab-container">
+                <Tab
+                    tab={tab}
+                    tuning={tuning}
+                    highlightedNotes={highlightedNotes}
+                    editNote={editNote}
+                    deleteRow={deleteRow}
+                    insertRow={insertRow}
+                />
             </div>
-            <Tab 
-                tab={tab} 
-                tuning={tuning} 
-                highlightedNotes={highlightedNotes} 
-                editNote={editNote} 
-                deleteRow={deleteRow} 
-                insertRow={insertRow}
-            />
-            <Kalimba 
-                tuning={tuning}
-                onPlayNote={addNote}
-                highlightedNotes={highlightedNotes}
-                onKeyRtClick={toggleHighlight}
-                minimized={isKalimbaMinimized}
-            />
-            <br/>
-            {/*<div className="kalimba-row">*/}
-            {/*    <textarea value={tab} onChange={handleTextTabChange} />*/}
-            {/*</div>*/}
+
+            <div className="footer">
+                <Kalimba
+                    tuning={tuning}
+                    onPlayNote={addNote}
+                    highlightedNotes={highlightedNotes}
+                    onKeyRtClick={toggleHighlight}
+                    minimized={isKalimbaMinimized}
+                />
+            </div>
         </>
     )
 }
