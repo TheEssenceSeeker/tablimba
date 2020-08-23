@@ -5,7 +5,7 @@ import Kalimba from './Kalimba'
 import playTab from "../sound/playTab"
 
 const Tablimba = props => {
-    const initialTab = []
+    const initialTab = ['', '', '', '', '', '', '', '', '', '', '', '']
 
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
@@ -26,12 +26,12 @@ const Tablimba = props => {
     const playMelody = () => {
         playTab(tab)
     }
-    const toggleHighlight = note => {
+    const toggleHighlight = i => {
         setHighlightedNotes(prevState => {
-            if (prevState.includes(note)) {
-                return prevState.filter((item) => item !== note)
+            if (prevState.includes(i)) {
+                return prevState.filter((item) => item !== i)
             } else {
-                return [...prevState, note]
+                return [...prevState, i]
             }
         })
     }
@@ -97,14 +97,25 @@ const Tablimba = props => {
                         </div>)
                 }
             </div>
-            <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
-            <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}
-                     minimized={isKalimbaMinimized}
+            <Tab 
+                tab={tab} 
+                tuning={tuning} 
+                highlightedNotes={highlightedNotes} 
+                editNote={editNote} 
+                deleteRow={deleteRow} 
+                insertRow={insertRow}
+            />
+            <Kalimba 
+                tuning={tuning}
+                onPlayNote={addNote}
+                highlightedNotes={highlightedNotes}
+                onKeyRtClick={toggleHighlight}
+                minimized={isKalimbaMinimized}
             />
             <br/>
-            <div className="kalimba-row">
-                <textarea value={tab} onChange={handleTextTabChange} />
-            </div>
+            {/*<div className="kalimba-row">*/}
+            {/*    <textarea value={tab} onChange={handleTextTabChange} />*/}
+            {/*</div>*/}
         </>
     )
 }

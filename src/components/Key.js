@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Key = props => {
-    const {note, height, onPlayNote, isHighlighted, onRtClick} = props
+    const {note, height, onPlayNote, isHighlighted, onKeyRtClick, index} = props
 
     return (
         <div className={`key${isHighlighted ? ' highlighted' : ''}`}
@@ -9,7 +9,7 @@ const Key = props => {
              onContextMenu={(e) =>
              {
                  e.preventDefault()
-                 onRtClick(note)
+                 onKeyRtClick(index)
              }}
              style={{height: height}}
         >

@@ -11,10 +11,12 @@ const Kalimba = props => {
             height = (i <= Math.floor(tuning.length / 2)) ? height + heightStep : height - heightStep
             if (i === Math.floor(tuning.length / 2)) height -= heightStep / 2
             keysArray.push(<Key note={key}
-                                key={i} height={height}
+                                key={i}
+                                height={height}
                                 onPlayNote={onPlayNote}
                                 isHighlighted={highlightedNotes.includes(i)}
-                                onRtClick={onKeyRtClick}
+                                onKeyRtClick={onKeyRtClick}
+                                index={i}
             />)
         })
         return keysArray
