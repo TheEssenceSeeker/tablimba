@@ -1,13 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
-import playNote from "../sound/playNote"
 import Kalimba from './Kalimba'
-import playTab from "../sound/playTab"
-import initSynth from "../sound/initSynth"
+import Synth from '../sound/Synth'
 
 const Tablimba = props => {
     const initialTab = new Array(16).fill('')
-    const synth = initSynth()
+    const {playTab, playNote} = new Synth()
 
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
@@ -33,7 +31,7 @@ const Tablimba = props => {
         _setIsAddBarOnScroll(data)
     }
     const addNote = note => {
-        playNote(synth, note)
+        playNote(note)
         setTab(prevState => [...prevState, note])
     }
     const addPause = () => {
@@ -61,7 +59,7 @@ const Tablimba = props => {
         }
         const newNote = tab[tabIndex] === note ? '' : note
         setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
-        if(newNote !== '') playNote(synth, newNote)
+        if(newNote !== '') playNote(newNote)
     }
     const deleteRow = (index) => {
         setTab(prevState => prevState.filter((row, i) => i !== index))
