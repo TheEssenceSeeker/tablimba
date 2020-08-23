@@ -19,7 +19,7 @@ const Tablimba = props => {
     useEffect(() => {
         window.addEventListener("scroll", () => {
             if(window.scrollY === 0 && isAddBarOnScrollRef.current) {
-                setTab(prevState => [...prevState, new Array(4).fill('')])
+                setTab(prevState => [...prevState, ...new Array(4).fill('')])
                 window.scrollTo(0, 1)
             }
         })
