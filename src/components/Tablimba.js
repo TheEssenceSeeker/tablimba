@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import playNote from "../sound/playNote"
 import Kalimba from './Kalimba'
@@ -12,11 +12,14 @@ const Tablimba = props => {
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
+    const [isAddBarOnScroll, _setIsAddBarOnScroll] = useState(false)
+
+    const isAddBarOnScrollRef = useRef(isAddBarOnScroll)
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            console.log('scroll')
-            if(window.scrollY === 0) {
+            console.log(isAddBarOnScrollRef.current)
+            if(window.scrollY === 0 && isAddBarOnScrollRef.current) {
                 setTab(prevState => [...prevState, '', '', '', ''])
                 window.scrollTo(0, 1)
             }
@@ -24,6 +27,10 @@ const Tablimba = props => {
         window.scrollTo(0, document.body.scrollHeight)
     }, [])
 
+    const setIsAddBarOnScroll = data => {
+        isAddBarOnScrollRef.current = data
+        _setIsAddBarOnScroll(data)
+    }
     const addNote = note => {
         playNote(note)
         setTab(prevState => [...prevState, note])
@@ -85,6 +92,10 @@ const Tablimba = props => {
     const toggleKalimba = () => {
         setIsKalimbaMinimized(prevState => !prevState)
     }
+    const handleCheckbox = e => {
+        console.log(e.target.checked)
+        setIsAddBarOnScroll(e.target.checked)
+    }
 
     return (
         <>
@@ -94,6 +105,15 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
+                    <label>
+                        <input
+                            name={'add-bar-on-scroll'}
+                            type='checkbox'
+                            checked={isAddBarOnScroll}
+                            onChange={handleCheckbox}
+                        />
+                        Add bar on scroll
+                    </label>
                     {/*<button onClick={addPause} >+</button>*/}
                     {/*<button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>*/}
                 </div>

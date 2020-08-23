@@ -90,12 +90,13 @@ div.tab-row:hover .tabkey:not(.filled) {
 }
 
 .tab-row .addBtn {
-  right: -40px;
+  right: -36px;
   color: #078f5c;
 }
 
 .tab-row:hover .fas {
   opacity: 1;
+  /*background: #000;*/
 }
 
 .tab-row .fas:hover {
@@ -121,10 +122,6 @@ div.key {
   background: #ff7575 !important;
 }
 
-/*div.key.highlighted {*/
-/*  background: #ff7575;*/
-/*}*/
-
 div.key:last-child,
 div.tabkey:last-child,
 div.tab-note-hint:last-child {
@@ -135,7 +132,6 @@ div.tabkey {
   display: inline-flex;
   width: 20px;
   height: 20px;
-  /*border-radius: 50%;*/
   border-right: 1px solid #000;
   border-left: 1px solid #000;
   margin-right: 5px;
