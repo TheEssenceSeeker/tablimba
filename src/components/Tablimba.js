@@ -11,6 +11,7 @@ const Tablimba = props => {
     const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
+    const [isKalimbaVisible, setIsKalimbaVisible] = useState(true)
 
     const addNote = note => {
         playNote(note)
@@ -68,6 +69,9 @@ const Tablimba = props => {
     const resetTuning = () => {
         setTuning(props.tuning)
     }
+    const toggleKalimba = () => {
+        setIsKalimbaVisible(prevState => !prevState)
+    }
 
     return (
         <>
@@ -77,6 +81,7 @@ const Tablimba = props => {
                 <button onClick={resetTuning}>Reset tuning</button>
                 <button onClick={playMelody} >Play Tab</button>
                 <button onClick={addPause} >+</button>
+                <button onClick={toggleKalimba}>{isKalimbaVisible ? 'Hide' : 'Show'} kalimba</button>
             </div>
 
             <br/>
@@ -93,7 +98,9 @@ const Tablimba = props => {
                 }
             </div>
             <Tab tab={tab} tuning={tuning} highlightedNotes={highlightedNotes} editNote={editNote} deleteRow={deleteRow} insertRow={insertRow}></Tab>
-            <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}/>
+            <Kalimba tuning={tuning} onPlayNote={addNote} highlightedNotes={highlightedNotes} onKeyRtClick={toggleHighlight}
+                     hidden={!isKalimbaVisible}
+            />
             <br/>
             <div className="kalimba-row">
                 <textarea value={tab} onChange={handleTextTabChange} />

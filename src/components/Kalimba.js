@@ -2,7 +2,7 @@ import React from 'react'
 import Key from "./Key";
 
 const Kalimba = props => {
-    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick} = props
+    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, hidden = false} = props
 
     const renderKeys = (tuning, minH, heightStep) => {
         let height = minH
@@ -21,7 +21,7 @@ const Kalimba = props => {
     }
 
     return (
-        <div className='kalimba-row'>
+        <div className={`kalimba-row${hidden ? ' hidden' : ''}`} >
             {
                 renderKeys(tuning, 20, 20)
             }

@@ -133,3 +133,7 @@ input.tuning-note {
   background: inherit;
   text-align: center;
 }
+
+div.hidden {
+  display: none;
+}
