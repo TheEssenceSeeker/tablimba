@@ -2,15 +2,14 @@ import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
-import {parseTab} from "../misc/tabHandling"
+// import {parseTab} from "../misc/tabHandling"
 
 const Tablimba = props => {
-    // const initialTab = new Array(16).fill('')
-    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(12).fill('')]
+    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(24).fill('')]
     const {playTab, playNote} = new Synth()
 
     const [tuning, setTuning] = useState(props.tuning)
-    const [tab, setTab] = useState(parseTab(initialTab))
+    const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
@@ -19,13 +18,13 @@ const Tablimba = props => {
     const isAddBarOnScrollRef = useRef(isAddBarOnScroll)
 
     useEffect(() => {
+        window.scrollTo(0, document.body.scrollHeight)
         window.addEventListener("scroll", () => {
             if(window.scrollY === 0 && isAddBarOnScrollRef.current) {
                 setTab(prevState => [...prevState, ...new Array(4).fill('')])
                 window.scrollTo(0, 1)
             }
         })
-        window.scrollTo(0, document.body.scrollHeight)
     }, [])
 
     const setIsAddBarOnScroll = data => {
@@ -104,7 +103,7 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
-                    <button onClick={() => console.log(parseTab(initialTab))}></button>
+                    {/*<button onClick={() => console.log(parseTab(initialTab))}></button>*/}
                     <label>
                         <input
                             name={'add-bar-on-scroll'}

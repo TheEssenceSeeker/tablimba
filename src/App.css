@@ -62,7 +62,7 @@ div.tab-row {
   position: relative;
 }
 
-div.tab-row:nth-child(8n) {
+div.tab-row:nth-child(4n) {
   border-top: 1px solid #000;
 }
 
@@ -96,7 +96,6 @@ div.tab-row:hover .tabkey:not(.filled) {
 
 .tab-row:hover .fas {
   opacity: 1;
-  /*background: #000;*/
 }
 
 .tab-row .fas:hover {
@@ -142,20 +141,20 @@ div.tabkey.filled {
   border-radius: 50%;
   background: #000;
 }
-div.tabkey.start {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background: #000;
-}
-div.tabkey.end {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  background: #000;
-}
-div.tabkey.mid {
-  border-radius: 0;
-  background: #000;
-}
+/*div.tabkey.start {*/
+/*  border-top-left-radius: 0;*/
+/*  border-top-right-radius: 0;*/
+/*  background: #000;*/
+/*}*/
+/*div.tabkey.end {*/
+/*  border-bottom-left-radius: 0;*/
+/*  border-bottom-right-radius: 0;*/
+/*  background: #000;*/
+/*}*/
+/*div.tabkey.mid {*/
+/*  border-radius: 0;*/
+/*  background: #000;*/
+/*}*/
 
 div.tab-note-hint {
   display: inline-flex;
