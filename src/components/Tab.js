@@ -6,14 +6,14 @@ const Tab = props => {
     return (
         <div className='tab'>
             {
-                tab.map((tNote, i) => <TabRow note={tNote}
-                                              tuning={tuning}
-                                              key={i}
-                                              highlightedNotes={highlightedNotes}
-                                              editNote={editNote}
-                                              index={i}
-                                              deleteRow={deleteRow}
-                                              insertRow={insertRow}
+                tab.map((note, i) => <TabRow note={note}
+                                             tuning={tuning}
+                                             highlightedNotes={highlightedNotes}
+                                             editNote={editNote}
+                                             index={i}
+                                             deleteRow={deleteRow}
+                                             insertRow={insertRow}
+                                             key={i}
                 />)
             }
         </div>

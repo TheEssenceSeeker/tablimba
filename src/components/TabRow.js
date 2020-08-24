@@ -11,7 +11,6 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
                 tuning.map((tNote, i) => (
                     <TabNote filled={tNote === note.note}
                              note={tNote}
-                             type={note.type}
                              key={i}
                              isHighlighted={highlightedNotes.includes(i)}
                              editNote={editNote}
