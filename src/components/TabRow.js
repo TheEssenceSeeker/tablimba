@@ -9,7 +9,7 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
             <i className="fas fa-plus-circle fa-lg addBtn" onClick={() => insertRow(index)}></i>
             {
                 tuning.map((tNote, i) => (
-                    <TabNote filled={tNote === note.note}
+                    <TabNote filled={tNote === note.split('|')[0]}
                              note={tNote}
                              key={i}
                              isHighlighted={highlightedNotes.includes(i)}

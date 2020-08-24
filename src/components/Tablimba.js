@@ -42,7 +42,7 @@ const Tablimba = props => {
         setTab(initialTab)
     }
     const playMelody = () => {
-        playTab(tab.map(item => item.note))
+        playTab(tab)
     }
     const toggleHighlight = i => {
         setHighlightedNotes(prevState => {
