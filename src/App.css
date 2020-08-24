@@ -62,7 +62,7 @@ div.tab-row {
   position: relative;
 }
 
-div.tab-row:nth-child(4n) {
+div.tab-row:nth-child(8n) {
   border-top: 1px solid #000;
 }
 
@@ -140,6 +140,20 @@ div.tabkey {
 
 div.tabkey.filled {
   border-radius: 50%;
+  background: #000;
+}
+div.tabkey.start {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: #000;
+}
+div.tabkey.end {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #000;
+}
+div.tabkey.mid {
+  border-radius: 0;
   background: #000;
 }
 
