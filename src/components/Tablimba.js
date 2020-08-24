@@ -2,13 +2,15 @@ import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
+import {parseTab} from "../misc/tabHandling"
 
 const Tablimba = props => {
-    const initialTab = new Array(16).fill('')
+    // const initialTab = new Array(16).fill('')
+    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(12).fill('')]
     const {playTab, playNote} = new Synth()
 
     const [tuning, setTuning] = useState(props.tuning)
-    const [tab, setTab] = useState(initialTab)
+    const [tab, setTab] = useState(parseTab(initialTab))
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
@@ -41,7 +43,7 @@ const Tablimba = props => {
         setTab(initialTab)
     }
     const playMelody = () => {
-        playTab(tab)
+        playTab(tab.map(item => item.note))
     }
     const toggleHighlight = i => {
         setHighlightedNotes(prevState => {
@@ -81,18 +83,16 @@ const Tablimba = props => {
         const newNote = event.target.value
         const index = event.target.getAttribute('data-index')
         const oldNote = tuning[index]
-        console.log('oldnote', oldNote)
         setTuning(prevState => prevState.map((note, i) => i === parseInt(index) ? newNote : note))
         setTab(prevState => prevState.map(note => note === oldNote ? newNote : note ))
     }
     const resetTuning = () => {
         setTuning(props.tuning)
     }
-    const toggleKalimba = () => {
-        setIsKalimbaMinimized(prevState => !prevState)
-    }
+    // const toggleKalimba = () => {
+    //     setIsKalimbaMinimized(prevState => !prevState)
+    // }
     const handleCheckbox = e => {
-        console.log(e.target.checked)
         setIsAddBarOnScroll(e.target.checked)
     }
 
@@ -104,6 +104,7 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
+                    <button onClick={() => console.log(parseTab(initialTab))}></button>
                     <label>
                         <input
                             name={'add-bar-on-scroll'}
