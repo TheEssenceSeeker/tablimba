@@ -4,10 +4,10 @@ const TabNote = ({filled = false, isHighlighted, note, editNote, index}) =>
     (
         <div
             className={`tabkey${isHighlighted ? ' highlighted' : ''}`}
-            onClick={() => editNote(index, note)}
+            onClick={() => editNote(index, note.note)}
         >
             {
-                filled && <div className={'tabkey filled'}></div>
+                filled && <div className={`tabkey filled ${note.type}`}></div>
             }
         </div>
     )
