@@ -135,6 +135,9 @@ div.tabkey {
   border-left: 1px solid #000;
   margin-right: 5px;
   background: #fff;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
 }
 
 div.tabkey.filled {
