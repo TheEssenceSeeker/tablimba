@@ -184,3 +184,7 @@ input.tuning-note {
 div.hidden {
   display: none;
 }
+
+input#tempo {
+  width: 40px;
+}

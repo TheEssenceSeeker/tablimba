@@ -38,6 +38,7 @@ const Tablimba = props => {
         setBpm(data)
         _setTempo(data)
     }
+
     const addNote = note => {
         playNote(note)
         // setTab(prevState => [...prevState, note])
@@ -79,12 +80,6 @@ const Tablimba = props => {
             return tab
         })
     }
-    const handleTextTabChange = (event) => {
-        const [name, tab] = event.target.value.trim().split('|')
-        console.log(`name ${name} tab ${tab}`)
-        setTabName(name)
-        setTab(tab.split(','))
-    }
     const changeTuningNote = (event) => {
         const newNote = event.target.value
         const index = event.target.getAttribute('data-index')
@@ -102,7 +97,6 @@ const Tablimba = props => {
         setIsAddBarOnScroll(e.target.checked)
     }
 
-
     return (
         <>
             <div className="header">
@@ -111,8 +105,7 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
-                    <button onClick={() => setTempo(180)}>Темп 180</button>
-                    {/*<button onClick={() => console.log(parseTab(initialTab))}></button>*/}
+                    <input type='number' id={'tempo'} name={'setTempo'} value={tempo} onChange={e => setTempo(+e.target.value)} />
                     <label>
                         <input
                             name={'add-bar-on-scroll'}
