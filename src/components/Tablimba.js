@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
-// import {parseTab} from "../misc/tabHandling"
+import useHandleChange from "../hooks/useHandleChange"
 
 const Tablimba = props => {
     const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -16,9 +16,9 @@ const Tablimba = props => {
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
-    const [isAddBarOnScroll, _setIsAddBarOnScroll] = useState(false)
+    const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
+    const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
 
-    const isAddBarOnScrollRef = useRef(isAddBarOnScroll)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
@@ -30,15 +30,10 @@ const Tablimba = props => {
         })
     }, [])
 
-    const setIsAddBarOnScroll = data => {
-        isAddBarOnScrollRef.current = data
-        _setIsAddBarOnScroll(data)
-    }
     const setTempo = data => {
         setBpm(data)
         _setTempo(data)
     }
-
     const addNote = note => {
         playNote(note)
         // setTab(prevState => [...prevState, note])
@@ -93,9 +88,6 @@ const Tablimba = props => {
     // const toggleKalimba = () => {
     //     setIsKalimbaMinimized(prevState => !prevState)
     // }
-    const handleCheckbox = e => {
-        setIsAddBarOnScroll(e.target.checked)
-    }
 
     return (
         <>
@@ -111,12 +103,35 @@ const Tablimba = props => {
                             name={'add-bar-on-scroll'}
                             type='checkbox'
                             checked={isAddBarOnScroll}
-                            onChange={handleCheckbox}
+                            onChange={handleIsAddBarOnScroll}
                         />
                         Add bar on scroll
                     </label>
                     {/*<button onClick={addPause} >+</button>*/}
                     {/*<button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>*/}
+                </div>
+                <div className="kalibma-row duration-editor">
+                    <label>
+                        <input type="radio" name="duration" value="1n" checked={editorActiveDuration === '1n'} onChange={handleEditorActiveDuration} />𝅝
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="2n" checked={editorActiveDuration === '2n'} onChange={handleEditorActiveDuration} />𝅗𝅥
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="4n" checked={editorActiveDuration === '4n'} onChange={handleEditorActiveDuration} />𝅘𝅥
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="8n" checked={editorActiveDuration === '8n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅮
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="16n" checked={editorActiveDuration === '16n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅯
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="32n" checked={editorActiveDuration === '32n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅰
+                    </label>
+                    <label>
+                        <input type="radio" name="duration" value="64n" checked={editorActiveDuration === '64n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅱
+                    </label>
                 </div>
                 <br/>
                 <div className="kalibma-row">

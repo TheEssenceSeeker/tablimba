@@ -36,7 +36,7 @@ div.header {
   justify-content: flex-end;
   align-items: center;
   background: #a7a7a7;
-  height: 120px;
+  height: 150px;
 }
 
 div.footer {
@@ -187,4 +187,8 @@ div.hidden {
 
 input#tempo {
   width: 40px;
+}
+
+div.duration-editor {
+  font-size: 30px;
 }
