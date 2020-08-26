@@ -1,8 +1,9 @@
 import * as Tone from 'tone'
+import {parseNote} from "../misc/tabHandling"
 
 class Synth {
     constructor() {
-        this.synth = new Tone.Synth().toDestination()
+        this.synth = new Tone.PolySynth(Tone.Synth).toDestination()
     }
 
     playNote = (note, duration = '8n') => {
@@ -12,10 +13,11 @@ class Synth {
     playTab = (tab) => {
         const now = Tone.now()
         let i = 0
-        tab.forEach(note => {
-            i++
+        tab.forEach(item => {
+            const {note, duration} = parseNote(item)
+            i ++
             if (note !== '') {
-                this.synth.triggerAttackRelease(note, '8n', now + i / 2)
+                this.synth.triggerAttackRelease(note, duration, now + i / 2 )
             }
         })
     }
