@@ -5,9 +5,12 @@ import Synth from '../sound/Synth'
 // import {parseTab} from "../misc/tabHandling"
 
 const Tablimba = props => {
-    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(40).fill('')]
-    const {playTab, playNote} = new Synth()
+    const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
+                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n',
+                        ...new Array(40).fill('')]
+    const {playTab, playNote, getBpm, setBpm} = new Synth()
 
+    const [tempo, _setTempo] = useState(getBpm())
     const [tuning, setTuning] = useState(props.tuning)
     const [tab, setTab] = useState(initialTab)
     const [tabName, setTabName] = useState('My melody')
@@ -31,9 +34,13 @@ const Tablimba = props => {
         isAddBarOnScrollRef.current = data
         _setIsAddBarOnScroll(data)
     }
+    const setTempo = data => {
+        setBpm(data)
+        _setTempo(data)
+    }
     const addNote = note => {
         playNote(note)
-        setTab(prevState => [...prevState, note])
+        // setTab(prevState => [...prevState, note])
     }
     const addPause = () => {
         setTab(prevState => [...prevState, ''])
@@ -104,6 +111,7 @@ const Tablimba = props => {
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
+                    <button onClick={() => setTempo(180)}>Темп 180</button>
                     {/*<button onClick={() => console.log(parseTab(initialTab))}></button>*/}
                     <label>
                         <input

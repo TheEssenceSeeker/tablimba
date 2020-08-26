@@ -6,6 +6,10 @@ class Synth {
         this.synth = new Tone.PolySynth(Tone.Synth).toDestination()
     }
 
+    setBpm = bpm => Tone.Transport.bpm.value = bpm
+
+    getBpm = () => Tone.Transport.bpm.value
+
     playNote = (note, duration = '8n') => {
         this.synth.triggerAttackRelease(note, duration)
     }
