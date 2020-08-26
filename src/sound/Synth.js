@@ -10,15 +10,15 @@ class Synth {
         this.synth.triggerAttackRelease(note, duration)
     }
 
-    playTab = (tab) => {
-        const now = Tone.now()
-        let i = 0
+    playTab = tab => {
+        const now = Tone.Time()
+        let currentTime = 0
         tab.forEach(item => {
             const {note, duration} = parseNote(item)
-            i ++
             if (note !== '') {
-                this.synth.triggerAttackRelease(note, duration, now + i / 2 )
+                this.synth.triggerAttackRelease(note, duration, now + currentTime)
             }
+            currentTime += Tone.Time(duration).toSeconds()
         })
     }
 }

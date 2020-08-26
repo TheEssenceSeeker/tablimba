@@ -5,7 +5,7 @@ import Synth from '../sound/Synth'
 // import {parseTab} from "../misc/tabHandling"
 
 const Tablimba = props => {
-    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(24).fill('')]
+    const initialTab = ['C4|1n', 'D4|2n', 'E4|4n', 'F4|8n', 'E4', ...new Array(40).fill('')]
     const {playTab, playNote} = new Synth()
 
     const [tuning, setTuning] = useState(props.tuning)
@@ -94,6 +94,7 @@ const Tablimba = props => {
     const handleCheckbox = e => {
         setIsAddBarOnScroll(e.target.checked)
     }
+
 
     return (
         <>

@@ -138,6 +138,7 @@ div.tabkey {
   color: #fff;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 div.tabkey.filled {
