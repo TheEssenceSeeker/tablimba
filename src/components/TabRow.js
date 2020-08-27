@@ -3,7 +3,7 @@ import TabNote from "./TabNote"
 import {parseNote} from "../misc/tabHandling"
 
 const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, insertRow}) => {
-
+    // TODO: Отображение пауз с длительностями
     return (
         <div className="kalimba-row tab-row">
             <i className="fas fa-times-circle fa-lg delBtn" onClick={() => deleteRow(index)}/>
