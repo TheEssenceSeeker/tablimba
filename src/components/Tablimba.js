@@ -75,7 +75,7 @@ const Tablimba = props => {
     const insertRow = (index) => {
         setTab(prevState => {
             let tab = prevState.slice()
-            tab.splice(index, 0, [''])
+            tab.splice(index, 0, '')
             return tab
         })
     }
