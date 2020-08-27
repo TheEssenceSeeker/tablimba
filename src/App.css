@@ -145,6 +145,13 @@ div.tabkey.filled {
   border-radius: 50%;
   background: #000;
 }
+
+div.tabkey.filled.rest {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+}
+
 /*div.tabkey.start {*/
 /*  border-top-left-radius: 0;*/
 /*  border-top-right-radius: 0;*/

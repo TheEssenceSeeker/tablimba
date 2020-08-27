@@ -7,7 +7,7 @@ const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch}) 
             onClick={() => editNote(index, pitch)}
         >
             {
-                filled && <div className={'tabkey filled'}>{note.duration}</div>
+                filled && <div className={`tabkey filled${note.pitch === '' ? ' rest' : ''}`}>{note.duration}</div>
             }
         </div>
     )
