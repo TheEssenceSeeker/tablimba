@@ -21,6 +21,6 @@ export const parseTab = tabArr => {
 }
 
 export const parseNote = strNote => {
-    const [note, duration = '4n'] = strNote.split('|')
-    return {note, duration}
+    const [pitch, duration = '4n'] = strNote.split('|')
+    return {pitch, duration}
 }

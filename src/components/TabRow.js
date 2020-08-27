@@ -1,17 +1,18 @@
 import React from 'react'
 import TabNote from "./TabNote"
-import {parseNote} from '../misc/tabHandling'
+import {parseNote} from "../misc/tabHandling"
 
 const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, insertRow}) => {
 
     return (
         <div className="kalimba-row tab-row">
-            <i className="fas fa-times-circle fa-lg delBtn" onClick={() => deleteRow(index)}></i>
-            <i className="fas fa-plus-circle fa-lg addBtn" onClick={() => insertRow(index)}></i>
+            <i className="fas fa-times-circle fa-lg delBtn" onClick={() => deleteRow(index)}/>
+            <i className="fas fa-plus-circle fa-lg addBtn" onClick={() => insertRow(index)}/>
             {
-                tuning.map((tNote, i) => (
-                    <TabNote filled={tNote === parseNote(note).note}
+                tuning.map((pitch, i) => (
+                    <TabNote filled={pitch === note.pitch}
                              note={note}
+                             pitch={pitch}
                              key={i}
                              isHighlighted={highlightedNotes.includes(i)}
                              editNote={editNote}

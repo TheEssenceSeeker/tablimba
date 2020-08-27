@@ -3,6 +3,7 @@ import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
+import {parseNote} from "../misc/tabHandling";
 
 const Tablimba = props => {
     const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -18,7 +19,7 @@ const Tablimba = props => {
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
-
+    const [isAddRest, handleIsAddRest] = useHandleChange(false)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
@@ -56,14 +57,17 @@ const Tablimba = props => {
             }
         })
     }
-    const editNote = (tabIndex, note) => {
+    const editNote = (tabIndex, pitch) => {
         if (tabIndex >= tab.length || tabIndex < 0) {
             console.error('editNote(): index is out of range')
             return
         }
-        const newNote = tab[tabIndex] === note ? '' : note
+        const newDuration = editorActiveDuration
+        const newPitch = isAddRest ? '' : pitch
+        const newNote = `${newPitch}|${newDuration}`
+
         setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
-        if(newNote !== '') playNote(newNote)
+        if(newPitch !== '') playNote(newPitch, newDuration)
     }
     const deleteRow = (index) => {
         setTab(prevState => prevState.filter((row, i) => i !== index))
@@ -132,13 +136,17 @@ const Tablimba = props => {
                     <label>
                         <input type="radio" name="duration" value="64n" checked={editorActiveDuration === '64n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅱
                     </label>
+                    <label>
+                        <input type="checkbox" checked={isAddRest} onChange={handleIsAddRest} />
+                        Rest
+                    </label>
                 </div>
                 <br/>
                 <div className="kalibma-row">
                     {
-                        tuning.map((note, i) =>
+                        tuning.map((pitch, i) =>
                             <div key={i} className={`tab-note-hint${highlightedNotes.includes(i) ? ' highlighted' : ''}`}>
-                                <input className='tuning-note' type='text' value={note} key={i}
+                                <input className='tuning-note' type='text' value={pitch} key={i}
                                        onChange={changeTuningNote}
                                        data-index={i}
                                 />

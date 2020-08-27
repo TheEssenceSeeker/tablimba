@@ -10,7 +10,7 @@ class Synth {
 
     getBpm = () => Tone.Transport.bpm.value
 
-    playNote = (note, duration = '8n') => {
+    playNote = (note, duration = '4n') => {
         this.synth.triggerAttackRelease(note, duration)
     }
 
@@ -18,9 +18,9 @@ class Synth {
         const now = Tone.Time()
         let currentTime = 0
         tab.forEach(item => {
-            const {note, duration} = parseNote(item)
-            if (note !== '') {
-                this.synth.triggerAttackRelease(note, duration, now + currentTime)
+            const {pitch, duration} = parseNote(item)
+            if (pitch !== '') {
+                this.synth.triggerAttackRelease(pitch, duration, now + currentTime)
             }
             currentTime += Tone.Time(duration).toSeconds()
         })

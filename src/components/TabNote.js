@@ -1,14 +1,13 @@
 import React from 'react'
-import {parseNote} from "../misc/tabHandling"
 
-const TabNote = ({filled = false, isHighlighted, note, editNote, index}) =>
+const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch}) =>
     (
         <div
             className={`tabkey${isHighlighted ? ' highlighted' : ''}`}
-            // onClick={() => editNote(index, parseNote(note)}
+            onClick={() => editNote(index, pitch)}
         >
             {
-                filled && <div className={'tabkey filled'}>{parseNote(note).duration}</div>
+                filled && <div className={'tabkey filled'}>{note.duration}</div>
             }
         </div>
     )
