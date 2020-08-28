@@ -20,6 +20,7 @@ const Tablimba = props => {
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
+    const [isAddDot, handleIsAddDot] = useHandleChange(false)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
@@ -62,7 +63,7 @@ const Tablimba = props => {
             console.error('editNote(): index is out of range')
             return
         }
-        const newDuration = editorActiveDuration
+        const newDuration = `${editorActiveDuration}${isAddDot ? '.' : ''}`
         const newPitch = isAddRest ? '' : pitch
         const newNote = `${newPitch}|${newDuration}`
 
@@ -135,6 +136,10 @@ const Tablimba = props => {
                     </label>
                     <label>
                         <input type="radio" name="duration" value="64n" checked={editorActiveDuration === '64n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅱
+                    </label>
+                    <label>
+                        <input type="checkbox" checked={isAddDot} onChange={handleIsAddDot} />
+                        Dot
                     </label>
                     <label>
                         <input type="checkbox" checked={isAddRest} onChange={handleIsAddRest} />

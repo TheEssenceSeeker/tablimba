@@ -62,9 +62,9 @@ div.tab-row {
   position: relative;
 }
 
-div.tab-row:nth-child(4n) {
-  border-top: 1px solid #000;
-}
+/*div.tab-row:nth-child(4n) {*/
+/*  border-top: 1px solid #000;*/
+/*}*/
 
 div.tab-row:hover,
 div.tab-row:hover .tabkey:not(.filled) {
@@ -135,15 +135,22 @@ div.tabkey {
   border-left: 1px solid #000;
   margin-right: 5px;
   background: #fff;
-  color: #fff;
+  color: #000;
   justify-content: center;
   align-items: center;
   user-select: none;
 }
 
-div.tabkey.filled {
-  border-radius: 50%;
-  background: #000;
+/*div.tabkey.filled {*/
+/*  border-radius: 50%;*/
+/*  background: #000;*/
+/*  border: 1px solid #000;*/
+/*}*/
+
+div.tabkey span.note-symbol {
+  font-size: 20px;
+  /*!*transform: translate(0, -11px);*!*/
+  /*transform: rotate(-90deg) translate(0, -15px);*/
 }
 
 div.tabkey.filled.rest {
