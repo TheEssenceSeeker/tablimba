@@ -14,17 +14,23 @@ const Tab = props => {
             {
                 tab.map((strNote, i) => {
                     let hasBarLine = false
+                    let hasError = false
+
                     const note = parseNote(strNote)
                     currentTime = sumDurations(currentTime.toBarsBeatsSixteenths(), note.duration)
-                    const barNumber = +currentTime.toBarsBeatsSixteenths().split(':')[0]
-                    console.log(barNumber, prevNoteBarNumber)
+                    const [barNumber, quarters, sixteenths] = currentTime.toBarsBeatsSixteenths().split(':').map(item => +item)
+                    console.log(currentTime.toBarsBeatsSixteenths())
                     if (barNumber !== prevNoteBarNumber) {
                         hasBarLine = true
                         prevNoteBarNumber = barNumber
+                        hasError = quarters !== 0 || sixteenths !== 0
                     }
 
                     return (
-                        <div key={`wrapper-${i}`}>
+                        <div className='tab-row-container' key={i}>
+                            {
+                                hasBarLine && <TabBarLine number={barNumber} />
+                            }
                             <TabRow note={note}
                                     tuning={tuning}
                                     highlightedNotes={highlightedNotes}
@@ -32,10 +38,8 @@ const Tab = props => {
                                     index={i}
                                     deleteRow={deleteRow}
                                     insertRow={insertRow}
+                                    hasBarError={hasError}
                             />
-                            {
-                                hasBarLine && <TabBarLine number={barNumber}/>
-                            }
                         </div>
                     )
                 })

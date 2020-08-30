@@ -5,9 +5,10 @@ import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
 
 const Tablimba = props => {
-    const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
-                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n',
-                        ...new Array(40).fill('')]
+    // const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
+    //                     'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n',
+    //                     ...new Array(40).fill('')]
+    const initialTab = new Array(40).fill('')
     const {playTab, playNote, getBpm, setBpm} = new Synth()
 
     const [tempo, _setTempo] = useState(getBpm())
