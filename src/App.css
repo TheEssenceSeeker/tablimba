@@ -18,7 +18,7 @@ div.tab-container {
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 50px;
-  padding-top: 120px;
+  padding-top: 150px;
 }
 
 div.tab {
@@ -205,4 +205,19 @@ input#tempo {
 
 div.duration-editor {
   font-size: 30px;
+}
+
+div.bar-line {
+  position: relative;
+  height: 0px;
+  border-top: 1px solid #000;
+}
+
+div.bar-line div.bar-number {
+  position: absolute;
+  left: -15px;
+  top: -8px;
+  font-size: 9px;
+  width: 15px;
+  text-align: center;
 }
