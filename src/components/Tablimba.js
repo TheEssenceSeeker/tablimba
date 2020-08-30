@@ -1,9 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
-import {parseNote} from "../misc/tabHandling";
 
 const Tablimba = props => {
     const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -40,9 +39,9 @@ const Tablimba = props => {
         playNote(note)
         // setTab(prevState => [...prevState, note])
     }
-    const addPause = () => {
-        setTab(prevState => [...prevState, ''])
-    }
+    // const addPause = () => {
+    //     setTab(prevState => [...prevState, ''])
+    // }
     const resetTab = () => {
         setTab(initialTab)
     }

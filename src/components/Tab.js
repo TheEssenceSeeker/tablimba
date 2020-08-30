@@ -24,7 +24,7 @@ const Tab = props => {
                     }
 
                     return (
-                        <>
+                        <div key={`wrapper-${i}`}>
                             <TabRow note={note}
                                     tuning={tuning}
                                     highlightedNotes={highlightedNotes}
@@ -32,12 +32,11 @@ const Tab = props => {
                                     index={i}
                                     deleteRow={deleteRow}
                                     insertRow={insertRow}
-                                    key={i}
                             />
                             {
                                 hasBarLine && <TabBarLine number={barNumber}/>
                             }
-                        </>
+                        </div>
                     )
                 })
             }

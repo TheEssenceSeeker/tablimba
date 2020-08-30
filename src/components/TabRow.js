@@ -1,9 +1,7 @@
 import React from 'react'
 import TabNote from "./TabNote"
-import {parseNote} from "../misc/tabHandling"
 
 const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, insertRow}) => {
-    // TODO: Отображение пауз с длительностями
     const isFilled = (pitch, i) => note.pitch !== '' ? pitch === note.pitch : i === Math.floor(tuning.length / 2)
 
     return (
