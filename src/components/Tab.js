@@ -12,7 +12,7 @@ const Tab = props => {
     const renderTab = () => {
         let bars = []
         let currentBarRows = []
-        let barSize = 0
+        // let barSize = 0
 
         console.log('render Tab')
 
@@ -33,7 +33,7 @@ const Tab = props => {
                                         insertRow={insertRow}
                                         hasBarError={hasError}/>)
 
-            barSize = sumDurations(barSize, note.duration).toBarsBeatsSixteenths()
+            // barSize = sumDurations(barSize, note.duration).toBarsBeatsSixteenths()
             // console.log('barsize', barSize)
             // console.log(barNumber, prevNoteBarNumber)
 
