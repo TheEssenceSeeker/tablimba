@@ -201,6 +201,8 @@ div.tab-row-container:last-child div.bar-line div.bar-number {
 div.tab-bar {
   /*border-top: 1px solid #000;*/
   position: relative;
+  display: flex;
+  flex-direction: column-reverse;
 }
 /* Bar color toggling style */
 div.tab-bar:nth-child(2n),

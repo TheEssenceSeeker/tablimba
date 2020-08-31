@@ -12,7 +12,8 @@ const Tab = props => {
     const renderTab = () => {
         let bars = []
         let currentBarRows = []
-
+        let barSize = 0
+console.log('_________________________')
         tab.forEach((strNote, i) => {
             let hasError = false
 
@@ -30,15 +31,20 @@ const Tab = props => {
                                         insertRow={insertRow}
                                         hasBarError={hasError}/>)
 
+            barSize = sumDurations(barSize, note.duration).toBarsBeatsSixteenths()
+            console.log('barsize', barSize)
+
             if (barNumber !== prevNoteBarNumber || i === tab.length - 1) {
                 // TODO: Change hasError logic ?
-                hasError = quarters !== 0 || sixteenths !== 0
+                // hasError = quarters !== 0 || sixteenths !== 0
+                hasError = barSize !== '1:0:0'
                 bars.push(
                     <TabBar key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>
                         {currentBarRows}
                     </TabBar>
                 )
                 currentBarRows = []
+                barSize = 0
             }
             prevNoteBarNumber = barNumber
         })
