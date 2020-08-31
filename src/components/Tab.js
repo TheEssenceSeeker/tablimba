@@ -2,47 +2,54 @@ import React from 'react'
 import TabRow from "./TabRow"
 import {parseNote, sumDurations} from '../misc/tabHandling'
 import * as Tone from "tone"
-import TabBarLine from "./TabBarLine"
+import TabBar from "./TabBar"
 
 const Tab = props => {
     const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow} = props
-    let prevNoteBarNumber = 0
+    let prevNoteBarNumber = -1
     let currentTime = Tone.Time(0)
+
+    const renderTab = () => {
+        let bars = []
+        let currentBarRows = []
+
+        tab.forEach((strNote, i) => {
+            let hasError = false
+
+            const note = parseNote(strNote)
+            currentTime = sumDurations(currentTime.toBarsBeatsSixteenths(), note.duration)
+            const [barNumber, quarters, sixteenths] = currentTime.toBarsBeatsSixteenths().split(':').map(item => +item)
+
+            currentBarRows.push(<TabRow key={i}
+                                        note={note}
+                                        tuning={tuning}
+                                        highlightedNotes={highlightedNotes}
+                                        editNote={editNote}
+                                        index={i}
+                                        deleteRow={deleteRow}
+                                        insertRow={insertRow}
+                                        hasBarError={hasError}/>)
+
+            if (barNumber !== prevNoteBarNumber && prevNoteBarNumber !== -1) { // New bar starts
+                hasError = quarters !== 0 || sixteenths !== 0
+                bars.push(
+                    <TabBar key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>
+                        {currentBarRows}
+                    </TabBar>
+                )
+                currentBarRows = []
+            }
+
+            prevNoteBarNumber = barNumber
+        })
+        prevNoteBarNumber = -1
+        return bars
+    }
 
     return (
         <div className='tab'>
             {
-                tab.map((strNote, i) => {
-                    let hasBarLine = false
-                    let hasError = false
-
-                    const note = parseNote(strNote)
-                    currentTime = sumDurations(currentTime.toBarsBeatsSixteenths(), note.duration)
-                    const [barNumber, quarters, sixteenths] = currentTime.toBarsBeatsSixteenths().split(':').map(item => +item)
-                    console.log(currentTime.toBarsBeatsSixteenths())
-                    if (barNumber !== prevNoteBarNumber) {
-                        hasBarLine = true
-                        prevNoteBarNumber = barNumber
-                        hasError = quarters !== 0 || sixteenths !== 0
-                    }
-
-                    return (
-                        <div className='tab-row-container' key={i}>
-                            {
-                                hasBarLine && <TabBarLine number={barNumber} />
-                            }
-                            <TabRow note={note}
-                                    tuning={tuning}
-                                    highlightedNotes={highlightedNotes}
-                                    editNote={editNote}
-                                    index={i}
-                                    deleteRow={deleteRow}
-                                    insertRow={insertRow}
-                                    hasBarError={hasError}
-                            />
-                        </div>
-                    )
-                })
+                renderTab()
             }
         </div>
     )
