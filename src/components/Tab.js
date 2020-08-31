@@ -6,7 +6,7 @@ import TabBar from "./TabBar"
 
 const Tab = props => {
     const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow} = props
-    let prevNoteBarNumber = -1
+    let prevNoteBarNumber = 0
     let currentTime = Tone.Time(0)
 
     const renderTab = () => {
@@ -30,7 +30,8 @@ const Tab = props => {
                                         insertRow={insertRow}
                                         hasBarError={hasError}/>)
 
-            if (barNumber !== prevNoteBarNumber && prevNoteBarNumber !== -1) { // New bar starts
+            if (barNumber !== prevNoteBarNumber || i === tab.length - 1) {
+                // TODO: Change hasError logic ?
                 hasError = quarters !== 0 || sixteenths !== 0
                 bars.push(
                     <TabBar key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>
@@ -39,20 +40,14 @@ const Tab = props => {
                 )
                 currentBarRows = []
             }
-
             prevNoteBarNumber = barNumber
         })
-        prevNoteBarNumber = -1
+        prevNoteBarNumber = 0
         return bars
     }
 
-    return (
-        <div className='tab'>
-            {
-                renderTab()
-            }
-        </div>
-    )
+    return <div className='tab'>{renderTab()}</div>
+
 }
 
 export default Tab

@@ -209,16 +209,16 @@ div.tab-bar:nth-child(2n) div.tab-row div.tabkey{
   background-color: #c8c8c8;
 }
 
+div.tab-bar.bar-error,
+div.tab-bar.bar-error div.tab-row,
+div.tab-bar.bar-error div.tab-row div.tabkey{
+  background: #ff4444;
+}
+
 div.tab-bar div.tab-row:hover,
 div.tab-bar div.tab-row:hover div.tabkey {
   background: deepskyblue;
   transition: background-color .25s ease;
-}
-
-div.tab-bar.bar-error,
-div.tab-bar.bar-error div.tab-row,
-div.tab-bar.bar-error div.tab-row .tabkey:not(.filled){
-  background: #ff4444;
 }
 
 div.tab-bar div.bar-number {
