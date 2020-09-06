@@ -94,6 +94,27 @@ const Tablimba = props => {
     // const toggleKalimba = () => {
     //     setIsKalimbaMinimized(prevState => !prevState)
     // }
+    const loadTab = (newTabStrJSON) => {
+        const tabObj = JSON.parse(newTabStrJSON)
+        setTuning(tabObj.tuning)
+        setTab(tabObj.tab)
+        setTempo(tabObj.tempo)
+    }
+    const renderSaveTabBtn = (fileName = tabName, btnText = 'Save') => {
+        const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({tuning, tab, tempo}))
+        return <a href={`data: ${data}`} download={`${fileName}.tbl`}>{btnText}</a>
+    }
+    const renderLoadTab = () => {
+        const handleChange = e => {
+            let reader = new FileReader()
+            reader.readAsText(e.target.files[0])
+            reader.onload = () => {
+                loadTab(reader.result)
+            }
+            e.target.value = null
+        }
+        return <input type={'file'} accept=".tbl" onChange={handleChange} />
+    }
 
     return (
         <>
@@ -104,6 +125,8 @@ const Tablimba = props => {
                     <button onClick={() => setTab(testTab)} >Load test tab</button>
                     <button onClick={resetTuning}>Reset tuning</button>
                     <button onClick={playMelody} >Play Tab</button>
+                    {renderSaveTabBtn()}
+                    {renderLoadTab()}
                     <input type='number' id={'tempo'} name={'setTempo'} value={tempo} onChange={e => setTempo(+e.target.value)} />
                     <label>
                         <input
