@@ -46,9 +46,10 @@ const Tab = props => {
                     </TabBar>
                 )
                 currentBarRows = []
+                currentTime = Tone.Time(`${barNumber}:0:0`)
             }
             prevNoteBarNumber = barNumber
-            currentTime = Tone.Time(`${barNumber}:0:0`)
+
         })
         prevNoteBarNumber = 0
         return bars
