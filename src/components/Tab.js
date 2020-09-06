@@ -5,7 +5,7 @@ import * as Tone from "tone"
 import TabBar from "./TabBar"
 
 const Tab = props => {
-    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow} = props
+    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos} = props
     let prevNoteBarNumber = 0
     let currentTime = Tone.Time(0)
 
@@ -31,7 +31,8 @@ const Tab = props => {
                                         index={i}
                                         deleteRow={deleteRow}
                                         insertRow={insertRow}
-                                        hasBarError={hasError}/>)
+                                        hasBarError={hasError}
+                                        playFromPos={playFromPos}/>)
 
             // barSize = sumDurations(barSize, note.duration).toBarsBeatsSixteenths()
             // console.log('barsize', barSize)
