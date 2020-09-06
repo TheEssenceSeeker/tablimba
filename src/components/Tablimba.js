@@ -21,6 +21,7 @@ const Tablimba = props => {
     const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
+    const [isNameEditorOpen, setIsNameEditorOpen] = useState(false)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
@@ -99,9 +100,10 @@ const Tablimba = props => {
         setTuning(tabObj.tuning)
         setTab(tabObj.tab)
         setTempo(tabObj.tempo)
+        setTabName(tabObj.tabName)
     }
     const renderSaveTabBtn = (fileName = tabName, btnText = 'Save') => {
-        const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({tuning, tab, tempo}))
+        const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({tuning, tab, tempo, tabName}))
         return <a href={`data: ${data}`} download={`${fileName}.tbl`}>{btnText}</a>
     }
     const renderLoadTab = () => {
@@ -115,11 +117,22 @@ const Tablimba = props => {
         }
         return <input type={'file'} accept=".tbl" onChange={handleChange} />
     }
+    const handleNameEdit = e => {
+        setTabName(e.target.value)
+    }
 
     return (
         <>
             <div className="header">
-                <h1>Tablimba - {tabName}</h1>
+                {
+                    isNameEditorOpen
+                        ? <input type="text" value={tabName}
+                                 onChange={handleNameEdit}
+                                 onBlur={() => setIsNameEditorOpen(false)}
+                                 onKeyDown={e => e.key === 'Enter' ? setIsNameEditorOpen(false) : null}
+                                 autoFocus={true}/>
+                        : <h1 onClick={() => setIsNameEditorOpen(true)}>Tablimba - {tabName}</h1>
+                }
                 <div className="kalibma-row">
                     <button onClick={resetTab} >Reset Tab</button>
                     <button onClick={() => setTab(testTab)} >Load test tab</button>
