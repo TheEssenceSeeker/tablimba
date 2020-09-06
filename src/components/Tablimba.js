@@ -1,14 +1,14 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
-import {parseNote} from "../misc/tabHandling";
 
 const Tablimba = props => {
     const initialTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
                         'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n',
                         ...new Array(40).fill('')]
+    // const initialTab = new Array(13).fill('')
     const {playTab, playNote, getBpm, setBpm} = new Synth()
 
     const [tempo, _setTempo] = useState(getBpm())
@@ -40,9 +40,9 @@ const Tablimba = props => {
         playNote(note)
         // setTab(prevState => [...prevState, note])
     }
-    const addPause = () => {
-        setTab(prevState => [...prevState, ''])
-    }
+    // const addPause = () => {
+    //     setTab(prevState => [...prevState, ''])
+    // }
     const resetTab = () => {
         setTab(initialTab)
     }
@@ -59,6 +59,7 @@ const Tablimba = props => {
         })
     }
     const editNote = (tabIndex, pitch) => {
+        // console.log('editNote')
         if (tabIndex >= tab.length || tabIndex < 0) {
             console.error('editNote(): index is out of range')
             return

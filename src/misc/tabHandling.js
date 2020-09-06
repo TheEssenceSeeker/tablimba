@@ -1,3 +1,5 @@
+import * as Tone from "tone"
+
 export const parseTab = tabArr => {
     let result = []
     tabArr.forEach(row => {
@@ -24,6 +26,8 @@ export const parseNote = strNote => {
     const [pitch, duration = '4n'] = strNote.split('|')
     return {pitch, duration}
 }
+
+export const sumDurations = (duration1, duration2) => Tone.Time(Tone.Time(duration1) + Tone.Time(duration2))
 
 export const noteSymbols = {
     '1n': '𝅝',
