@@ -46,8 +46,8 @@ const Tablimba = props => {
     const resetTab = () => {
         setTab(initialTab)
     }
-    const playMelody = () => {
-        playTab(tab)
+    const playMelody = (index = 0) => {
+        playTab(tab.slice(index))
     }
     const toggleHighlight = i => {
         setHighlightedNotes(prevState => {
@@ -171,6 +171,7 @@ const Tablimba = props => {
                     editNote={editNote}
                     deleteRow={deleteRow}
                     insertRow={insertRow}
+                    playFromPos={playMelody}
                 />
             </div>
 

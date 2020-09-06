@@ -89,6 +89,12 @@ div.tab-row {
   color: #078f5c;
 }
 
+.tab-row .playBtn {
+  /*right: -52px;*/
+  left: -30px;
+  color: #07648f;
+}
+
 .tab-row:hover .fas {
   opacity: 1;
 }
