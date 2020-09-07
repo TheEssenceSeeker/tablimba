@@ -113,7 +113,8 @@ const Tablimba = props => {
     const renderTabTitle = () => {
         return (
             isNameEditorOpen
-                ? <input type="text" value={tabName}
+                ? <input className='input'
+                         type="text" value={tabName}
                          onChange={handleNameEdit}
                          onBlur={() => setIsNameEditorOpen(false)}
                          onKeyDown={e => e.key === 'Enter' ? setIsNameEditorOpen(false) : null}

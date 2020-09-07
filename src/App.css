@@ -299,7 +299,7 @@ div.tab-bar:last-child div.bar-number {
 }
 
 .checkbox__btn {
-  border-radius: 15% ;
+  border-radius: 3px;
 }
 
 .radio input:checked + .radio__btn,
@@ -337,20 +337,23 @@ div.tab-bar:last-child div.bar-number {
   padding: 5px;
   box-shadow: 0 0 0 2px gray;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 15px;
   margin: 2px;
   cursor: pointer;
 }
 
 .input {
-  padding-left: 10px;
   position: relative;
 }
 
 .tempo {
   position: relative;
   cursor: pointer;
+}
+
+.tempo .input {
+  padding-left: 10px;
 }
 
 .tempo:after {
