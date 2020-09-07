@@ -144,15 +144,15 @@ const Tablimba = props => {
                            onChange={e => setTempo(+e.target.value)}/>
                 </div>
 
-                <label>
-                    <input
-                        name={'add-bar-on-scroll'}
-                        type='checkbox'
-                        checked={isAddBarOnScroll}
-                        onChange={handleIsAddBarOnScroll}
-                    />
-                    Add bar on scroll
-                </label>
+                {/*<label>*/}
+                {/*    <input*/}
+                {/*        name={'add-bar-on-scroll'}*/}
+                {/*        type='checkbox'*/}
+                {/*        checked={isAddBarOnScroll}*/}
+                {/*        onChange={handleIsAddBarOnScroll}*/}
+                {/*    />*/}
+                {/*    Add bar on scroll*/}
+                {/*</label>*/}
             </div>
         )
     }
