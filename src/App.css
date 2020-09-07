@@ -23,6 +23,8 @@ div, input {
   font-size: 11px;
 }
 
+/*----------------------------------------------*/
+
 div.main-wrapper {
   display: flex;
   flex-direction: column;
@@ -319,8 +321,8 @@ div.tab-bar:last-child div.bar-number {
   margin: 0;
   outline: none;
   border: 0;
-  width: 2.5em;
-  text-align: right;
+
+
 }
 
 .input:focus {
@@ -347,6 +349,10 @@ div.tab-bar:last-child div.bar-number {
   position: relative;
 }
 
+.input:focus {
+  cursor: text;
+}
+
 .tempo {
   position: relative;
   cursor: pointer;
@@ -354,6 +360,8 @@ div.tab-bar:last-child div.bar-number {
 
 .tempo .input {
   padding-left: 10px;
+  width: 2.5em;
+  text-align: right;
 }
 
 .tempo:after {
@@ -392,6 +400,51 @@ a.button {
 }
 
 .button.open-file label {
+  cursor: pointer;
+}
+
+/* Input Raw */
+.input-raw {
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  background-color: transparent;
+}
+
+.input-raw:focus {
+  outline: none;
+}
+
+.tab-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.editable-span {
+  height: 25px;
+  padding: 0 5px;
+  /*margin-left: 5px;*/
+}
+
+.tab-title .editable-span:focus {
+  outline: none;
+  background: #fff;
+  /*border: 1px solid gray;*/
+  border-radius: 3px;
+  /*padding: 0 5px;*/
+  box-shadow: 0 0 0 2px gray;
+}
+
+.tab-title .editable-span:hover + .tab-title__edit-icon,
+.tab-title__edit-icon:hover {
+  color: #000;
+}
+
+.tab-title__edit-icon {
+  margin-left: 3px;
+  font-size: 0.9em;
+  color: gray;
   cursor: pointer;
 }
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
@@ -7,7 +7,6 @@ import DurationEditor from "./DurationEditor"
 import Button from "./Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
-import Input from "./Input"
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -26,7 +25,7 @@ const Tablimba = props => {
     const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
-    const [isNameEditorOpen, setIsNameEditorOpen] = useState(false)
+    const editTabNameRef = useRef(tabName)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
@@ -42,13 +41,6 @@ const Tablimba = props => {
         setBpm(data)
         _setTempo(data)
     }
-    const addNote = note => {
-        playNote(note)
-        // setTab(prevState => [...prevState, note])
-    }
-    // const addPause = () => {
-    //     setTab(prevState => [...prevState, ''])
-    // }
     const resetTab = () => {
         setTab(initialTab)
     }
@@ -65,7 +57,6 @@ const Tablimba = props => {
         })
     }
     const editNote = (tabIndex, pitch) => {
-        // console.log('editNote')
         if (tabIndex >= tab.length || tabIndex < 0) {
             console.error('editNote(): index is out of range')
             return
@@ -107,19 +98,28 @@ const Tablimba = props => {
         setTempo(tabObj.tempo)
         setTabName(tabObj.tabName)
     }
-    const handleNameEdit = e => {
-        setTabName(e.target.value)
+    const selectFirstChild = e => {
+        let range = new Range()
+        range.setStart(e.target, 0)
+        range.setEnd(e.target, 1)
+        let selection = window.getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
     }
     const renderTabTitle = () => {
         return (
-            isNameEditorOpen
-                ? <input className='input'
-                         type="text" value={tabName}
-                         onChange={handleNameEdit}
-                         onBlur={() => setIsNameEditorOpen(false)}
-                         onKeyDown={e => e.key === 'Enter' ? setIsNameEditorOpen(false) : null}
-                         autoFocus={true}/>
-                : <h1 onClick={() => setIsNameEditorOpen(true)}>Tablimba - {tabName}</h1>
+            <h1 className='tab-title'>
+                Tablimba -<span className='editable-span'
+                                 onBlur={e => setTabName(e.currentTarget.textContent)}
+                                 onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
+                                 contentEditable
+                                 suppressContentEditableWarning={true}
+                                 ref={editTabNameRef}
+                                 onFocus={selectFirstChild}
+            >{tabName}</span>
+                <i className="fas fa-edit tab-title__edit-icon"
+                   onClick={() => editTabNameRef.current.focus()}/>
+            </h1>
         )
     }
     const renderTestButtons = () => {
@@ -128,14 +128,14 @@ const Tablimba = props => {
                 <Button onClick={resetTab}>Reset Tab</Button>
                 <Button onClick={() => setTab(testTab)}>Load test tab</Button>
                 <Button onClick={resetTuning}>Reset Tuning</Button>
-                <Button onClick={playMelody}><i className="fas fa-play"></i></Button>
+                <Button onClick={playMelody}><i className="fas fa-play"/></Button>
                 <SaveTextFileButton fileName={tabName}
                                     dataToSave={{tuning, tab, tempo, tabName}}
                                     extension='tbl'>
-                    <i className="far fa-save"></i>
+                    <i className="far fa-save"/>
                 </SaveTextFileButton>
                 <BrowseTextFileButton extension='tbl' handleFile={loadTab}>
-                    <i className="far fa-folder-open"></i>
+                    <i className="far fa-folder-open"/>
                 </BrowseTextFileButton>
                 <div className="tempo">
                     <input className='input'
@@ -179,12 +179,10 @@ const Tablimba = props => {
                                        onChange={changeTuningNote}
                                        data-index={i}
                                 />
-                                {/*{note}*/}
                             </div>)
                     }
                 </div>
             </div>
-
             <div className="tab-container">
                 <Tab
                     tab={tab}
@@ -200,7 +198,7 @@ const Tablimba = props => {
             <div className="footer">
                 <Kalimba
                     tuning={tuning}
-                    onPlayNote={addNote}
+                    onPlayNote={playNote}
                     highlightedNotes={highlightedNotes}
                     onKeyRtClick={toggleHighlight}
                     minimized={isKalimbaMinimized}
