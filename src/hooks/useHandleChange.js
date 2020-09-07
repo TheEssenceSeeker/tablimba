@@ -10,12 +10,12 @@ const useHandleChange = (initialState) => {
         _setValue(data)
     }
 
-    const cb = e => {
+    const callback = e => {
         const {value, type, checked} = e.target
         type === "checkbox" ? setValue(checked) : setValue(value)
     }
     const handleChange = useCallback(
-        cb,
+        callback,
         []
     )
     return [value, handleChange, ref]
