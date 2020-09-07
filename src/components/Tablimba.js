@@ -3,6 +3,9 @@ import Tab from './Tab'
 import Kalimba from './Kalimba'
 import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
+import Radio from "./Radio"
+import {noteSymbols, restSymbols} from "../misc/tabHandling";
+import DurationEditor from "./DurationEditor";
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -120,70 +123,53 @@ const Tablimba = props => {
     const handleNameEdit = e => {
         setTabName(e.target.value)
     }
+    const renderTabTitle = () => {
+        return (
+            isNameEditorOpen
+                ? <input type="text" value={tabName}
+                         onChange={handleNameEdit}
+                         onBlur={() => setIsNameEditorOpen(false)}
+                         onKeyDown={e => e.key === 'Enter' ? setIsNameEditorOpen(false) : null}
+                         autoFocus={true}/>
+                : <h1 onClick={() => setIsNameEditorOpen(true)}>Tablimba - {tabName}</h1>
+        )
+    }
+    const renderTestButtons = () => {
+        return (
+            <div className="kalibma-row">
+                <button onClick={resetTab} >Reset Tab</button>
+                <button onClick={() => setTab(testTab)} >Load test tab</button>
+                <button onClick={resetTuning}>Reset tuning</button>
+                <button onClick={playMelody} >Play Tab</button>
+                {renderSaveTabBtn()}
+                {renderLoadTab()}
+                <input type='number' id={'tempo'} name={'setTempo'} value={tempo} onChange={e => setTempo(+e.target.value)} />
+                <label>
+                    <input
+                        name={'add-bar-on-scroll'}
+                        type='checkbox'
+                        checked={isAddBarOnScroll}
+                        onChange={handleIsAddBarOnScroll}
+                    />
+                    Add bar on scroll
+                </label>
+            </div>
+        )
+    }
 
     return (
         <>
             <div className="header">
-                {
-                    isNameEditorOpen
-                        ? <input type="text" value={tabName}
-                                 onChange={handleNameEdit}
-                                 onBlur={() => setIsNameEditorOpen(false)}
-                                 onKeyDown={e => e.key === 'Enter' ? setIsNameEditorOpen(false) : null}
-                                 autoFocus={true}/>
-                        : <h1 onClick={() => setIsNameEditorOpen(true)}>Tablimba - {tabName}</h1>
-                }
-                <div className="kalibma-row">
-                    <button onClick={resetTab} >Reset Tab</button>
-                    <button onClick={() => setTab(testTab)} >Load test tab</button>
-                    <button onClick={resetTuning}>Reset tuning</button>
-                    <button onClick={playMelody} >Play Tab</button>
-                    {renderSaveTabBtn()}
-                    {renderLoadTab()}
-                    <input type='number' id={'tempo'} name={'setTempo'} value={tempo} onChange={e => setTempo(+e.target.value)} />
-                    <label>
-                        <input
-                            name={'add-bar-on-scroll'}
-                            type='checkbox'
-                            checked={isAddBarOnScroll}
-                            onChange={handleIsAddBarOnScroll}
-                        />
-                        Add bar on scroll
-                    </label>
-                    {/*<button onClick={addPause} >+</button>*/}
-                    {/*<button onClick={toggleKalimba}>{!isKalimbaMinimized ? 'Minimize' : 'Show full'} kalimba</button>*/}
-                </div>
-                <div className="kalibma-row duration-editor">
-                    <label>
-                        <input type="radio" name="duration" value="1n" checked={editorActiveDuration === '1n'} onChange={handleEditorActiveDuration} />𝅝
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="2n" checked={editorActiveDuration === '2n'} onChange={handleEditorActiveDuration} />𝅗𝅥
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="4n" checked={editorActiveDuration === '4n'} onChange={handleEditorActiveDuration} />𝅘𝅥
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="8n" checked={editorActiveDuration === '8n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅮
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="16n" checked={editorActiveDuration === '16n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅯
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="32n" checked={editorActiveDuration === '32n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅰
-                    </label>
-                    <label>
-                        <input type="radio" name="duration" value="64n" checked={editorActiveDuration === '64n'} onChange={handleEditorActiveDuration} />𝅘𝅥𝅱
-                    </label>
-                    <label>
-                        <input type="checkbox" checked={isAddDot} onChange={handleIsAddDot} />
-                        Dot
-                    </label>
-                    <label>
-                        <input type="checkbox" checked={isAddRest} onChange={handleIsAddRest} />
-                        Rest
-                    </label>
-                </div>
+                {renderTabTitle()}
+                {renderTestButtons()}
+                <DurationEditor name='duration'
+                                editorActiveDuration={editorActiveDuration}
+                                onChange={handleEditorActiveDuration}
+                                isDotChecked={isAddDot}
+                                handleDotCheck={handleIsAddDot}
+                                isRestChecked={isAddRest}
+                                handleRestCheck={handleIsAddRest}
+                />
                 <br/>
                 <div className="kalibma-row">
                     {
