@@ -37,8 +37,14 @@ const Tablimba = props => {
     }, [])
 
     const setTempo = data => {
-        setBpm(data)
-        _setTempo(data)
+        let newTempo = +data
+        if (newTempo < 1) {
+            newTempo = 1
+        } else if (newTempo > 400) {
+            newTempo = 400
+        }
+        setBpm(newTempo)
+        _setTempo(newTempo)
     }
     const resetTab = () => {
         setTab(initialTab)
