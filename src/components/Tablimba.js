@@ -10,8 +10,7 @@ import SaveTextFileButton from "./SaveTextFileButton"
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
-                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n',
-                        ...new Array(40).fill('')]
+                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n', ...new Array(20).fill('')]
     const initialTab = new Array(40).fill('')
     const {playTab, playNote, getBpm, setBpm} = new Synth()
 
@@ -60,6 +59,9 @@ const Tablimba = props => {
         if (tabIndex >= tab.length || tabIndex < 0) {
             console.error('editNote(): index is out of range')
             return
+        }
+        if (tabIndex > tab.length - 4) {
+            setTab(prevState => [...prevState, ...new Array(4).fill('')])
         }
         const newDuration = `${editorActiveDuration}${isAddDot ? '.' : ''}`
         const newPitch = isAddRest ? '' : pitch
