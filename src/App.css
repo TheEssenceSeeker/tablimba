@@ -194,6 +194,12 @@ input.tuning-note {
   border: none;
   background: inherit;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+input.tuning-note:focus {
+  outline: none;
 }
 
 div.hidden {
