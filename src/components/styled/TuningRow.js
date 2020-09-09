@@ -5,10 +5,25 @@ const TuningRow = styled.div`
   align-items:center;
   justify-content:center;
   position: relative;
-  .checkbox {
+  div:last-child {
     position:absolute;
-    right: -30px;
-    top: 2px;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    //color: grey;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 50%;
+    
+    &:hover {
+      background: transparent;
+      box-shadow: none;
+    }
+    //& + input:checked {
+    //  color:deepskyblue;
+    //}
   }
 `
 
