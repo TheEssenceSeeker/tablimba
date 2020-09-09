@@ -10,6 +10,8 @@ import SaveTextFileButton from "./SaveTextFileButton"
 import TunableNote from "./TunableNote"
 import Checkbox from "./Checkbox";
 import TuningRow from "./styled/TuningRow";
+import Input from "./Input";
+import InputTempo from "./InputTempo";
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -152,12 +154,8 @@ const Tablimba = props => {
                 <BrowseTextFileButton extension='tbl' handleFile={loadTab}>
                     <i className="far fa-folder-open"/>
                 </BrowseTextFileButton>
-                <div className="tempo">
-                    <input className='input'
-                           type='number'
-                           value={tempo}
-                           onChange={e => setTempo(+e.target.value)}/>
-                </div>
+                <InputTempo value={tempo} onChange={e => setTempo(+e.target.value)} />
+
 
                 {/*<label>*/}
                 {/*    <input*/}

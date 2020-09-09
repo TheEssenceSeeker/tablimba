@@ -271,59 +271,7 @@ div.tab-bar:last-child div.bar-number {
   top: 0;
 }
 
-/* Radiobutton, checkbox */
-.radio,
-.checkbox {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.radio:last-child,
-.checkbox:last-child {
-  margin-right: 0;
-}
-
-.radio input,
-.checkbox input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute;
-}
-
-.radio__btn,
-.checkbox__btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 25px;
-  width: 25px;
-  background-color: white;
-  font-size: 20px;
-  user-select: none;
-  box-shadow: 0 0 0 2px gray;
-  cursor: pointer;
-}
-.radio__btn {
-  border-radius: 50%;
-}
-
-.checkbox__btn {
-  border-radius: 3px;
-}
-
-.radio input:checked + .radio__btn,
-.checkbox input:checked + .checkbox__btn{
-  background-color: deepskyblue;
-  box-shadow: 0 0 0 2px #000;
-}
-
-.radio input:not(:checked) + .radio__btn:hover,
-.checkbox input:not(:checked) + .checkbox__btn:hover {
-  box-shadow: 0 0 0 2px #000;
-}
+/* -------------------------------------------- */
 
 /* Input */
 .input {
