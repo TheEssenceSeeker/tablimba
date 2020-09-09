@@ -14,8 +14,6 @@ const Tab = props => {
         let currentBarRows = []
         // let barSize = 0
 
-        console.log('render Tab')
-
         tab.forEach((strNote, i) => {
             let hasError = false
 

@@ -20,14 +20,19 @@ const Tablimba = props => {
     const [tabName, setTabName] = useState('My melody')
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
+    const [isLoaded, setIsLoaded] = useState(true)
+
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
     const editTabNameRef = useRef(tabName)
 
     useEffect(() => {
-        window.scrollTo(0, document.body.scrollHeight)
-    }, [])
+        if (isLoaded) {
+            window.scrollTo(0, document.body.scrollHeight)
+            setIsLoaded(false)
+        }
+    }, [isLoaded])
 
     const setTempo = data => {
         let newTempo = +data
@@ -41,6 +46,7 @@ const Tablimba = props => {
     }
     const resetTab = () => {
         setTab(initialTab)
+        setIsLoaded(true)
     }
     const playMelody = (index = 0) => {
         playTab(tab.slice(index))
@@ -98,6 +104,7 @@ const Tablimba = props => {
         setTab(tabObj.tab)
         setTempo(tabObj.tempo)
         setTabName(tabObj.tabName)
+        setIsLoaded(true)
     }
     const selectFirstChild = e => {
         let range = new Range()
@@ -127,7 +134,6 @@ const Tablimba = props => {
         return (
             <div className="kalimba-row">
                 <Button onClick={resetTab}>Reset Tab</Button>
-                <Button onClick={() => setTab(testTab)}>Load test tab</Button>
                 <Button onClick={resetTuning}>Reset Tuning</Button>
                 <Button onClick={playMelody}><i className="fas fa-play"/></Button>
                 <SaveTextFileButton fileName={tabName}
