@@ -21,19 +21,12 @@ const Tablimba = props => {
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
-    const [isAddBarOnScroll, handleIsAddBarOnScroll, isAddBarOnScrollRef] = useHandleChange(false)
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
     const editTabNameRef = useRef(tabName)
 
     useEffect(() => {
         window.scrollTo(0, document.body.scrollHeight)
-        window.addEventListener("scroll", () => {
-            if(window.scrollY === 0 && isAddBarOnScrollRef.current) {
-                setTab(prevState => [...prevState, ...new Array(4).fill('')])
-                window.scrollTo(0, 1)
-            }
-        })
     }, [])
 
     const setTempo = data => {

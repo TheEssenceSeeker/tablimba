@@ -1,14 +1,7 @@
-import {useState, useCallback, useRef} from 'react'
+import {useState, useCallback} from 'react'
 
 const useHandleChange = (initialState) => {
-    const [value, _setValue] = useState(initialState)
-
-    const ref = useRef(value)
-
-    const setValue = data => {
-        ref.current = data
-        _setValue(data)
-    }
+    const [value, setValue] = useState(initialState)
 
     const callback = e => {
         const {value, type, checked} = e.target
@@ -18,7 +11,7 @@ const useHandleChange = (initialState) => {
         callback,
         []
     )
-    return [value, handleChange, ref]
+    return [value, handleChange]
 }
 
 export default useHandleChange
