@@ -9,15 +9,14 @@ import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
 
 const Tablimba = props => {
-    const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
-                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n', ...new Array(20).fill('')]
-    const initialTab = new Array(40).fill('')
-    const {playTab, playNote, getBpm, setBpm} = new Synth()
+    const {playTab, playNote, getBpm, setBpm} = props.synth
 
-    const [tempo, _setTempo] = useState(getBpm())
-    const [tuning, setTuning] = useState(props.tuning)
-    const [tab, setTab] = useState(initialTab)
-    const [tabName, setTabName] = useState('My melody')
+    const getParamFromJSON = (name, defaultValue) => props.tabJSON ? props.tabJSON[name] : defaultValue
+
+    const [tempo, _setTempo] = useState(getParamFromJSON('tempo', getBpm()))
+    const [tuning, setTuning] = useState(getParamFromJSON('tuning', props.tuning))
+    const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
+    const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
@@ -26,6 +25,7 @@ const Tablimba = props => {
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
     const editTabNameRef = useRef(tabName)
+
 
     useEffect(() => {
         if (isLoaded) {
@@ -45,7 +45,7 @@ const Tablimba = props => {
         _setTempo(newTempo)
     }
     const resetTab = () => {
-        setTab(initialTab)
+        setTab(props.initialTab)
         setIsLoaded(true)
     }
     const playMelody = (index = 0) => {
@@ -100,8 +100,8 @@ const Tablimba = props => {
     // }
     const loadTab = (newTabStrJSON) => {
         const tabObj = JSON.parse(newTabStrJSON)
-        setTuning(tabObj.tuning)
         setTab(tabObj.tab)
+        setTuning(tabObj.tuning)
         setTempo(tabObj.tempo)
         setTabName(tabObj.tabName)
         setIsLoaded(true)
@@ -114,6 +114,13 @@ const Tablimba = props => {
         selection.removeAllRanges()
         selection.addRange(range)
     }
+    const shareTab = () => {
+        //TODO: Copy link + popup info
+        let link = window.location.origin
+        link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
+        console.log(encodeURI(link))
+    }
+
     const renderTabTitle = () => {
         return (
             <h1 className='tab-title'>
@@ -133,6 +140,8 @@ const Tablimba = props => {
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
+                <Button onClick={() => window.scrollTo(0, document.body.scrollHeight)}>Scroll To Bottom</Button>
+                <Button onClick={shareTab}><i className="fas fa-share"></i> Share Tab</Button>
                 <Button onClick={resetTab}>Reset Tab</Button>
                 <Button onClick={resetTuning}>Reset Tuning</Button>
                 <Button onClick={playMelody}><i className="fas fa-play"/></Button>
