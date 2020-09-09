@@ -143,17 +143,17 @@ const Tablimba = props => {
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
-                <Button onClick={resetTab}>Reset Tab</Button>
-                <Button onClick={resetTuning}>Reset Tuning</Button>
-                <Button onClick={playMelody}><i className="fas fa-play"/></Button>
+                <BrowseTextFileButton extension='tbl' handleFile={loadTab}>
+                    <i className="far fa-folder-open"/>
+                </BrowseTextFileButton>
                 <SaveTextFileButton fileName={tabName}
                                     dataToSave={{tuning, tab, tempo, tabName}}
                                     extension='tbl'>
                     <i className="far fa-save"/>
                 </SaveTextFileButton>
-                <BrowseTextFileButton extension='tbl' handleFile={loadTab}>
-                    <i className="far fa-folder-open"/>
-                </BrowseTextFileButton>
+                <Button onClick={resetTab}>Reset Tab</Button>
+                <Button onClick={playMelody}><i className="fas fa-play"/></Button>
+                <Button onClick={resetTuning}>Reset Tuning</Button>
                 <InputTempo value={tempo} onChange={e => setTempo(+e.target.value)} />
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {RadioCheckboxContainer} from "./styled/inputs"
+import {RadioCheckboxContainer} from "./styled/shared"
 import styled from 'styled-components'
 
 const RadioContainer = styled(RadioCheckboxContainer)`
