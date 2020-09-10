@@ -150,7 +150,8 @@ const Tablimba = props => {
                                     fileName={tabName}
                                     dataToSave={{tuning, tab, tempo, tabName}}
                                     extension='tbl'>
-                    <i className="far fa-save"/>
+                    {/*<i className="far fa-save"/>*/}
+                    Save File
                 </SaveTextFileButton>
                 <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
                 <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
