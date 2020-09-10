@@ -58,13 +58,13 @@ const TunableNote = props => {
     return (
         <TunableNoteContainer >
             <ButtonUp isShowControls={isShowControls} onClick={() => onTranspose(index, 1)}>
-                <i className="fas fa-chevron-up fa-xs"></i>
+                <i className="fas fa-chevron-up fa-xs"/>
             </ButtonUp>
             <Note isHighlighted={isHighlighted} isShowControls={isShowControls}>
                 {pitch}
             </Note>
             <ButtonDown isShowControls={isShowControls} onClick={() => onTranspose(index, -1)}>
-                <i className="fas fa-chevron-down fa-xs"></i>
+                <i className="fas fa-chevron-down fa-xs"/>
             </ButtonDown>
         </TunableNoteContainer>
     )

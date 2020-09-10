@@ -37,7 +37,6 @@ const Tab = props => {
             // console.log(barNumber, prevNoteBarNumber)
 
             if (barNumber !== prevNoteBarNumber || i === tab.length - 1) {
-                // TODO: Change hasError logic ?
                 hasError = quarters !== 0 || sixteenths !== 0 || barNumber > prevNoteBarNumber + 1
                 bars.push(
                     <TabBar key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>

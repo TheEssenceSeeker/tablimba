@@ -6,7 +6,7 @@ import Input from "./Input"
 const InputTempoContainer = styled.div`
   position:relative;
   
-  input {
+  ${Input} {
     padding-left: 10px;
     width: 2.5em;
     text-align:right;
