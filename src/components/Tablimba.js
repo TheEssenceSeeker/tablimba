@@ -11,6 +11,7 @@ import TunableNote from "./TunableNote"
 import Checkbox from "./Checkbox"
 import TuningRow from "./TuningRow"
 import InputTempo from "./InputTempo"
+import EditableSpan from "./EditableSpan";
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -126,14 +127,14 @@ const Tablimba = props => {
     const renderTabTitle = () => {
         return (
             <h1 className='tab-title'>
-                Tablimba -<span className='editable-span'
+                Tablimba -<EditableSpan
                                  onBlur={e => setTabName(e.currentTarget.textContent)}
                                  onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
                                  contentEditable
                                  suppressContentEditableWarning={true}
                                  ref={editTabNameRef}
                                  onFocus={selectFirstChild}
-            >{tabName}</span>
+            >{tabName}</EditableSpan>
                 <i className="fas fa-edit tab-title__edit-icon"
                    onClick={() => editTabNameRef.current.focus()}/>
             </h1>
