@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
-import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
 import DurationEditor from "./DurationEditor"
 import Button from "./Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
+
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm} = props.synth
@@ -118,7 +118,10 @@ const Tablimba = props => {
         //TODO: Copy link + popup info
         let link = window.location.origin
         link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
-        console.log(encodeURI(link))
+        navigator.clipboard.writeText(encodeURI(link))
+            .then(() => alert('Text copied successfully'))
+            .catch(e => alert('Error', e))
+
     }
 
     const renderTabTitle = () => {
