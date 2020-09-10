@@ -22,6 +22,10 @@ export const RadioCheckboxContainer = styled.div`
     & + div:hover {
       box-shadow: 0 0 0 2px #000;
     }
+    
+    &:focus + div {
+      outline: 1px dotted black;
+    }
   }
   
   div {

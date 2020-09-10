@@ -6,6 +6,11 @@ import Input from "./Input"
 const InputTempoContainer = styled.div`
   position:relative;
   
+  &:focus {
+    box-shadow: 0 0 0 2px grey,
+                0 0 0 3px #000;
+  }
+  
   ${Input} {
     padding-left: 10px;
     width: 2.5em;
@@ -24,9 +29,9 @@ const InputTempoContainer = styled.div`
   }
 `
 
-const InputTempo = ({onChange, value}) => {
+const InputTempo = ({onChange, value, title}) => {
     return (
-        <InputTempoContainer>
+        <InputTempoContainer title={title}>
             <Input onChange={onChange} value={value} type='number'/>
         </InputTempoContainer>
     )

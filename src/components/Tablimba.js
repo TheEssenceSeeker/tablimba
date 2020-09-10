@@ -142,29 +142,19 @@ const Tablimba = props => {
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
-                <BrowseTextFileButton extension='tbl' handleFile={loadTab}>
+                <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
                     <i className="far fa-folder-open"/>
                 </BrowseTextFileButton>
-                <SaveTextFileButton fileName={tabName}
+                <SaveTextFileButton title={'Save current tab into a file'}
+                                    fileName={tabName}
                                     dataToSave={{tuning, tab, tempo, tabName}}
                                     extension='tbl'>
                     <i className="far fa-save"/>
                 </SaveTextFileButton>
-                <Button onClick={resetTab}>Reset Tab</Button>
-                <Button onClick={playMelody}><i className="fas fa-play"/></Button>
-                <Button onClick={resetTuning}>Reset Tuning</Button>
-                <InputTempo value={tempo} onChange={e => setTempo(+e.target.value)} />
-
-
-                {/*<label>*/}
-                {/*    <input*/}
-                {/*        name={'add-bar-on-scroll'}*/}
-                {/*        type='checkbox'*/}
-                {/*        checked={isAddBarOnScroll}*/}
-                {/*        onChange={handleIsAddBarOnScroll}*/}
-                {/*    />*/}
-                {/*    Add bar on scroll*/}
-                {/*</label>*/}
+                <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
+                <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
+                <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
+                <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
             </div>
         )
     }

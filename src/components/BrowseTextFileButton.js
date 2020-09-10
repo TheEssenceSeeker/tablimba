@@ -11,7 +11,7 @@ const BrowseTextFileButtonContainer = styled(Button)`
   }
 `
 
-const BrowseTextFileButton = ({handleFile, children, extension = 'tbl'}) => {
+const BrowseTextFileButton = ({handleFile, children, extension = 'tbl', title}) => {
     const handleChange = e => {
         let reader = new FileReader()
         reader.readAsText(e.target.files[0])
@@ -21,7 +21,7 @@ const BrowseTextFileButton = ({handleFile, children, extension = 'tbl'}) => {
         e.target.value = null
     }
     return (
-        <BrowseTextFileButtonContainer>
+        <BrowseTextFileButtonContainer title={title}>
             <label>
                 <input type={'file'} accept={`.${extension}`} onChange={handleChange} />
                 {children}
