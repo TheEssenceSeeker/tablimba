@@ -160,27 +160,10 @@ div.tab-note-hint {
   background: #fff;
 }
 
-input.tuning-note {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: inherit;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-}
 
-input.tuning-note:focus {
-  outline: none;
-}
 
 div.hidden {
   display: none;
-}
-
-input#tempo {
-  width: 40px;
 }
 
 div.duration-editor {
@@ -246,67 +229,9 @@ div.tab-bar:last-child div.bar-number {
 
 /* -------------------------------------------- */
 
-/* Input */
-.input {
-  padding: 0;
-  margin: 0;
-  outline: none;
-  border: 0;
-
-
-}
-
-.input:focus {
-  background: deepskyblue;
-}
 
 /* Button */
-.input {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 15px;
-  padding: 5px;
-  box-shadow: 0 0 0 2px gray;
-  background-color: #fff;
-  border-radius: 3px;
-  font-size: 15px;
-  margin: 2px;
-  cursor: pointer;
-}
 
-.input {
-  position: relative;
-}
-
-.input:focus {
-  cursor: text;
-}
-
-.tempo {
-  position: relative;
-  cursor: pointer;
-}
-
-.tempo .input {
-  padding-left: 10px;
-  width: 2.5em;
-  text-align: right;
-}
-
-.tempo:after {
-  content: '𝅘𝅥=';
-  position: absolute;
-  left: 7px;
-  top: 3px;
-  font-size: 15px;
-  color: gray;
-  pointer-events: none;
-}
-
-.input:hover {
-  box-shadow: 0 0 0 2px #000;
-}
 
 /* Input Raw */
 .input-raw {

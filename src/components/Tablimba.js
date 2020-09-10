@@ -12,6 +12,7 @@ import Checkbox from "./Checkbox"
 import TuningRow from "./TuningRow"
 import InputTempo from "./InputTempo"
 import EditableSpan from "./EditableSpan";
+import Input from "./Input";
 
 const Tablimba = props => {
     const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
@@ -150,8 +151,7 @@ const Tablimba = props => {
                                     fileName={tabName}
                                     dataToSave={{tuning, tab, tempo, tabName}}
                                     extension='tbl'>
-                    {/*<i className="far fa-save"/>*/}
-                    Save File
+                    <i className="far fa-save"/>
                 </SaveTextFileButton>
                 <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
                 <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>

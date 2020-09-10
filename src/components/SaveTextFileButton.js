@@ -7,7 +7,6 @@ const ButtonA = styled(Button)`
   color: ${props => props.theme.black};
   padding: 0 5px;
   line-height: 15px;
-  font-family: ;
 `
 
 const SaveTextFileButton = ({fileName, extension, children, dataToSave, title}) => {
