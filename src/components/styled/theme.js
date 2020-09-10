@@ -5,6 +5,7 @@ const theme = {
     black: '#000',
     white: '#fff',
     accent: 'deepskyblue',
+    grey: 'grey',
 
     bdradius: '3px'
 }

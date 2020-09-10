@@ -288,7 +288,6 @@ div.tab-bar:last-child div.bar-number {
 }
 
 /* Button */
-.button,
 .input {
   display: inline-flex;
   justify-content: center;
@@ -332,18 +331,8 @@ div.tab-bar:last-child div.bar-number {
   pointer-events: none;
 }
 
-.button:hover,
 .input:hover {
   box-shadow: 0 0 0 2px #000;
-}
-
-.button:active {
-  background-color: deepskyblue; 
-}
-
-.button__text {
-  font-size: 15px;
-  user-select: none;
 }
 
 a.button {

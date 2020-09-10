@@ -9,25 +9,20 @@ const Button = styled.button`
   align-items: center;
   height: 25px;
   padding: 5px;
-  box-shadow: 0 0 0 2px gray;
-  background-color: #fff;
-  border-radius: 3px;
+  box-shadow: 0 0 0 2px ${props => props.theme.grey};
+  background-color: ${props => props.theme.white};
+  border-radius: ${props => props.theme.bdradius};
   font-size: 15px;
   margin: 2px;
   cursor: pointer;
   
-  &:focus {
-    //box-shadow: 0 0 0 2px grey,
-    //            0 0 0 3px black;
-    outline: 1px dotted black;
+  &:focus,
+  &:active {
+    background-color: ${props => props.theme.accent};
   }
   
   &:hover {
-    box-shadow: 0 0 0 2px #000;
-  }
-  
-  &:active {
-    background-color: ${props => props.theme.accent};
+    box-shadow: 0 0 0 2px ${props => props.theme.black};
   }
 `
 
