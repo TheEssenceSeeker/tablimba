@@ -127,7 +127,7 @@ const Tablimba = props => {
     }
     const renderTabTitle = () => {
         return (
-            <h1 className='tab-title'>
+            <h1>
                 Tablimba -<EditableSpan
                                  onBlur={e => setTabName(e.currentTarget.textContent)}
                                  onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
