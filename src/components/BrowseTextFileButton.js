@@ -1,4 +1,15 @@
 import React from 'react'
+import styled from "styled-components"
+import Button from "./Button"
+
+const BrowseTextFileButtonContainer = styled(Button)`
+  input {
+    display: none;
+  }
+  label {
+    cursor:pointer;
+  }
+`
 
 const BrowseTextFileButton = ({handleFile, children, extension = 'tbl'}) => {
     const handleChange = e => {
@@ -10,12 +21,12 @@ const BrowseTextFileButton = ({handleFile, children, extension = 'tbl'}) => {
         e.target.value = null
     }
     return (
-        <div className="button open-file">
+        <BrowseTextFileButtonContainer>
             <label>
                 <input type={'file'} accept={`.${extension}`} onChange={handleChange} />
                 {children}
             </label>
-        </div>
+        </BrowseTextFileButtonContainer>
         )
 }
 
