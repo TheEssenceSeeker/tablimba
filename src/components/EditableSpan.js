@@ -12,8 +12,16 @@ const EditableSpan = styled.span`
       box-shadow: 0 0 0 2px gray;
   }
   
-  &:hover + .tab-title__edit-icon {
+  &:hover + .tab-title__edit-icon,
+  & + .tab-title__edit-icon:hover {
     color: #000;
+  }
+  
+  & + .tab-title__edit-icon {
+    margin-left: 3px;
+    font-size: 0.9em;
+    color: gray;
+    cursor: pointer;
   }
 `
 

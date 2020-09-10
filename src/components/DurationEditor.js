@@ -9,11 +9,11 @@ const DurationEditor = ({name, editorActiveDuration, onChange, isDotChecked, isR
         <div className={'duration-editor'}>
             {
                 durations.map((duration, i) => (
-                    <Radio key={i} name={name} value={duration} checked={editorActiveDuration === duration} onChange={onChange} text={(isRestChecked ? restSymbols[duration] : noteSymbols[duration]) + (isDotChecked ? '.' : '')} />
+                    <Radio title={'Choose note duration'} key={i} name={name} value={duration} checked={editorActiveDuration === duration} onChange={onChange} text={(isRestChecked ? restSymbols[duration] : noteSymbols[duration]) + (isDotChecked ? '.' : '')} />
                 ))
             }
-            <Checkbox checked={isDotChecked} onChange={handleDotCheck} text={'.'} />
-            <Checkbox checked={isRestChecked} onChange={handleRestCheck} text={restSymbols['4n']} />
+            <Checkbox title={'Increase note duration by half'} checked={isDotChecked} onChange={handleDotCheck} text={'.'} />
+            <Checkbox title={'Add rest instead'} checked={isRestChecked} onChange={handleRestCheck} text={restSymbols['4n']} />
         </div>
     )
 }

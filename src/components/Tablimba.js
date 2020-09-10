@@ -187,7 +187,8 @@ const Tablimba = props => {
                                 />
                             ))
                         }
-                        <Checkbox checked={isShowTuneControls}
+                        <Checkbox title={'Edit tuning'}
+                                  checked={isShowTuneControls}
                                   onChange={handleIsShowTuneControls}
                                   text={<i className="fas fa-cog"></i>} />
                     </TuningRow>

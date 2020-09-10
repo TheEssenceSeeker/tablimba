@@ -8,9 +8,9 @@ const RadioContainer = styled(RadioCheckboxContainer)`
   }
 `
 
-const Radio = ({name, value, text, checked, onChange}) => {
+const Radio = ({name, value, text, checked, onChange, title}) => {
     return (
-        <RadioContainer>
+        <RadioContainer title={title}>
             <label>
                 <input type="radio" name={name} value={value} checked={checked} onChange={onChange} />
                 <div>{text}</div>

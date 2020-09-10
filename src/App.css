@@ -379,30 +379,3 @@ a.button {
   font-weight: 700;
 }
 
-.editable-span {
-  height: 25px;
-  padding: 0 5px;
-  /*margin-left: 5px;*/
-}
-
-.tab-title .editable-span:focus {
-  outline: none;
-  background: #fff;
-  /*border: 1px solid gray;*/
-  border-radius: 3px;
-  /*padding: 0 5px;*/
-  box-shadow: 0 0 0 2px gray;
-}
-
-.tab-title .editable-span:hover + .tab-title__edit-icon,
-.tab-title__edit-icon:hover {
-  color: #000;
-}
-
-.tab-title__edit-icon {
-  margin-left: 3px;
-  font-size: 0.9em;
-  color: gray;
-  cursor: pointer;
-}
-
