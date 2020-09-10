@@ -25,6 +25,8 @@ class Synth {
             currentTime += Tone.Time(duration).toSeconds()
         })
     }
+
+    transposeNote = (note, interval) => Tone.Frequency(note).transpose(interval).toNote()
 }
 
 export default Synth
