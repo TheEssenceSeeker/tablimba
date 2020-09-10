@@ -352,15 +352,6 @@ a.button {
   font-size: 15px;
 }
 
-/* BrowseFile */
-.button.open-file label input[type='file'] {
-  display: none;
-}
-
-.button.open-file label {
-  cursor: pointer;
-}
-
 /* Input Raw */
 .input-raw {
   border: none;

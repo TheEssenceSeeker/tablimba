@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Button from "./Button"
 
 const BrowseTextFileButtonContainer = styled(Button)`
-  input {
+  input[type='file'] {
     display: none;
   }
   label {
