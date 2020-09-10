@@ -20,14 +20,11 @@ const Note = styled.div`
   font-size: 14px;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   margin: 0px 2px;
-  border-radius: 0; /*${props => !props.isShowControls ? props.theme.bdradius : 0};*/
+  border-radius: 0;
   user-select: none;
 `
 
 const TuneButton = styled.button`
-  //display:flex;
-  //justify-content:center;
-  //align-items:center;
   position:absolute;
   width: 25px;
   height: 25px;
@@ -50,7 +47,6 @@ const ButtonDown = styled(TuneButton)`
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
 `
-
 
 const TunableNote = props => {
     const {pitch, index, onTranspose, isShowControls, isHighlighted} = props

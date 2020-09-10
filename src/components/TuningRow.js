@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import Checkbox from "./Checkbox"
-import {RadioCheckboxContainer} from "./styled";
+import {RadioCheckboxContainer} from "./styled"
 
 const TuningRow = styled.div`
   display: flex;
@@ -22,7 +21,7 @@ const TuningRow = styled.div`
     border-radius: 50%;
     
     &:hover {
-      box-shadow: 0 0 0 2px grey;
+      box-shadow: 0 0 0 2px ${props => props.theme.grey};
     }
   }
 `

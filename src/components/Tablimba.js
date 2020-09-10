@@ -191,7 +191,7 @@ const Tablimba = props => {
                         <Checkbox title={'Edit tuning'}
                                   checked={isShowTuneControls}
                                   onChange={handleIsShowTuneControls}
-                                  text={<i className="fas fa-cog"></i>} />
+                                  text={<i className="fas fa-cog"/>} />
                     </TuningRow>
                 </div>
             </div>
