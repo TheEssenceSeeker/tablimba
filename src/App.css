@@ -98,21 +98,6 @@ div.tab-row {
   /*transform: rotate(180deg);*/
 }
 
-div.key {
-  display: inline-flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 20px;
-  height: 100px;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-bottom: 10px;
-  margin-right: 5px;
-  user-select: none;
-}
-
 .highlighted {
   background: #ff7575 !important;
 }

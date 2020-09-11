@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-size: 13px;
+    font-size: 15px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   }
   
