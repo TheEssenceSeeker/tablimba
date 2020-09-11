@@ -6,6 +6,7 @@ const theme = {
     white: '#fff',
     accent: 'deepskyblue',
     grey: 'grey',
+    error: '#ff4444',
 
     bdradius: '3px'
 }

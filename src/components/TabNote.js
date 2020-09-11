@@ -1,17 +1,37 @@
 import React from 'react'
 import {noteSymbols, restSymbols} from '../misc/tabHandling'
+import styled from 'styled-components'
 
-const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch}) =>
+const TabNoteContainer = styled.div`
+  display: inline-flex;
+  width: 23px;
+  height: 23px;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  margin-right: 2px;
+  background-color: ${p => p.isHighlighted ? p.theme.highlight : 'inherit'};
+  color: #000;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor:pointer;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+`
+
+const Note = styled.div`
+  font-size: 20px;
+`
+
+const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch, className}) =>
     (
-        <div
-            className={`tabkey${isHighlighted ? ' highlighted' : ''}`}
-            onClick={() => editNote(index, pitch)}
-        >
+        <TabNoteContainer className={className} isHighlighted={isHighlighted} onClick={() => editNote(index, pitch)}>
             {
-                // filled && <div className={`tabkey filled${note.pitch === '' ? ' rest' : ''}`}>{note.duration}</div>
-                filled && <span className='note-symbol'>{note.pitch === '' ? restSymbols[note.duration] : noteSymbols[note.duration]}</span>
+                filled && <Note>{note.pitch === '' ? restSymbols[note.duration] : noteSymbols[note.duration]}</Note>
             }
-        </div>
+        </TabNoteContainer>
     )
 
 export default TabNote

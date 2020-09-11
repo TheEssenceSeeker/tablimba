@@ -17,9 +17,9 @@ const Note = styled.div`
   width: 25px;
   height: 25px;
   border: 1px solid #000;
-  font-size: 14px;
+  font-size: 12px;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
-  margin: 0px 1px;
+  margin: 0 1px;
   border-radius: 0;
   user-select: none;
 `
@@ -28,7 +28,6 @@ const TuneButton = styled.button`
   position:absolute;
   width: 25px;
   height: 25px;
-  border:none;
   outline: none;
   border: 1px solid #000;
   display: ${props => props.isShowControls ? 'block' : 'none'};
