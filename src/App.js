@@ -3,7 +3,7 @@ import './App.css'
 import Tablimba from './components/Tablimba'
 import Synth from "./sound/Synth"
 import SnackbarProvider from 'react-simple-snackbar'
-import {ThemeProvider} from "styled-components"
+import { ThemeProvider } from 'styled-components'
 import theme from "./components/styled/theme"
 import GlobalStyle from "./components/styled/global"
 

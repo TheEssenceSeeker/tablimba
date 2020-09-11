@@ -11,11 +11,10 @@ import TunableNote from "./TunableNote"
 import Checkbox from "./Checkbox"
 import TuningRow from "./TuningRow"
 import InputTempo from "./InputTempo"
-import EditableSpan from "./EditableSpan";
-import Input from "./Input";
+import EditableSpan from "./EditableSpan"
 
 const Tablimba = props => {
-    const {playTab, playNote, getBpm, setBpm} = props.synth
+    const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
     
     const getParamFromJSON = (name, defaultValue) => props.tabJSON ? props.tabJSON[name] : defaultValue
 
