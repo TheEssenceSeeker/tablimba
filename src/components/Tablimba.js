@@ -208,17 +208,16 @@ const Tablimba = props => {
                         </TuningSettingsContainer>
                     </Container>
             </div>
-            <div className="tab-container">
-                <Tab
-                    tab={tab}
-                    tuning={tuning}
-                    highlightedNotes={highlightedNotes}
-                    editNote={editNote}
-                    deleteRow={deleteRow}
-                    insertRow={insertRow}
-                    playFromPos={playMelody}
-                />
-            </div>
+
+            <Tab
+                tab={tab}
+                tuning={tuning}
+                highlightedNotes={highlightedNotes}
+                editNote={editNote}
+                deleteRow={deleteRow}
+                insertRow={insertRow}
+                playFromPos={playMelody}
+            />
 
             <div className="footer">
                 <Kalimba

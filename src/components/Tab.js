@@ -3,6 +3,15 @@ import TabRow from "./TabRow"
 import {parseNote, sumDurations} from '../misc/tabHandling'
 import * as Tone from "tone"
 import TabBar from "./TabBar"
+import Container from "./Container"
+import styled from 'styled-components'
+
+const TabContainer = styled(Container)`
+  padding-top: 150px;
+  padding-bottom: 50px; 
+  display:flex;
+  flex-direction: column-reverse;
+`
 
 const Tab = props => {
     const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos} = props
@@ -12,7 +21,6 @@ const Tab = props => {
     const renderTab = () => {
         let bars = []
         let currentBarRows = []
-        // let barSize = 0
 
         tab.forEach((strNote, i) => {
             let hasError = false
@@ -53,7 +61,7 @@ const Tab = props => {
         return bars
     }
 
-    return <div className='tab'>{renderTab()}</div>
+    return <TabContainer>{renderTab()}</TabContainer>
 
 }
 

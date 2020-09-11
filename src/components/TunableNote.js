@@ -19,7 +19,6 @@ const Note = styled.div`
   border: 1px solid #000;
   font-size: 12px;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
-  //margin: 0 1px;
   border-radius: 0;
   user-select: none;
 `

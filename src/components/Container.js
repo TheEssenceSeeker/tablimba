@@ -6,7 +6,6 @@ const Container = styled.div`
   justify-content:space-between;
   max-width: 80%;
   width: 1000px;
-  background-color: gold;
   position:relative;
 `
 

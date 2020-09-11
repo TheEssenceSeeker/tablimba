@@ -5,6 +5,7 @@ const TabBarContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column-reverse;
+  width: 100%;
   
   ${p => p.hasError 
         ? css`
