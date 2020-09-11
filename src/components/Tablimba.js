@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Tab from './Tab'
 import Kalimba from './Kalimba'
-import Synth from '../sound/Synth'
 import useHandleChange from "../hooks/useHandleChange"
 import DurationEditor from "./DurationEditor"
 import Button from "./Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
+import { useSnackbar } from 'react-simple-snackbar'
 import TunableNote from "./TunableNote"
 import Checkbox from "./Checkbox"
 import TuningRow from "./TuningRow"
@@ -15,15 +15,14 @@ import EditableSpan from "./EditableSpan";
 import Input from "./Input";
 
 const Tablimba = props => {
-    const testTab = ['A4', 'B4', 'C5|2n', '|2n', 'C5', 'D5', 'E5|2n', '|2n',
-                        'E5', 'G5', 'D5|2n', '|4n', 'E5|8n', 'D5|8n', 'C5|4n', 'B4|4n', 'A4|2n', ...new Array(20).fill('')]
-    const initialTab = new Array(40).fill('')
-    const {playTab, playNote, getBpm, setBpm, transposeNote} = new Synth()
+    const {playTab, playNote, getBpm, setBpm} = props.synth
+    
+    const getParamFromJSON = (name, defaultValue) => props.tabJSON ? props.tabJSON[name] : defaultValue
 
-    const [tempo, _setTempo] = useState(getBpm())
-    const [tuning, setTuning] = useState(props.tuning)
-    const [tab, setTab] = useState(initialTab)
-    const [tabName, setTabName] = useState('My melody')
+    const [tempo, _setTempo] = useState(getParamFromJSON('tempo', getBpm()))
+    const [tuning, setTuning] = useState(getParamFromJSON('tuning', props.tuning))
+    const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
+    const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
@@ -33,6 +32,8 @@ const Tablimba = props => {
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
     const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
     const editTabNameRef = useRef(tabName)
+
+    const [openSnackbar, closeSnackbar] = useSnackbar()
 
     useEffect(() => {
         if (isLoaded) {
@@ -52,7 +53,7 @@ const Tablimba = props => {
         _setTempo(newTempo)
     }
     const resetTab = () => {
-        setTab(initialTab)
+        setTab(props.initialTab)
         setIsLoaded(true)
     }
     const playMelody = (index = 0) => {
@@ -111,8 +112,8 @@ const Tablimba = props => {
     // }
     const loadTab = (newTabStrJSON) => {
         const tabObj = JSON.parse(newTabStrJSON)
-        setTuning(tabObj.tuning)
         setTab(tabObj.tab)
+        setTuning(tabObj.tuning)
         setTempo(tabObj.tempo)
         setTabName(tabObj.tabName)
         setIsLoaded(true)
@@ -125,6 +126,14 @@ const Tablimba = props => {
         selection.removeAllRanges()
         selection.addRange(range)
     }
+    const shareTab = () => {
+        let link = window.location.origin
+        link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
+        navigator.clipboard.writeText(encodeURI(link))
+            .then(() => openSnackbar('Text copied successfully', 3000))
+            .catch(e => openSnackbar('Error copying text to clipboard ' + e, 3000))
+    }
+
     const renderTabTitle = () => {
         return (
             <h1>
@@ -144,6 +153,7 @@ const Tablimba = props => {
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
+                <Button onClick={shareTab}><i className="fas fa-share"></i> Share Tab</Button>
                 <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
                     <i className="far fa-folder-open"/>
                 </BrowseTextFileButton>

@@ -1,3 +1,9 @@
+div[class^="Snackbar_snackbar-wrapper"] {
+  z-index: 10;
+}
+
+/* --------------------------- */
+
 div.main-wrapper {
   display: flex;
   flex-direction: column;
