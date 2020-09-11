@@ -2,20 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import {RadioCheckboxContainer} from "./styled"
 
-const CheckboxContainer = styled(RadioCheckboxContainer)`
-  div {
-    border-radius: 3px;
-  }
+export const CheckboxButton = styled.div`
+  border-radius: 3px;
 `
 
 const Checkbox = ({text, isChecked, onChange, title}) => {
     return (
-        <CheckboxContainer title={title}>
+        <RadioCheckboxContainer title={title}>
             <label>
                 <input type='checkbox' checked={isChecked} onChange={onChange}/>
-                <div>{text}</div>
+                <CheckboxButton>{text}</CheckboxButton>
             </label>
-        </CheckboxContainer>
+        </RadioCheckboxContainer>
     )
 }
 
