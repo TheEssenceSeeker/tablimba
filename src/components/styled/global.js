@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
   input[type=number] {
     -moz-appearance: textfield;
   }
+  
+  div[class^="Snackbar_snackbar-wrapper"] {
+      z-index: 10;
+    }
+
 `
 
 export default GlobalStyle

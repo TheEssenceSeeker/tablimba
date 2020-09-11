@@ -6,9 +6,9 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
 
     return (
         <div className={`kalimba-row tab-row${hasBarError ? ' bar-error' : ''}`}>
-            <i className="fas fa-times-circle fa-lg delBtn" onClick={() => deleteRow(index)}/>
-            <i className="fas fa-plus-circle fa-lg addBtn" onClick={() => insertRow(index)}/>
-            <i className="fas fa-play-circle fa-lg playBtn" onClick={() => playFromPos(index)}/>
+            <i className="fas fa-times-circle fa-lg delBtn" onClick={() => deleteRow(index)} title={'Delete this row'}/>
+            <i className="fas fa-plus-circle fa-lg addBtn" onClick={() => insertRow(index)} title={'Add a new row'}/>
+            <i className="fas fa-play-circle fa-lg playBtn" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>
             {
                 tuning.map((pitch, i) => (
                     <TabNote filled={isFilled(pitch, i)}

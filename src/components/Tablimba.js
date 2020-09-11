@@ -129,8 +129,8 @@ const Tablimba = props => {
         let link = window.location.origin
         link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
         navigator.clipboard.writeText(encodeURI(link))
-            .then(() => openSnackbar('Text copied successfully', 3000))
-            .catch(e => openSnackbar('Error copying text to clipboard ' + e, 3000))
+            .then(() => openSnackbar('Link successfully copied to clipboard', 3000))
+            .catch(e => openSnackbar('Error copying link to clipboard ' + e, 3000))
     }
 
     const renderTabTitle = () => {
@@ -152,7 +152,7 @@ const Tablimba = props => {
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
-                <Button onClick={shareTab}><i className="fas fa-share"></i> Share Tab</Button>
+
                 <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
                     <i className="far fa-folder-open"/>
                 </BrowseTextFileButton>
@@ -162,6 +162,7 @@ const Tablimba = props => {
                                     extension='tbl'>
                     <i className="far fa-save"/>
                 </SaveTextFileButton>
+                <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"></i></Button>
                 <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
                 <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
                 <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
