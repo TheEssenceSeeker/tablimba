@@ -2,12 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
-      font-size: 15px;
-      font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 13px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   }
   
   html {
-      overflow-y: scroll;
+    overflow-y: scroll;
   }
     
   /* Chrome, Safari, Edge, Opera */
