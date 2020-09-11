@@ -3,6 +3,9 @@ import './App.css'
 import Tablimba from './components/Tablimba'
 import Synth from "./sound/Synth"
 import SnackbarProvider from 'react-simple-snackbar'
+import {ThemeProvider} from "styled-components"
+import theme from "./components/styled/theme"
+import GlobalStyle from "./components/styled/global"
 
 class App extends React.Component {
     constructor(props) {
@@ -14,12 +17,16 @@ class App extends React.Component {
     }
 
     render = () => (
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <SnackbarProvider>
             <div className={'main-wrapper'}>
                 <Tablimba tuning={this.tuning} tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
             </div>
         </SnackbarProvider>
+      </ThemeProvider>
     )
 }
 
 export default App
+
