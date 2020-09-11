@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import Tablimba from './components/Tablimba'
 import Synth from "./sound/Synth"
+import SnackbarProvider from 'react-simple-snackbar'
 
 class App extends React.Component {
     constructor(props) {
@@ -13,9 +14,11 @@ class App extends React.Component {
     }
 
     render = () => (
-        <div className={'main-wrapper'}>
-            <Tablimba tuning={this.tuning} tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
-        </div>
+        <SnackbarProvider>
+            <div className={'main-wrapper'}>
+                <Tablimba tuning={this.tuning} tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
+            </div>
+        </SnackbarProvider>
     )
 }
 

@@ -6,7 +6,7 @@ import DurationEditor from "./DurationEditor"
 import Button from "./Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
-
+import { useSnackbar } from 'react-simple-snackbar'
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm} = props.synth
@@ -26,6 +26,7 @@ const Tablimba = props => {
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
     const editTabNameRef = useRef(tabName)
 
+    const [openSnackbar, closeSnackbar] = useSnackbar()
 
     useEffect(() => {
         if (isLoaded) {
@@ -115,13 +116,11 @@ const Tablimba = props => {
         selection.addRange(range)
     }
     const shareTab = () => {
-        //TODO: Copy link + popup info
         let link = window.location.origin
         link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
         navigator.clipboard.writeText(encodeURI(link))
-            .then(() => alert('Text copied successfully'))
-            .catch(e => alert('Error', e))
-
+            .then(() => openSnackbar('Text copied successfully', 3000))
+            .catch(e => openSnackbar('Error copying text to clipboard ' + e, 3000))
     }
 
     const renderTabTitle = () => {
