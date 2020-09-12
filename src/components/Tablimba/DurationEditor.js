@@ -1,7 +1,7 @@
 import React from 'react'
-import Radio from "./Radio"
-import {noteSymbols, restSymbols} from "../misc/tabHandling"
-import Checkbox from "./Checkbox"
+import Radio from "../Lib/Radio"
+import {noteSymbols, restSymbols} from "../../misc/tabHandling"
+import Checkbox from "../Lib/Checkbox"
 import styled from 'styled-components'
 
 const DurationEditorContainer = styled.div`

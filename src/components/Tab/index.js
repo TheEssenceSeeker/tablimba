@@ -1,9 +1,9 @@
 import React from 'react'
-import TabRow from "./TabRow"
-import {parseNote, sumDurations} from '../misc/tabHandling'
+import TabRow from "../TabRow/"
+import {parseNote, sumDurations} from '../../misc/tabHandling'
 import * as Tone from "tone"
-import TabBar from "./TabBar"
-import Container from "./Container"
+import TabBar from "../TabBar/"
+import Container from "../Lib/Container"
 import styled from 'styled-components'
 
 const TabContainer = styled(Container)`

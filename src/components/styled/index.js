@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-// Components which can be used as parents but never used by themselves
-
 export const RadioCheckboxContainer = styled.div`
   display: inline-flex;
   justify-content: center;

@@ -1,5 +1,5 @@
 import React from 'react'
-import TabNote from "./TabNote"
+import Index from "../TabNote/"
 import styled from 'styled-components'
 
 const RowButton = styled.i`
@@ -56,13 +56,13 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
             {/*<PlayButton className="fas fa-play-circle fa-lg" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>*/}
             {
                 tuning.map((pitch, i) => (
-                    <TabNote filled={isFilled(pitch, i)}
-                             note={note}
-                             pitch={pitch}
-                             key={i}
-                             isHighlighted={highlightedNotes.includes(i)}
-                             editNote={editNote}
-                             index={index}
+                    <Index filled={isFilled(pitch, i)}
+                           note={note}
+                           pitch={pitch}
+                           key={i}
+                           isHighlighted={highlightedNotes.includes(i)}
+                           editNote={editNote}
+                           index={index}
                     />
                     ))
             }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from "./Button"
+import Button from "../Lib/Button"
 import styled from 'styled-components'
 
 const ButtonA = styled(Button)`

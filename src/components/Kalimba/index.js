@@ -1,6 +1,6 @@
 import React from 'react'
 import Key from "./Key";
-import Container from "./Container";
+import Container from "../Lib/Container";
 
 const Kalimba = props => {
     const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, minimized = true} = props

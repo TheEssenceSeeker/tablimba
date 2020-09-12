@@ -1,5 +1,5 @@
 import React from 'react'
-import {noteSymbols, restSymbols} from '../misc/tabHandling'
+import {noteSymbols, restSymbols} from '../../misc/tabHandling'
 import styled from 'styled-components'
 
 const TabNoteContainer = styled.div`
@@ -25,7 +25,7 @@ const Note = styled.div`
   font-size: 20px;
 `
 
-const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch, className}) =>
+const Index = ({filled = false, isHighlighted, note, editNote, index, pitch, className}) =>
     (
         <TabNoteContainer className={className} isHighlighted={isHighlighted} onClick={() => editNote(index, pitch)}>
             {
@@ -34,4 +34,4 @@ const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch, c
         </TabNoteContainer>
     )
 
-export default TabNote
+export default Index
