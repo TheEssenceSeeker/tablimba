@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-size: 15px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    box-sizing: border-box;
   }
   
   html {

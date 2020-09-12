@@ -8,7 +8,7 @@ const InputTempoContainer = styled.div`
   
   ${Input} {
     padding-left: 10px;
-    width: 2.5em;
+    width: 3.5em;
     text-align: right;
     
     &:focus {

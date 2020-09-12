@@ -4,21 +4,15 @@ import styled from 'styled-components'
 
 const TabNoteContainer = styled.div`
   display: inline-flex;
-  width: 23px;
-  height: 23px;
+  flex: 1 0;  
+  height: 25px;
   border-right: 1px solid #000;
   border-left: 1px solid #000;
-  margin-right: 2px;
   background-color: ${p => p.isHighlighted ? p.theme.highlight : 'inherit'};
   color: #000;
   justify-content: center;
-  align-items: center;
   user-select: none;
   cursor:pointer;
-  
-  &:last-child {
-    margin-right: 0;
-  }
 `
 
 const Note = styled.div`

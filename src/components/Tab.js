@@ -40,10 +40,6 @@ const Tab = props => {
                                         hasBarError={hasError}
                                         playFromPos={playFromPos}/>)
 
-            // barSize = sumDurations(barSize, note.duration).toBarsBeatsSixteenths()
-            // console.log('barsize', barSize)
-            // console.log(barNumber, prevNoteBarNumber)
-
             if (barNumber !== prevNoteBarNumber || i === tab.length - 1) {
                 hasError = quarters !== 0 || sixteenths !== 0 || barNumber > prevNoteBarNumber + 1
                 bars.push(

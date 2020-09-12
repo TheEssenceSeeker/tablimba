@@ -26,7 +26,7 @@ const Kalimba = props => {
     return (
         <Container>
             {
-                renderKeys(tuning, minimized ? 15 : 20, minimized ? 2 : 20)
+                renderKeys(tuning, minimized ? 30 : 40, minimized ? 2 : 20)
             }
         </Container>
     )
