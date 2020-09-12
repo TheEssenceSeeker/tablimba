@@ -18,7 +18,6 @@ const RowButton = styled.i`
 const TabRowContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   position: relative;
   background-color: inherit;
   

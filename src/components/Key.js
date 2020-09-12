@@ -9,8 +9,8 @@ const KalimbaKey = styled.div`
   height: 100px;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border: 1px solid #000;
-  border-bottom-left-radius: 23px;
-  border-bottom-right-radius: 23px;
+  border-bottom-left-radius: 47%;
+  border-bottom-right-radius: 47%;
   padding-bottom: 10px; 
   user-select: none;
   font-size: 12px;

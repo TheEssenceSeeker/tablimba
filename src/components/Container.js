@@ -5,7 +5,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content:space-between;
   max-width: 99%;
-  width: 900px;
+  width: 800px;
   position:relative;
 `
 

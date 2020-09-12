@@ -6,7 +6,6 @@ const TunableNoteContainer = styled.div`
   display:flex;
   flex-direction: column;
   align-items:center;
-  height: 35px;
   flex: 1 0;
 `
 
@@ -22,6 +21,11 @@ const Note = styled.div`
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border-radius: 0;
   user-select: none;
+  &::before {
+    content:'';
+    float:left;
+    padding-top:100%;
+  }
 `
 
 const TuneButton = styled.button`
