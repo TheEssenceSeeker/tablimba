@@ -1,5 +1,6 @@
 import React from 'react'
 import Key from "./Key";
+import Container from "./Container";
 
 const Kalimba = props => {
     const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, minimized = true} = props
@@ -23,11 +24,11 @@ const Kalimba = props => {
     }
 
     return (
-        <div className='kalimba-row' >
+        <Container>
             {
-                renderKeys(tuning, minimized ? 15 : 20, minimized ? 2 : 20)
+                renderKeys(tuning, minimized ? 30 : 40, minimized ? 2 : 20)
             }
-        </div>
+        </Container>
     )
 }
 

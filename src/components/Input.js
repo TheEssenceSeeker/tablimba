@@ -4,7 +4,7 @@ const Input = styled.input`
   outline: none;
   border: 0;
   
-  height: 15px;
+  height: 25px;
   padding: 5px;
   box-shadow: 0 0 0 2px ${props => props.theme.grey};
   background-color: #fff;

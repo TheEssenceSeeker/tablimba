@@ -17,8 +17,7 @@ const RowButton = styled.i`
 
 const TabRowContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-between;
   position: relative;
   background-color: inherit;
   
@@ -52,9 +51,9 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
 
     return (
         <TabRowContainer>
-            <DelButton className="fas fa-times-circle fa-lg" onClick={() => deleteRow(index)} title={'Delete this row'}/>
-            <AddButton className="fas fa-plus-circle fa-lg" onClick={() => insertRow(index)} title={'Add a new row'}/>
-            <PlayButton className="fas fa-play-circle fa-lg" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>
+            {/*<DelButton className="fas fa-times-circle fa-lg" onClick={() => deleteRow(index)} title={'Delete this row'}/>*/}
+            {/*<AddButton className="fas fa-plus-circle fa-lg" onClick={() => insertRow(index)} title={'Add a new row'}/>*/}
+            {/*<PlayButton className="fas fa-play-circle fa-lg" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>*/}
             {
                 tuning.map((pitch, i) => (
                     <TabNote filled={isFilled(pitch, i)}

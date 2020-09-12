@@ -6,28 +6,32 @@ const TunableNoteContainer = styled.div`
   display:flex;
   flex-direction: column;
   align-items:center;
+  flex: 1 0;
 `
 
 const Note = styled.div`
   position:relative;
-  box-sizing: border-box;
-  display:flex;
+  display: inline-flex;
   justify-content:center;
   align-items:center;
-  width: 25px;
-  height: 25px;
+  width: 100%;
+  height: 100%;
   border: 1px solid #000;
   font-size: 12px;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
-  margin: 0 1px;
   border-radius: 0;
   user-select: none;
+  &::before {
+    content:'';
+    float:left;
+    padding-top:100%;
+  }
 `
 
 const TuneButton = styled.button`
   position:absolute;
-  width: 25px;
-  height: 25px;
+  width: 100%;
+  height: 50%;
   outline: none;
   border: 1px solid #000;
   display: ${props => props.isShowControls ? 'block' : 'none'};
@@ -39,12 +43,14 @@ const ButtonUp = styled(TuneButton)`
   top: -25px;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
+  z-index: 1;
 `
 
 const ButtonDown = styled(TuneButton)`
   bottom: -25px;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
+  z-index: 1;
 `
 
 const TunableNote = props => {

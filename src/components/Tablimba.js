@@ -12,6 +12,8 @@ import Checkbox from "./Checkbox"
 import TuningRow from "./TuningRow"
 import InputTempo from "./InputTempo"
 import EditableSpan from "./EditableSpan"
+import Container from "./Container";
+import TuningSettingsContainer from "./TuningSettingsContainer";
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -185,8 +187,7 @@ const Tablimba = props => {
                                 handleRestCheck={handleIsAddRest}
                 />
                 <br/>
-                <div className="kalimba-row">
-                    <TuningRow>
+                    <Container>
                         {
                             tuning.map((pitch, i) => (
                                 <TunableNote key={i}
@@ -198,24 +199,25 @@ const Tablimba = props => {
                                 />
                             ))
                         }
-                        <Checkbox title={'Edit tuning'}
-                                  checked={isShowTuneControls}
-                                  onChange={handleIsShowTuneControls}
-                                  text={<i className="fas fa-cog"/>} />
-                    </TuningRow>
-                </div>
+                        <TuningSettingsContainer>
+                            <Checkbox title={'Edit tuning'}
+                                      checked={isShowTuneControls}
+                                      onChange={handleIsShowTuneControls}
+                                      text={<i className="fas fa-cog"/>}
+                            />
+                        </TuningSettingsContainer>
+                    </Container>
             </div>
-            <div className="tab-container">
-                <Tab
-                    tab={tab}
-                    tuning={tuning}
-                    highlightedNotes={highlightedNotes}
-                    editNote={editNote}
-                    deleteRow={deleteRow}
-                    insertRow={insertRow}
-                    playFromPos={playMelody}
-                />
-            </div>
+
+            <Tab
+                tab={tab}
+                tuning={tuning}
+                highlightedNotes={highlightedNotes}
+                editNote={editNote}
+                deleteRow={deleteRow}
+                insertRow={insertRow}
+                playFromPos={playMelody}
+            />
 
             <div className="footer">
                 <Kalimba
