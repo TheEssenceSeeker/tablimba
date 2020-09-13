@@ -25,9 +25,9 @@ const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, ins
                 e.preventDefault()
                 contextMenu.show({id: `tab_row_menu_${index}`, event: e})
             }}>
-                <DelButton className="fas fa-times-circle fa-lg" onClick={() => deleteRow(index)} title={'Delete this row'}/>
-                <AddButton className="fas fa-plus-circle fa-lg" onClick={() => insertRow(index)} title={'Add a new row'}/>
-                <PlayButton className="fas fa-play-circle fa-lg" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>
+                <DelButton className="fas fa-times-circle" onClick={() => deleteRow(index)} title={'Delete this row'}/>
+                <AddButton className="fas fa-plus-circle" onClick={() => insertRow(index)} title={'Add a new row'}/>
+                <PlayButton className="fas fa-play-circle" onClick={() => playFromPos(index)} title={'Play tab from this position'}/>
                 {
                     tuning.map((pitch, i) => (
                         <TabNote filled={isFilled(pitch, i)}
