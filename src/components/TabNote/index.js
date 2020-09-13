@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const TabNoteContainer = styled.div`
   display: inline-flex;
   flex: 1 0;  
-  //height: 25px;
   border-right: 1px solid #000;
   border-left: 1px solid #000;
   background-color: ${p => p.isHighlighted ? p.theme.highlight : 'inherit'};

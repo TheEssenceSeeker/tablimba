@@ -5,13 +5,7 @@ import * as Tone from "tone"
 import TabBar from "../TabBar/"
 import Container from "../Lib/Container"
 import styled from 'styled-components'
-
-const TabContainer = styled(Container)`
-  padding-top: 150px;
-  padding-bottom: 50px; 
-  display:flex;
-  flex-direction: column-reverse;
-`
+import TabContainer from "./TabContainer";
 
 const Tab = props => {
     const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos} = props
