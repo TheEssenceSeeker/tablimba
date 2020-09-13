@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {RadioCheckboxContainer} from "./styled"
+import {RadioCheckboxContainer} from "../styled"
 
 export const CheckboxButton = styled.div`
   border-radius: 3px;

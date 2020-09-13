@@ -1,19 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react'
-import Tab from './Tab'
-import Kalimba from './Kalimba'
-import useHandleChange from "../hooks/useHandleChange"
+import Tab from '../Tab/'
+import Kalimba from '../Kalimba/'
+import useHandleChange from "../../hooks/useHandleChange"
 import DurationEditor from "./DurationEditor"
-import Button from "./Button"
+import Button from "../Lib/Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
 import { useSnackbar } from 'react-simple-snackbar'
 import TunableNote from "./TunableNote"
-import Checkbox from "./Checkbox"
-import TuningRow from "./TuningRow"
 import InputTempo from "./InputTempo"
 import EditableSpan from "./EditableSpan"
-import Container from "./Container";
-import TuningSettingsContainer from "./TuningSettingsContainer";
+import Container from "../Lib/Container"
+import Header from "./Header"
+import Title from "./Title"
+import ControlsContainer from "./ControlsContainer"
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -31,7 +31,8 @@ const Tablimba = props => {
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
-    const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
+    // const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
+    const [isShowTuneControls, setIsShowTuneControls] = useState(false)
     const editTabNameRef = useRef(tabName)
 
     const [openSnackbar, closeSnackbar] = useSnackbar()
@@ -134,23 +135,11 @@ const Tablimba = props => {
             .then(() => openSnackbar('Link successfully copied to clipboard', 3000))
             .catch(e => openSnackbar('Error copying link to clipboard ' + e, 3000))
     }
-
-    const renderTabTitle = () => {
-        return (
-            <h1>
-                Tablimba -<EditableSpan
-                                 onBlur={e => setTabName(e.currentTarget.textContent)}
-                                 onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
-                                 contentEditable
-                                 suppressContentEditableWarning={true}
-                                 ref={editTabNameRef}
-                                 onFocus={selectFirstChild}
-            >{tabName}</EditableSpan>
-                <i className="fas fa-edit tab-title__edit-icon"
-                   onClick={() => editTabNameRef.current.focus()}/>
-            </h1>
-        )
+    const handleTuningRowContext = e => {
+        e.preventDefault()
+        setIsShowTuneControls(prevState => !prevState)
     }
+
     const renderTestButtons = () => {
         return (
             <div className="kalimba-row">
@@ -175,9 +164,37 @@ const Tablimba = props => {
 
     return (
         <>
-            <div className="header">
-                {renderTabTitle()}
-                {renderTestButtons()}
+            <Header>
+                <Title>
+                    Tablimba -
+                    <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
+                                  onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
+                                  contentEditable
+                                  suppressContentEditableWarning={true}
+                                  ref={editTabNameRef}
+                                  onFocus={selectFirstChild}>
+                        {tabName}
+                    </EditableSpan>
+                    <i className="fas fa-edit tab-title__edit-icon"
+                       onClick={() => editTabNameRef.current.focus()}/>
+                </Title>
+
+                <ControlsContainer>
+                    <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
+                        <i className="far fa-folder-open"/>
+                    </BrowseTextFileButton>
+                    <SaveTextFileButton title={'Save current tab into a file'}
+                                        fileName={tabName}
+                                        dataToSave={{tuning, tab, tempo, tabName}}
+                                        extension='tbl'>
+                        <i className="far fa-save"/>
+                    </SaveTextFileButton>
+                    <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"></i></Button>
+                    <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
+                    <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
+                    <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
+                    <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
+                </ControlsContainer>
                 <DurationEditor name='duration'
                                 editorActiveDuration={editorActiveDuration}
                                 onChange={handleEditorActiveDuration}
@@ -187,27 +204,27 @@ const Tablimba = props => {
                                 handleRestCheck={handleIsAddRest}
                 />
                 <br/>
-                    <Container>
-                        {
-                            tuning.map((pitch, i) => (
-                                <TunableNote key={i}
-                                             pitch={pitch}
-                                             index={i}
-                                             onTranspose={tuneNote}
-                                             isShowControls={isShowTuneControls}
-                                             isHighlighted={highlightedNotes.includes(i)}
-                                />
-                            ))
-                        }
-                        <TuningSettingsContainer>
-                            <Checkbox title={'Edit tuning'}
-                                      checked={isShowTuneControls}
-                                      onChange={handleIsShowTuneControls}
-                                      text={<i className="fas fa-cog"/>}
+                <Container onContextMenu={handleTuningRowContext}>
+                    {
+                        tuning.map((pitch, i) => (
+                            <TunableNote key={i}
+                                         pitch={pitch}
+                                         index={i}
+                                         onTranspose={tuneNote}
+                                         isShowControls={isShowTuneControls}
+                                         isHighlighted={highlightedNotes.includes(i)}
                             />
-                        </TuningSettingsContainer>
-                    </Container>
-            </div>
+                        ))
+                    }
+                    {/*<TuningSettingsContainer>*/}
+                    {/*    <Checkbox title={'Edit tuning'}*/}
+                    {/*              checked={isShowTuneControls}*/}
+                    {/*              onChange={handleIsShowTuneControls}*/}
+                    {/*              text={<i className="fas fa-cog"/>}*/}
+                    {/*    />*/}
+                    {/*</TuningSettingsContainer>*/}
+                </Container>
+            </Header>
 
             <Tab
                 tab={tab}

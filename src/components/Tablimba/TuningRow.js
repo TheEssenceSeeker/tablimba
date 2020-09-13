@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import {RadioCheckboxContainer} from "./styled"
-import Container from "./Container";
+import {RadioCheckboxContainer} from "../styled"
+import Container from "../Lib/Container";
 
 const TuningRow = styled(Container)`
   position: relative;

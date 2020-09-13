@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
-import Button from "./Button"
+import Button from "../Lib/Button"
 
 const BrowseTextFileButtonContainer = styled(Button)`
   input[type='file'] {
