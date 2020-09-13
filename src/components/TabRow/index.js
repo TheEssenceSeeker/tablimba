@@ -1,12 +1,12 @@
 import React from 'react'
 import TabNote from "../TabNote/"
-import {Menu, Item, Separator, Submenu, contextMenu, IconFont} from 'react-contexify'
+import {Menu, Item, Separator, contextMenu, IconFont} from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.min.css'
-import TabRowContainer from "./TabRowContainer";
-import {AddButton, DelButton, PlayButton} from "./FloatingButtons";
+import TabRowContainer from "./TabRowContainer"
+import {AddButton, DelButton, PlayButton} from "./FloatingButtons"
 
 const TabRowMenu = ({index, deleteRow, insertRow, playFromPos}) => (
-    <Menu id={`tab_row_menu_${index}`}>
+    <Menu id={`tab_row_menu_${index}`} style={{zIndex: 11}}>
         <Item onClick={() => playFromPos(index)}><IconFont style={{color: "deepskyblue"}} className="fas fa-play-circle lg"/> Play from this position</Item>
         <Separator />
         <Item onClick={() => insertRow(index)}><IconFont style={{color: "#078f5c"}} className="fas fa-plus-circle fa-lg"/>Insert a row before</Item>
