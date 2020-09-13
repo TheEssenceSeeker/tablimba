@@ -12,7 +12,8 @@ export const RowFloatingButton = styled.i`
   opacity: 0;
   cursor: pointer;
   font-size: 30px;
-  @media (max-width: 900px) {
+  
+  @media (max-width: 940px) {
     display: none;
   }
 `

@@ -1,6 +1,5 @@
 import React from 'react'
 import TabNote from "../TabNote/"
-import styled from 'styled-components'
 import {Menu, Item, Separator, Submenu, contextMenu, IconFont} from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.min.css'
 import TabRowContainer from "./TabRowContainer";
