@@ -22,14 +22,19 @@ const TabBarContainer = styled.div`
 
 const BarNumber = styled.div`
   position: absolute;
-  left: -15px;
-  top: -8px;
-  font-size: 9px;
+  left: -25px;
+  top: -7px;
+  font-size: 12px;
   width: 15px;
   text-align: center;
+  z-index: 1;
   
   ${TabBarContainer}:last-child & {
     top: 0;
+  }
+  
+  @media (max-width: 850px) {
+    left: 3px;
   }
 `
 
