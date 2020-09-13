@@ -25,7 +25,7 @@ const Note = styled.div`
   font-size: 20px;
 `
 
-const Index = ({filled = false, isHighlighted, note, editNote, index, pitch, className}) =>
+const TabNote = ({filled = false, isHighlighted, note, editNote, index, pitch, className}) =>
     (
         <TabNoteContainer className={className} isHighlighted={isHighlighted} onClick={() => editNote(index, pitch)}>
             {
@@ -34,4 +34,4 @@ const Index = ({filled = false, isHighlighted, note, editNote, index, pitch, cla
         </TabNoteContainer>
     )
 
-export default Index
+export default TabNote
