@@ -33,7 +33,8 @@ const Tablimba = props => {
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
-    const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
+    // const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
+    const [isShowTuneControls, setIsShowTuneControls] = useState(false)
     const editTabNameRef = useRef(tabName)
 
     const [openSnackbar, closeSnackbar] = useSnackbar()
@@ -136,6 +137,10 @@ const Tablimba = props => {
             .then(() => openSnackbar('Link successfully copied to clipboard', 3000))
             .catch(e => openSnackbar('Error copying link to clipboard ' + e, 3000))
     }
+    const handleTuningRowContext = e => {
+        e.preventDefault()
+        setIsShowTuneControls(prevState => !prevState)
+    }
 
     const renderTestButtons = () => {
         return (
@@ -201,7 +206,7 @@ const Tablimba = props => {
                                 handleRestCheck={handleIsAddRest}
                 />
                 <br/>
-                <Container>
+                <Container onContextMenu={handleTuningRowContext}>
                     {
                         tuning.map((pitch, i) => (
                             <TunableNote key={i}
@@ -213,13 +218,13 @@ const Tablimba = props => {
                             />
                         ))
                     }
-                    <TuningSettingsContainer>
-                        <Checkbox title={'Edit tuning'}
-                                  checked={isShowTuneControls}
-                                  onChange={handleIsShowTuneControls}
-                                  text={<i className="fas fa-cog"/>}
-                        />
-                    </TuningSettingsContainer>
+                    {/*<TuningSettingsContainer>*/}
+                    {/*    <Checkbox title={'Edit tuning'}*/}
+                    {/*              checked={isShowTuneControls}*/}
+                    {/*              onChange={handleIsShowTuneControls}*/}
+                    {/*              text={<i className="fas fa-cog"/>}*/}
+                    {/*    />*/}
+                    {/*</TuningSettingsContainer>*/}
                 </Container>
             </Header>
 
