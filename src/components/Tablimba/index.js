@@ -88,14 +88,15 @@ const Tablimba = props => {
             console.error('editNote(): index is out of range')
             return
         }
-        if (tabIndex > tab.length - 4) {
-            setTab([...tab, ...new Array(4).fill('')])
+        let newTab = tab
+        if (tabIndex > tab.length - 5) {
+            newTab = [...newTab, ...new Array(4).fill('')]
         }
         const newDuration = `${editorActiveDuration}${isAddDot ? '.' : ''}`
         const newPitch = isAddRest ? '' : pitch
         const newNote = `${newPitch}|${newDuration}`
 
-        setTab(tab.map((note, i) => i === tabIndex ? newNote : note))
+        setTab(newTab.map((note, i) => i === tabIndex ? newNote : note))
         if(newPitch !== '') playNote(newPitch, newDuration)
     }
     const deleteRow = (index) => {
