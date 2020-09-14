@@ -7,12 +7,14 @@ const Button = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 25px;
+  //height: 25px;
+  height: 2rem;
   padding: 5px;
   box-shadow: 0 0 0 2px ${props => props.theme.grey};
   background-color: ${props => props.theme.white};
   border-radius: ${props => props.theme.bdradius};
-  font-size: 15px;
+  //font-size: 15px;
+  //font-size: 1rem;
   margin: 2px;
   cursor: pointer;
   

@@ -15,6 +15,7 @@ import Header from "./Header"
 import Title from "./Title"
 import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
+import Footer from "./Footer";
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -225,7 +226,7 @@ const Tablimba = props => {
                 playFromPos={playMelody}
             />
 
-            <div className="footer">
+            <Footer>
                 <Kalimba
                     tuning={tuning}
                     onPlayNote={playNote}
@@ -233,7 +234,7 @@ const Tablimba = props => {
                     onKeyRtClick={toggleHighlight}
                     minimized={isKalimbaMinimized}
                 />
-            </div>
+            </Footer>
         </>
     )
 }

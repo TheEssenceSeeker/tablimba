@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const EditableSpan = styled.span`
   height: 25px;
   padding: 0 5px;
+  font-size: inherit;
   
   &:focus {
       outline: none;

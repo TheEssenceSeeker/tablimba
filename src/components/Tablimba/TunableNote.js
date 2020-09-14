@@ -15,9 +15,10 @@ const Note = styled.div`
   justify-content:center;
   align-items:center;
   width: 100%;
-  height: 100%;
+  //height: 100%;
+  height: 2rem;
   border: 1px solid #000;
-  font-size: 12px;
+  font-size: 0.9rem;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border-radius: 0;
   user-select: none;

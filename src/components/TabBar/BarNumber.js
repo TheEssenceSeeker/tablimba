@@ -5,10 +5,11 @@ const BarNumber = styled.div`
   position: absolute;
   left: -25px;
   top: -7px;
-  font-size: 12px;
+  font-size: 0.9rem;
   width: 15px;
   text-align: center;
   z-index: 1;
+  color ${p => p.theme.grey};
   
   ${TabBarContainer}:last-child & {
     top: 0;

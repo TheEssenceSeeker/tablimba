@@ -1,15 +1,16 @@
 import styled from 'styled-components'
 
-const Header = styled.div`
+const Footer = styled.div`
   position: fixed;
   width: 100%;
   z-index: 10;
   display: flex;
+  bottom: 0;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   background: #a7a7a7;
-  height: 10.5rem;
+  height: 3rem;
 `
 
-export default Header
+export default Footer
