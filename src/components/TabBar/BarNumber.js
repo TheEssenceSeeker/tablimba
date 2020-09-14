@@ -4,7 +4,7 @@ import TabBarContainer from "./TabBarContainer"
 const BarNumber = styled.div`
   position: absolute;
   left: -25px;
-  top: -7px;
+  top: -0.3rem;
   font-size: 0.9rem;
   width: 15px;
   text-align: center;
