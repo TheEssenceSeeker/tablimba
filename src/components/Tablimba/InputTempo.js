@@ -20,8 +20,8 @@ const InputTempoContainer = styled.div`
     content: '𝅘𝅥=';
     position: absolute;
     left: 7px;
-    top: 3px;
-    font-size: 15px;
+    top: 0.3rem;
+    //font-size: 15px;
     color: ${props => props.theme.grey};
     pointer-events: none;
     z-index: 1;

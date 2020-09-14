@@ -6,14 +6,13 @@ const KalimbaKey = styled.div`
   align-items: flex-end;
   justify-content: center;
   flex: 1 0;
-  height: 100px;
+  height: 2.7rem;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border: 1px solid #000;
-  border-bottom-left-radius: 47%;
-  border-bottom-right-radius: 47%;
+  border-radius: 0 0 500px 500px;
   padding-bottom: 10px; 
   user-select: none;
-  font-size: 12px;
+  font-size: 0.9rem;
   cursor:pointer;
 `
 
@@ -27,7 +26,7 @@ const Key = props => {
                         e.preventDefault()
                         onKeyRtClick(index)
                     }}
-                    style={{height: height}}
+                    // style={{height: height}}
         >
             {note}
         </KalimbaKey>
