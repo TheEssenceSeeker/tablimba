@@ -6,10 +6,10 @@ const KalimbaKey = styled.div`
   align-items: flex-end;
   justify-content: center;
   flex: 1 0;
-  height: 2.4rem;
+  height: 2.7rem;
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border: 1px solid #000;
-  border-radius: 0 0 50% 50%;
+  border-radius: 0 0 500px 500px;
   padding-bottom: 10px; 
   user-select: none;
   font-size: 0.9rem;
