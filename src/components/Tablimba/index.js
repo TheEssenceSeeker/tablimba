@@ -14,6 +14,7 @@ import Container from "../Lib/Container"
 import Header from "./Header"
 import Title from "./Title"
 import ControlsContainer from "./ControlsContainer"
+import useUndo from "use-undo"
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -22,11 +23,21 @@ const Tablimba = props => {
 
     const [tempo, _setTempo] = useState(getParamFromJSON('tempo', getBpm()))
     const [tuning, setTuning] = useState(getParamFromJSON('tuning', props.tuning))
-    const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
+    // const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
     const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
+
+    const [tabState, {
+        set: setTab,
+        reset: resTab,
+        undo: undoTab,
+        redo: redoTab,
+        canUndo: canUndoTab,
+        canRedo: canRedoTab,
+    },] = useUndo(getParamFromJSON('tab', props.initialTab))
+    const tab  = tabState.present
 
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
@@ -76,31 +87,29 @@ const Tablimba = props => {
             return
         }
         if (tabIndex > tab.length - 4) {
-            setTab(prevState => [...prevState, ...new Array(4).fill('')])
+            setTab([...tab, ...new Array(4).fill('')])
         }
         const newDuration = `${editorActiveDuration}${isAddDot ? '.' : ''}`
         const newPitch = isAddRest ? '' : pitch
         const newNote = `${newPitch}|${newDuration}`
 
-        setTab(prevState => prevState.map((note, i) => i === tabIndex ? newNote : note))
+        setTab(tab.map((note, i) => i === tabIndex ? newNote : note))
         if(newPitch !== '') playNote(newPitch, newDuration)
     }
     const deleteRow = (index) => {
-        setTab(prevState => prevState.filter((row, i) => i !== index))
+        setTab(tab.filter((row, i) => i !== index))
     }
     const insertRow = (index) => {
-        setTab(prevState => {
-            let tab = prevState.slice()
-            tab.splice(index, 0, '')
-            return tab
-        })
+        let newTab = tab.slice()
+        newTab.splice(index, 0, '')
+        setTab(newTab)
     }
     const changeTuningNote = (event) => {
         const newNote = event.target.value
         const index = event.target.getAttribute('data-index')
         const oldNote = tuning[index]
         setTuning(prevState => prevState.map((note, i) => i === parseInt(index) ? newNote : note))
-        setTab(prevState => prevState.map(note => note === oldNote ? newNote : note ))
+        setTab(tab.map(note => note === oldNote ? newNote : note ))
     }
     const tuneNote = (index, interval) => {
         const newNote = transposeNote(tuning[index], interval)
@@ -140,28 +149,6 @@ const Tablimba = props => {
         setIsShowTuneControls(prevState => !prevState)
     }
 
-    const renderTestButtons = () => {
-        return (
-            <div className="kalimba-row">
-
-                <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
-                    <i className="far fa-folder-open"/>
-                </BrowseTextFileButton>
-                <SaveTextFileButton title={'Save current tab into a file'}
-                                    fileName={tabName}
-                                    dataToSave={{tuning, tab, tempo, tabName}}
-                                    extension='tbl'>
-                    <i className="far fa-save"/>
-                </SaveTextFileButton>
-                <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"></i></Button>
-                <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
-                <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
-                <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
-                <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
-            </div>
-        )
-    }
-
     return (
         <>
             <Header>
@@ -189,8 +176,10 @@ const Tablimba = props => {
                                         extension='tbl'>
                         <i className="far fa-save"/>
                     </SaveTextFileButton>
-                    <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"></i></Button>
+                    <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"/></Button>
                     <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
+                    <Button onClick={undoTab} title={'Undo last tab change'} disabled={!canUndoTab}><i className="fas fa-undo"/></Button>
+                    <Button onClick={redoTab} title={'Redo last tab change'} disabled={!canRedoTab}><i className="fas fa-redo"/></Button>
                     <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
                     <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
                     <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
