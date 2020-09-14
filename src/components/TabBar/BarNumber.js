@@ -9,6 +9,7 @@ const BarNumber = styled.div`
   width: 15px;
   text-align: center;
   z-index: 1;
+  user-select: none;
   color ${p => p.theme.grey};
   
   ${TabBarContainer}:last-child & {
