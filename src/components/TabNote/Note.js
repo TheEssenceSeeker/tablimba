@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Note = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   //@media (max-width: 800px) {
   //  font-size: 30px;
   //}

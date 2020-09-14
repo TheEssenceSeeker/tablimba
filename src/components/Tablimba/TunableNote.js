@@ -41,14 +41,14 @@ const TuneButton = styled.button`
 `
 
 const ButtonUp = styled(TuneButton)`
-  top: -25px;
+  top: -50%;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
   z-index: 1;
 `
 
 const ButtonDown = styled(TuneButton)`
-  bottom: -25px;
+  bottom: -50%;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
   z-index: 1;

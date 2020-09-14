@@ -16,6 +16,7 @@ import Title from "./Title"
 import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
 import Footer from "./Footer";
+import ContainerTuning from "./ContainerTuning";
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -47,7 +48,7 @@ const Tablimba = props => {
     const [isShowTuneControls, setIsShowTuneControls] = useState(false)
     const editTabNameRef = useRef(tabName)
 
-    const [openSnackbar, closeSnackbar] = useSnackbar()
+    const [openSnackbar, closeSnackbar] = useSnackbar({position: 'top-center'})
 
     useEffect(() => {
         if (isLoaded) {
@@ -194,7 +195,7 @@ const Tablimba = props => {
                                 handleRestCheck={handleIsAddRest}
                 />
                 <br/>
-                <Container onContextMenu={handleTuningRowContext}>
+                <ContainerTuning onContextMenu={handleTuningRowContext}>
                     {
                         tuning.map((pitch, i) => (
                             <TunableNote key={i}
@@ -213,7 +214,7 @@ const Tablimba = props => {
                     {/*              text={<i className="fas fa-cog"/>}*/}
                     {/*    />*/}
                     {/*</TuningSettingsContainer>*/}
-                </Container>
+                </ContainerTuning>
             </Header>
 
             <Tab
