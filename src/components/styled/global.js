@@ -2,12 +2,13 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
-    //font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    //font-family: 'Raleway', sans-serif;
-    //font-family: 'Roboto Condensed', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration:none;
+    
     font-family: 'Grandstander', cursive;
     font-size: 20px;
-    box-sizing: border-box;
     @media (max-width: 740px) {
       font-size: 18px;
     }
@@ -19,10 +20,7 @@ const GlobalStyle = createGlobalStyle`
     }
     @media (max-width: 480px) {
       font-size: 12px;
-    }
-    //@media (max-width: 400px) {
-    //  font-size: 15px;
-    //}
+    } 
   }
   
   html {
