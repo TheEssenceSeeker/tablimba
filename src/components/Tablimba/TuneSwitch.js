@@ -4,7 +4,7 @@ import Button from "../Lib/Button"
 
 const TuneSwitch = styled(Button)`
   position:absolute;
-  right: -2.5rem;
+  right: -2rem;
   top: 45%;
   transform: translateY(-50%) scaleX(-1);
   background-color: transparent;
