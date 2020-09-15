@@ -6,7 +6,7 @@ const KalimbaKey = styled.div`
   align-items: flex-end;
   justify-content: center;
   flex: 1 0;
-  height: 2.7rem;
+  height: calc(2rem + ${p => p.deltaH}rem);
   background-color: ${props => props.isHighlighted ? props.theme.highlight : props.theme.white};
   border: 1px solid #000;
   border-radius: 0 0 500px 500px;
@@ -17,7 +17,7 @@ const KalimbaKey = styled.div`
 `
 
 const Key = props => {
-    const {note, height, onPlayNote, isHighlighted, onKeyRtClick, index} = props
+    const {note, deltaH, onPlayNote, isHighlighted, onKeyRtClick, index} = props
 
     return (
         <KalimbaKey isHighlighted={isHighlighted}
@@ -26,7 +26,7 @@ const Key = props => {
                         e.preventDefault()
                         onKeyRtClick(index)
                     }}
-                    // style={{height: height}}
+                    deltaH={deltaH}
         >
             {note}
         </KalimbaKey>
