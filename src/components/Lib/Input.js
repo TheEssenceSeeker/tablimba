@@ -19,6 +19,8 @@ const Input = styled.input`
   &:focus {
     background-color: ${props => props.theme.accent};
     cursor:text;
+    border: 1px dotted ${props => props.theme.black};
+    padding: 4px;
   } 
   
   &:hover {

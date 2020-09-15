@@ -13,17 +13,27 @@ const Button = styled.button`
   background-color: ${props => props.theme.white};
   border-radius: ${props => props.theme.bdradius};
   margin: 2px;
-  cursor: pointer;
   user-select: none;
+  min-width: 2rem;
   
-  &:focus,
-  &:active {
-    background-color: ${props => props.theme.accent};
+  &:not(:disabled) {
+      cursor: pointer;
+      
+      &:active {
+        background-color: ${props => props.theme.accent};
+      }   
+      
+      &:hover {
+        box-shadow: 0 0 0 2px ${props => props.theme.black};
+      }
+      
+      &:focus {
+        border: 1px dotted ${props => props.theme.black};
+        box-shadow: 0 0 0 2px ${props => props.theme.black};
+        padding: 4px;
+      }
   }
   
-  &:hover {
-    box-shadow: 0 0 0 2px ${props => props.theme.black};
-  }
 `
 
 export default Button
