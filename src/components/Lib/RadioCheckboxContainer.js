@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RadioCheckboxContainer = styled.div`
+const RadioCheckboxContainer = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@ export const RadioCheckboxContainer = styled.div`
     }
     
     &:focus + div {
-      outline: 1px dotted black;
+      border: 1px dotted ${props => props.theme.black};
     }
   }
   
@@ -34,13 +34,12 @@ export const RadioCheckboxContainer = styled.div`
     align-items: center;
     height: 2rem;
     width: 2rem;
-    //height: 25px;
-    //width: 25px;
     background-color: ${props => props.theme.white};
-    //font-size: 20px;
     font-size: 1.5rem;
     user-select: none;
     box-shadow: 0 0 0 2px ${props => props.theme.grey};
     cursor: pointer;
   }
 `
+
+export default RadioCheckboxContainer

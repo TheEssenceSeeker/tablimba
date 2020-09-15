@@ -14,6 +14,7 @@ const Button = styled.button`
   border-radius: ${props => props.theme.bdradius};
   margin: 2px;
   user-select: none;
+  min-width: 2rem;
   
   &:not(:disabled) {
       cursor: pointer;
