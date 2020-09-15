@@ -16,6 +16,7 @@ import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
 import Footer from "./Footer"
 import ContainerTuning from "./ContainerTuning"
+import TuneSwitch from "./TuneSwitch";
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -207,13 +208,12 @@ const Tablimba = props => {
                             />
                         ))
                     }
-                    {/*<TuningSettingsContainer>*/}
-                    {/*    <Checkbox title={'Edit tuning'}*/}
-                    {/*              checked={isShowTuneControls}*/}
-                    {/*              onChange={handleIsShowTuneControls}*/}
-                    {/*              text={<i className="fas fa-cog"/>}*/}
-                    {/*    />*/}
-                    {/*</TuningSettingsContainer>*/}
+                    <TuneSwitch title={'Edit tuning'}
+                                pressed={isShowTuneControls}
+                                onClick={() => setIsShowTuneControls(prevState => !prevState)}
+                    >
+                        <i className="fas fa-wrench"/>
+                    </TuneSwitch>
                 </ContainerTuning>
             </Header>
 

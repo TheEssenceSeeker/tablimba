@@ -10,7 +10,6 @@ const Kalimba = props => {
         let keysArray = []
         tuning.forEach((key, i) => {
             deltaH = (i <= Math.floor(tuning.length / 2)) ? deltaH + heightStep : deltaH - heightStep
-            console.log(deltaH)
             if (i === Math.floor(tuning.length / 2)) deltaH -= heightStep / 2
             keysArray.push(<Key note={key}
                                 key={i}
