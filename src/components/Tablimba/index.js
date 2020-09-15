@@ -152,6 +152,12 @@ const Tablimba = props => {
         e.preventDefault()
         setIsShowTuneControls(prevState => !prevState)
     }
+    const handleChangeKeyNumber = e => {
+        const newKeyNumber = e.target.value
+        const halvedDeltaKeys = (17 - newKeyNumber) / 2
+        const newTuning = props.tuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
+        setTuning(newTuning)
+    }
 
     return (
         <>
@@ -187,7 +193,7 @@ const Tablimba = props => {
                     <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
                     <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
                     <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
-                    <SelectKeyNumber></SelectKeyNumber>
+                    <SelectKeyNumber value={tuning.length} onChange={handleChangeKeyNumber} />
                 </ControlsContainer>
                 <DurationEditor name='duration'
                                 editorActiveDuration={editorActiveDuration}
