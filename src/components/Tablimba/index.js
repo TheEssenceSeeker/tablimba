@@ -10,13 +10,12 @@ import { useSnackbar } from 'react-simple-snackbar'
 import TunableNote from "./TunableNote"
 import InputTempo from "./InputTempo"
 import EditableSpan from "./EditableSpan"
-import Container from "../Lib/Container"
 import Header from "./Header"
 import Title from "./Title"
 import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
-import Footer from "./Footer";
-import ContainerTuning from "./ContainerTuning";
+import Footer from "./Footer"
+import ContainerTuning from "./ContainerTuning"
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
