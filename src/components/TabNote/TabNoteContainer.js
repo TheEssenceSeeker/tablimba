@@ -1,8 +1,8 @@
 import styled from 'styled-components'
+import TablimbaCell from "../Lib/TablimbaCell";
 
-const TabNoteContainer = styled.div`
+const TabNoteContainer = styled(TablimbaCell)`
   display: inline-flex;
-  flex: 1 0;  
   border-right: 1px solid #000;
   border-left: 1px solid #000;
   background-color: ${p => p.isHighlighted ? p.theme.highlight : 'inherit'};
