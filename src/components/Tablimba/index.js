@@ -17,6 +17,7 @@ import useUndo from "use-undo"
 import Footer from "./Footer"
 import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
+import SelectKeyNumber from "./SelectKeyNumber";
 
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
@@ -186,6 +187,7 @@ const Tablimba = props => {
                     <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
                     <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
                     <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
+                    <SelectKeyNumber></SelectKeyNumber>
                 </ControlsContainer>
                 <DurationEditor name='duration'
                                 editorActiveDuration={editorActiveDuration}
