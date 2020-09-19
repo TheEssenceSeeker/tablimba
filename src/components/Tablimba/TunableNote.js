@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import TablimbaCell from "../Lib/TablimbaCell";
 
-const TunableNoteContainer = styled.div`
+const TunableNoteContainer = styled(TablimbaCell)`
   position:relative;
   display:flex;
   flex-direction: column;
   align-items:center;
-  flex: 1 0;
 `
 
 const Note = styled.div`

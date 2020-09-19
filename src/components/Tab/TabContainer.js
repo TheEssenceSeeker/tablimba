@@ -3,8 +3,8 @@ import Container from "../Lib/Container"
 
 const TabContainer = styled(Container)`
   margin-top: 10.5rem;
-  padding-bottom: 3rem; 
-  display:flex;
+  margin-bottom: 3rem; 
+  display: flex;
   flex-direction: column-reverse;
 `
 
