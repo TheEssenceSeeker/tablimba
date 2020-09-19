@@ -25,6 +25,7 @@ const RadioCheckboxContainer = styled.div`
     
     &:focus + div {
       border: 1px dotted ${props => props.theme.black};
+      box-shadow: 0 0 0 2px ${props => props.theme.black};
     }
   }
   
