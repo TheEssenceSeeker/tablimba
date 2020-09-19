@@ -1,8 +1,8 @@
 import React from 'react'
-import Select from "../Lib/Select";
-import styled from 'styled-components'
+import Select from "../Lib/Select"
+// import styled from 'styled-components'
 
-const SelectContainer = styled.div`
+// const SelectContainer = styled.div`
   //position:relative;
   //&:before {
   //  position:absolute;
@@ -12,9 +12,9 @@ const SelectContainer = styled.div`
   //  left: 4px;
   //  pointer-events: none;
   //}
-`
+// `
 
-const SelectKey = styled(Select)`
+// const SelectKey = styled(Select)`
   //width: 3.7rem;
   //padding-left: 1.2rem;
   //
@@ -22,7 +22,7 @@ const SelectKey = styled(Select)`
   //  padding-left: 1.5rem;
   //  text-align: right;  
   //}
-`
+// `
 
 const SelectKeyNumber = ({value, onChange}) => {
     const renderOptions = () => {

@@ -3,9 +3,7 @@ import TabRow from "../TabRow/"
 import {parseNote, sumDurations} from '../../misc/tabHandling'
 import * as Tone from "tone"
 import TabBar from "../TabBar/"
-import Container from "../Lib/Container"
-import styled from 'styled-components'
-import TabContainer from "./TabContainer";
+import TabContainer from "./TabContainer"
 
 const Tab = props => {
     const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos} = props

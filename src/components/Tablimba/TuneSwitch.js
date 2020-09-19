@@ -1,5 +1,4 @@
-import React from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import Button from "../Lib/Button"
 
 const TuneSwitch = styled(Button)`

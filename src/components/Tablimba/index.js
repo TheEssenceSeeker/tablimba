@@ -31,12 +31,12 @@ const Tablimba = props => {
     // const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
     const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
-    const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
+    // const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
 
     const [tabState, {
         set: setTab,
-        reset: resTab,
+        // reset: resTab,
         undo: undoTab,
         redo: redoTab,
         canUndo: canUndoTab,
@@ -51,7 +51,7 @@ const Tablimba = props => {
     const [isShowTuneControls, setIsShowTuneControls] = useState(false)
     const editTabNameRef = useRef(tabName)
 
-    const [openSnackbar, closeSnackbar] = useSnackbar({position: 'top-center'})
+    const [openSnackbar] = useSnackbar({position: 'top-center'})
 
     useEffect(() => {
         if (isLoaded) {
@@ -113,13 +113,6 @@ const Tablimba = props => {
         let newTab = tab.slice()
         newTab.splice(index, 0, '')
         setTab(newTab)
-    }
-    const changeTuningNote = (event) => {
-        const newNote = event.target.value
-        const index = event.target.getAttribute('data-index')
-        const oldNote = tuning[index]
-        setTuning(prevState => prevState.map((note, i) => i === parseInt(index) ? newNote : note))
-        setTab(tab.map(note => note === oldNote ? newNote : note ))
     }
     const tuneNote = (index, interval) => {
         const newNote = transposeNote(tuning[index], interval)
@@ -247,7 +240,7 @@ const Tablimba = props => {
                     onPlayNote={playNote}
                     highlightedNotes={highlightedNotes}
                     onKeyRtClick={toggleHighlight}
-                    minimized={isKalimbaMinimized}
+                    minimized={true}
                 />
             </Footer>
         </>
