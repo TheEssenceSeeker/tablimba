@@ -3,6 +3,7 @@ import RowFloatingButton from "./FloatingButtons"
 
 const TabRowContainer = styled.div`
   display: flex;
+  //justify-content: center;
   justify-content: space-between;
   position: relative;
   background-color: inherit;
