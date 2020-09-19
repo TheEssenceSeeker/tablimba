@@ -19,6 +19,8 @@ import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber";
 
+const TITLE = 'Tablimba - Tab editor for kalimba'
+
 const Tablimba = props => {
     const {playTab, playNote, getBpm, setBpm, transposeNote} = props.synth
     
@@ -57,6 +59,10 @@ const Tablimba = props => {
             setIsLoaded(false)
         }
     }, [isLoaded])
+
+    useEffect(() => {
+        document.title = `${TITLE} - ${tabName}`
+    }, [tabName])
 
     const setTempo = data => {
         let newTempo = +data
