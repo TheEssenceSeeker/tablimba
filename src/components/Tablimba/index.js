@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import Tab from '../Tab/'
 import Kalimba from '../Kalimba/'
 import useHandleChange from "../../hooks/useHandleChange"
-import DurationEditor from "./DurationEditor"
+import DurationEditor from "../DurationEditor"
 import Button from "../Lib/Button"
 import BrowseTextFileButton from "./BrowseTextFileButton"
 import SaveTextFileButton from "./SaveTextFileButton"
@@ -163,10 +163,20 @@ const Tablimba = props => {
         const newTuning = props.tuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
         setTuning(newTuning)
     }
+    const tunableNotes = tuning.map((pitch, i) => (
+        <TunableNote key={i}
+                     pitch={pitch}
+                     index={i}
+                     onTranspose={tuneNote}
+                     isShowControls={isShowTuneControls}
+                     isHighlighted={highlightedNotes.includes(i)}
+        />
+    ))
 
     return (
         <>
             {onboarding}
+
             <Header>
                 <Title>
                     Tablimba -
@@ -201,6 +211,7 @@ const Tablimba = props => {
                     <InputTempo title='Set tempo (bpm)' value={tempo} onChange={e => setTempo(+e.target.value)} />
                     <SelectKeyNumber title='Select the number of keys' value={tuning.length} onChange={handleChangeKeyNumber}  />
                 </ControlsContainer>
+
                 <DurationEditor name='duration'
                                 editorActiveDuration={editorActiveDuration}
                                 onChange={handleEditorActiveDuration}
@@ -210,19 +221,11 @@ const Tablimba = props => {
                                 handleRestCheck={handleIsAddRest}
                                 className={'duration-editor'}
                 />
+
                 <br/>
-                <ContainerTuning onContextMenu={handleTuningRowContext} className={'container-tuning'}>
-                    {
-                        tuning.map((pitch, i) => (
-                            <TunableNote key={i}
-                                         pitch={pitch}
-                                         index={i}
-                                         onTranspose={tuneNote}
-                                         isShowControls={isShowTuneControls}
-                                         isHighlighted={highlightedNotes.includes(i)}
-                            />
-                        ))
-                    }
+                <ContainerTuning onContextMenu={handleTuningRowContext}
+                                 className={'container-tuning'}>
+                    {tunableNotes}
                     <TuneSwitch title={'Edit tuning'}
                                 pressed={isShowTuneControls}
                                 onClick={() => setIsShowTuneControls(prevState => !prevState)}
@@ -230,6 +233,7 @@ const Tablimba = props => {
                         <i className="fas fa-wrench"/>
                     </TuneSwitch>
                 </ContainerTuning>
+
             </Header>
 
             <Tab

@@ -49,7 +49,11 @@ const Tab = props => {
         return bars
     }
 
-    return <TabContainer>{renderTab()}</TabContainer>
+    return (
+        <TabContainer>
+            {renderTab()}
+        </TabContainer>
+    )
 
 }
 
