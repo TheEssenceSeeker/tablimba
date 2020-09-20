@@ -3,11 +3,11 @@ import TabBarContainer from "./TabBarContainer"
 import BarNumber from "./BarNumber"
 
 const TabBar = (props) => {
-    const {number, hasError = false} = props
+    const {number, hasError = false, children, className} = props
     return (
-        <TabBarContainer hasError={hasError}>
+        <TabBarContainer hasError={hasError} className={className}>
             <BarNumber>{number}</BarNumber>
-            {props.children}
+            {children}
         </TabBarContainer>
     )
 }

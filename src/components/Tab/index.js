@@ -6,7 +6,7 @@ import TabBar from "../TabBar/"
 import TabContainer from "./TabContainer"
 
 const Tab = props => {
-    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos} = props
+    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos, className} = props
     let prevNoteBarNumber = 0
     let currentTime = Tone.Time(0)
 
@@ -35,7 +35,7 @@ const Tab = props => {
             if (barNumber !== prevNoteBarNumber || i === tab.length - 1) {
                 hasError = quarters !== 0 || sixteenths !== 0 || barNumber > prevNoteBarNumber + 1
                 bars.push(
-                    <TabBar key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>
+                    <TabBar className={barNumber === 1 ? className : ''} key={prevNoteBarNumber} number={prevNoteBarNumber + 1} hasError={hasError}>
                         {currentBarRows}
                     </TabBar>
                 )
