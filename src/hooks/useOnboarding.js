@@ -50,7 +50,7 @@ export const useOnboarding = () => {
 
     const styles = {
         options: {
-            primaryColor: theme.highlight,
+            primaryColor: theme.accent,
         },
         tooltipContent: {
             fontSize: isMobile ? 18 : 20
