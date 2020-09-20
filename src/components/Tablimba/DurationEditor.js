@@ -10,10 +10,10 @@ const DurationEditorContainer = styled.div`
   margin-top: 0.3rem;
 `
 
-const DurationEditor = ({name, editorActiveDuration, onChange, isDotChecked, isRestChecked, handleDotCheck, handleRestCheck}) => {
+const DurationEditor = ({name, editorActiveDuration, onChange, isDotChecked, isRestChecked, handleDotCheck, handleRestCheck, className}) => {
     const durations = ['1n', '2n', '4n', '8n', '16n', '32n', '64n']
     return (
-        <DurationEditorContainer>
+        <DurationEditorContainer className={className}>
             {
                 durations.map((duration, i) => (
                     <Radio title={'Choose note duration'} key={i} name={name} value={duration} checked={editorActiveDuration === duration} onChange={onChange} text={(isRestChecked ? restSymbols[duration] : noteSymbols[duration]) + (isDotChecked ? '.' : '')} />

@@ -17,7 +17,8 @@ import useUndo from "use-undo"
 import Footer from "./Footer"
 import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
-import SelectKeyNumber from "./SelectKeyNumber";
+import SelectKeyNumber from "./SelectKeyNumber"
+import {useOnboarding} from "../../hooks/useOnboarding";
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -33,6 +34,7 @@ const Tablimba = props => {
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     // const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
+    const [onboarding, startOnboarding] = useOnboarding()
 
     const [tabState, {
         set: setTab,
@@ -52,6 +54,10 @@ const Tablimba = props => {
     const editTabNameRef = useRef(tabName)
 
     const [openSnackbar] = useSnackbar({position: 'top-center'})
+
+    useEffect(() => {
+        startOnboarding()
+    })
 
     useEffect(() => {
         if (isLoaded) {
@@ -160,7 +166,10 @@ const Tablimba = props => {
 
     return (
         <>
+
+
             <Header>
+                {onboarding}
                 <Title>
                     Tablimba -
                     <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
@@ -201,9 +210,10 @@ const Tablimba = props => {
                                 handleDotCheck={handleIsAddDot}
                                 isRestChecked={isAddRest}
                                 handleRestCheck={handleIsAddRest}
+                                className={'duration-editor'}
                 />
                 <br/>
-                <ContainerTuning onContextMenu={handleTuningRowContext}>
+                <ContainerTuning onContextMenu={handleTuningRowContext} className={'container-tuning'}>
                     {
                         tuning.map((pitch, i) => (
                             <TunableNote key={i}
@@ -232,6 +242,7 @@ const Tablimba = props => {
                 deleteRow={deleteRow}
                 insertRow={insertRow}
                 playFromPos={playMelody}
+                className='tab'
             />
 
             <Footer>
@@ -241,6 +252,7 @@ const Tablimba = props => {
                     highlightedNotes={highlightedNotes}
                     onKeyRtClick={toggleHighlight}
                     minimized={true}
+                    className={'kalimba'}
                 />
             </Footer>
         </>

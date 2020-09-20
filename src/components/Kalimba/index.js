@@ -3,7 +3,7 @@ import Key from "./Key";
 import Container from "../Lib/Container";
 
 const Kalimba = props => {
-    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, minimized = true} = props
+    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, minimized = true, className} = props
 
     const renderKeys = (tuning, heightStep) => {
         let deltaH = 0
@@ -24,7 +24,7 @@ const Kalimba = props => {
     }
 
     return (
-        <Container>
+        <Container className={className}>
             {
                 renderKeys(tuning,minimized ? 0.1 : 20)
             }
