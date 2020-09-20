@@ -10,11 +10,11 @@ import { useSnackbar } from 'react-simple-snackbar'
 import TunableNote from "./TunableNote"
 import InputTempo from "./InputTempo"
 import EditableSpan from "./EditableSpan"
-import Header from "./Header"
-import Title from "./Title"
+import Header from "../Lib/Header"
+import Title from "../Lib/Title"
 import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
-import Footer from "./Footer"
+import Footer from "../Lib/Footer"
 import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber"
@@ -166,10 +166,8 @@ const Tablimba = props => {
 
     return (
         <>
-
-
+            {onboarding}
             <Header>
-                {onboarding}
                 <Title>
                     Tablimba -
                     <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
