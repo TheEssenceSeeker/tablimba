@@ -24,7 +24,7 @@ import Select from "../Lib/Select"
   //}
 // `
 
-const SelectKeyNumber = ({value, onChange}) => {
+const SelectKeyNumber = ({value, onChange, title}) => {
     const renderOptions = () => {
         let options = []
         for(let i = 7; i <= 17; i++) {
@@ -34,7 +34,7 @@ const SelectKeyNumber = ({value, onChange}) => {
     }
     return (
         // <SelectContainer>
-            <Select value={value} onChange={onChange}>
+            <Select value={value} onChange={onChange} title={title}>
                 {
                     renderOptions()
                 }

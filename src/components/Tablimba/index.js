@@ -194,14 +194,14 @@ const Tablimba = props => {
                                         extension='tbl'>
                         <i className="far fa-save"/>
                     </SaveTextFileButton>
-                    <Button onClick={shareTab} title={'Copy link to this tab to share it'}><i className="fas fa-link"/></Button>
-                    <Button onClick={resetTab} title={'Reset current tab'}>Reset Tab</Button>
-                    <Button onClick={undoTab} title={'Undo last tab change'} disabled={!canUndoTab}><i className="fas fa-undo"/></Button>
-                    <Button onClick={redoTab} title={'Redo last tab change'} disabled={!canRedoTab}><i className="fas fa-redo"/></Button>
-                    <Button onClick={playMelody} title={'Play current tab'}><i className="fas fa-play"/></Button>
-                    <Button onClick={resetTuning} title={'Reset tuning'}>Reset Tuning</Button>
-                    <InputTempo title={'Set tempo (bpm)'} value={tempo} onChange={e => setTempo(+e.target.value)} />
-                    <SelectKeyNumber value={tuning.length} onChange={handleChangeKeyNumber} />
+                    <Button onClick={shareTab} title='Copy link to this tab to share it'><i className="fas fa-link"/></Button>
+                    <Button onClick={resetTab} title='Reset current tab'>Reset Tab</Button>
+                    <Button onClick={undoTab} title='Undo last tab change' disabled={!canUndoTab}><i className="fas fa-undo"/></Button>
+                    <Button onClick={redoTab} title='Redo last tab change' disabled={!canRedoTab}><i className="fas fa-redo"/></Button>
+                    <Button onClick={playMelody} title='Play current tab'><i className="fas fa-play"/></Button>
+                    <Button onClick={resetTuning} title='Reset tuning'>Reset Tuning</Button>
+                    <InputTempo title='Set tempo (bpm)' value={tempo} onChange={e => setTempo(+e.target.value)} />
+                    <SelectKeyNumber title='Select the number of keys' value={tuning.length} onChange={handleChangeKeyNumber}  />
                 </ControlsContainer>
                 <DurationEditor name='duration'
                                 editorActiveDuration={editorActiveDuration}
