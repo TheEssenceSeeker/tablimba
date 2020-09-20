@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {isMobile} from "react-device-detect"
-import Joyride, { ACTIONS, EVENTS, STATUS } from "react-joyride"
+import Joyride, { STATUS } from "react-joyride"
+import theme from "../components/styled/theme"
 
 export const useOnboarding = () => {
 
@@ -9,18 +10,24 @@ export const useOnboarding = () => {
     const actionText = isMobile ? 'Long tap' : 'Right click'
     const [steps, setSteps] = useState([
         {
+            target: 'body',
+            placement: 'center',
+            content: `Welcome to TABLIMBA!`,
+            disableBeacon: true,
+        },
+        {
             target: '.container-tuning',
-            content: `${actionText} to change tuning`,
+            content: `${actionText} to change the tuning`,
             disableBeacon: true,
         },
         {
             target: '.tab',
-            content: `${actionText} to show menu`,
+            content: `${actionText} to show the menu`,
             disableBeacon: true,
         },
         {
             target: '.kalimba',
-            content: `${actionText} to highlight keys`,
+            content: `${actionText} to highlight the key`,
             disableBeacon: true,
         },
     ])
@@ -41,6 +48,15 @@ export const useOnboarding = () => {
         }
     }
 
+    const styles = {
+        options: {
+            primaryColor: theme.highlight,
+        },
+        tooltipContent: {
+            fontSize: isMobile ? 18 : 20
+        },
+    }
+
     return [
         (
             !isFinished ?
@@ -49,7 +65,12 @@ export const useOnboarding = () => {
                     steps={steps}
                     run={isRunning}
                     continuous
-                    showSkipButton /> :
+                    showSkipButton
+                    styles={styles}
+                    locale={{last: 'Start using Tablimba!'}}
+                    floaterProps={{disableAnimation: true}}
+                    disableScrolling
+                /> :
                 null
         ),
         start,
