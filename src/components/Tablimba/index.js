@@ -146,7 +146,9 @@ const Tablimba = props => {
     const shareTab = () => {
         let link = window.location.origin
         link += `?tab=${JSON.stringify({tuning, tab, tempo, tabName})}`
-        navigator.clipboard.writeText(encodeURI(link))
+        link = encodeURI(link)
+        link = link.replace(/#/g, '%23')
+        navigator.clipboard.writeText(link)
             .then(() => openSnackbar('Link successfully copied to clipboard', 3000))
             .catch(e => openSnackbar('Error copying link to clipboard ' + e, 3000))
     }

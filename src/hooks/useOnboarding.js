@@ -8,7 +8,7 @@ export const useOnboarding = () => {
     const [isRunning, setIsRunning] = useState(false)
     const [isFinished, setIsFinished] = useState(true)
     const actionText = isMobile ? 'Long tap' : 'Right click'
-    const [steps, setSteps] = useState([
+    const [steps] = useState([
         {
             target: 'body',
             placement: 'center',
@@ -34,7 +34,7 @@ export const useOnboarding = () => {
 
     useEffect(() => {
         setIsFinished(localStorage.getItem('onboardingFinished') === 'true')
-    })
+    }, [])
 
     const start = () => setIsRunning(true)
     const stop = () => setIsRunning(false)
