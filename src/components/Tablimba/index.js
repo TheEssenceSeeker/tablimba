@@ -15,11 +15,12 @@ import Title from "../Lib/Title"
 import ControlsContainer from "./ControlsContainer"
 import useUndo from "use-undo"
 import Footer from "../Lib/Footer"
-import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber"
 import {useOnboarding} from "../../hooks/useOnboarding"
 import {TuningContext} from "../../contexts/tuningContext"
+import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer";
+import ContainerTuning from "./ContainerTuning";
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -222,7 +223,8 @@ const Tablimba = props => {
                 />
 
                 <br/>
-                <ContainerTuning onContextMenu={handleTuningRowContext}
+                <ContainerTuning tuning={tuning}
+                                 onContextMenu={handleTuningRowContext}
                                  className={'container-tuning'}>
                     {tunableNotes}
                     <TuneSwitch title={'Edit tuning'}

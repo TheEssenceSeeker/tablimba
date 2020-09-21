@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import Key from "./Key"
 import Container from "../Lib/Container"
 import {TuningContext} from "../../contexts/tuningContext"
+import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer";
 
 const Kalimba = props => {
     const {onPlayNote, highlightedNotes, onKeyRtClick, minimized = true, className} = props
@@ -27,11 +28,11 @@ const Kalimba = props => {
     }
 
     return (
-        <Container className={className}>
+        <DynamicTablimbaContainer className={className}>
             {
                 renderKeys(tuning,minimized ? 0.1 : 20)
             }
-        </Container>
+        </DynamicTablimbaContainer>
     )
 }
 
