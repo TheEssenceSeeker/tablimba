@@ -27,7 +27,7 @@ import Select from "../Lib/Select"
 const SelectKeyNumber = ({value, onChange, title}) => {
     const renderOptions = () => {
         let options = []
-        for(let i = 7; i <= 17; i++) {
+        for(let i = 3; i <= 17; i++) {
             options.push(<option value={i} key={i}>{i}</option>)
         }
         return options

@@ -30,7 +30,7 @@ const Tablimba = props => {
     const getParamFromJSON = (name, defaultValue) => props.tabJSON ? props.tabJSON[name] : defaultValue
 
     const [tempo, _setTempo] = useState(getParamFromJSON('tempo', getBpm()))
-    const {tuning, setTuning, resetTuning} = useContext(TuningContext)
+    const {tuning, setTuning, resetTuning, initialTuning} = useContext(TuningContext)
     // const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
     const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
@@ -160,7 +160,7 @@ const Tablimba = props => {
     const handleChangeKeyNumber = e => {
         const newKeyNumber = e.target.value
         const halvedDeltaKeys = (17 - newKeyNumber) / 2
-        const newTuning = tuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
+        const newTuning = initialTuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
         setTuning(newTuning)
     }
     const tunableNotes = tuning.map((pitch, i) => (

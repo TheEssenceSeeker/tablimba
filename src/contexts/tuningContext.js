@@ -12,7 +12,7 @@ const TuningContextProvider = ({
     const resetTuning = () => setTuning(initialTuning)
 
     return (
-        <TuningContext.Provider value={{tuning, setTuning, resetTuning}}>
+        <TuningContext.Provider value={{tuning, setTuning, resetTuning, initialTuning}}>
             {children}
         </TuningContext.Provider>
     )
