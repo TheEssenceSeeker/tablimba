@@ -6,7 +6,7 @@ const Container = styled.div`
   justify-content:space-between;
   //justify-content: center;
   max-width: 99%;
-  width: 800px;
+  width: ${p => p.tuning ? 800 * p.tuning.length / 17 : 800}px;
   position: relative;
 `
 

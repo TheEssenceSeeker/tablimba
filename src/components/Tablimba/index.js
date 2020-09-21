@@ -18,7 +18,7 @@ import Footer from "../Lib/Footer"
 import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber"
-import {useOnboarding} from "../../hooks/useOnboarding";
+import {useOnboarding} from "../../hooks/useOnboarding"
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -49,7 +49,6 @@ const Tablimba = props => {
     const [editorActiveDuration, handleEditorActiveDuration] = useHandleChange('4n')
     const [isAddRest, handleIsAddRest] = useHandleChange(false)
     const [isAddDot, handleIsAddDot] = useHandleChange(false)
-    // const [isShowTuneControls, handleIsShowTuneControls] = useHandleChange(false)
     const [isShowTuneControls, setIsShowTuneControls] = useState(false)
     const editTabNameRef = useRef(tabName)
 
