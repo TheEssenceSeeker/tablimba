@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import TabNote from "../TabNote/"
 import {Menu, Item, Separator, contextMenu, IconFont} from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.min.css'
 import TabRowContainer from "./TabRowContainer"
 import {AddButton, DelButton, PlayButton} from "./FloatingButtons"
+import {TuningContext} from "../../contexts/tuningContext"
 
 const TabRowMenu = ({index, deleteRow, insertRow, playFromPos}) => (
     <Menu id={`tab_row_menu_${index}`} style={{zIndex: 11}}>
@@ -15,7 +16,8 @@ const TabRowMenu = ({index, deleteRow, insertRow, playFromPos}) => (
 );
 
 
-const TabRow = ({note, tuning, highlightedNotes, editNote, index, deleteRow, insertRow, playFromPos}) => {
+const TabRow = ({note, highlightedNotes, editNote, index, deleteRow, insertRow, playFromPos}) => {
+    const {tuning} = useContext(TuningContext)
     const isFilled = (pitch, i) => note.pitch !== '' ? pitch === note.pitch : i === Math.floor(tuning.length / 2)
 
     return (

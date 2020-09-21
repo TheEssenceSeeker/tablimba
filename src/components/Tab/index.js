@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import TabRow from "../TabRow/"
 import {parseNote, sumDurations} from '../../misc/tabHandling'
 import * as Tone from "tone"
 import TabBar from "../TabBar/"
 import TabContainer from "./TabContainer"
+import {TuningContext} from "../../contexts/tuningContext"
 
 const Tab = props => {
-    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos, className} = props
+    const {tab, highlightedNotes, editNote, deleteRow, insertRow, playFromPos, className} = props
+    const {tuning} = useContext(TuningContext)
     let prevNoteBarNumber = 0
     let currentTime = Tone.Time(0)
 
@@ -23,7 +25,6 @@ const Tab = props => {
 
             currentBarRows.push(<TabRow key={i}
                                         note={note}
-                                        tuning={tuning}
                                         highlightedNotes={highlightedNotes}
                                         editNote={editNote}
                                         index={i}

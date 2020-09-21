@@ -1,9 +1,12 @@
-import React from 'react'
-import Key from "./Key";
-import Container from "../Lib/Container";
+import React, {useContext} from 'react'
+import Key from "./Key"
+import Container from "../Lib/Container"
+import {TuningContext} from "../../contexts/tuningContext"
 
 const Kalimba = props => {
-    const {tuning, onPlayNote, highlightedNotes, onKeyRtClick, minimized = true, className} = props
+    const {onPlayNote, highlightedNotes, onKeyRtClick, minimized = true, className} = props
+
+    const {tuning} = useContext(TuningContext)
 
     const renderKeys = (tuning, heightStep) => {
         let deltaH = 0

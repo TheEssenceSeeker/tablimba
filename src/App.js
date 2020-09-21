@@ -6,6 +6,7 @@ import SnackbarProvider from 'react-simple-snackbar'
 import { ThemeProvider } from 'styled-components'
 import theme from "./components/styled/theme"
 import GlobalStyle from "./components/styled/global"
+import {TuningContextProvider} from "./contexts/tuningContext"
 
 class App extends React.Component {
     constructor(props) {
@@ -22,7 +23,9 @@ class App extends React.Component {
         <GlobalStyle />
         <SnackbarProvider>
             <div className={'main-wrapper'}>
-                <Tablimba tuning={this.tuning} tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
+                <TuningContextProvider initialTuning={this.tabJSON ? this.tabJSON['tuning'] : this.tuning}>
+                    <Tablimba tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
+                </TuningContextProvider>
             </div>
         </SnackbarProvider>
       </ThemeProvider>

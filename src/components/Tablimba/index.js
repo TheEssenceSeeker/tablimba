@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import Tab from '../Tab/'
 import Kalimba from '../Kalimba/'
 import useHandleChange from "../../hooks/useHandleChange"
@@ -19,6 +19,7 @@ import ContainerTuning from "./ContainerTuning"
 import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber"
 import {useOnboarding} from "../../hooks/useOnboarding"
+import {TuningContext} from "../../contexts/tuningContext"
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -28,7 +29,7 @@ const Tablimba = props => {
     const getParamFromJSON = (name, defaultValue) => props.tabJSON ? props.tabJSON[name] : defaultValue
 
     const [tempo, _setTempo] = useState(getParamFromJSON('tempo', getBpm()))
-    const [tuning, setTuning] = useState(getParamFromJSON('tuning', props.tuning))
+    const {tuning, setTuning, resetTuning} = useContext(TuningContext)
     // const [tab, setTab] = useState(getParamFromJSON('tab', props.initialTab))
     const [tabName, setTabName] = useState(getParamFromJSON('tabName', 'My melody'))
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
@@ -123,9 +124,6 @@ const Tablimba = props => {
         const newNote = transposeNote(tuning[index], interval)
         setTuning(prevState => prevState.map((note, i) => i === parseInt(index) ? newNote : note))
     }
-    const resetTuning = () => {
-        setTuning(props.tuning)
-    }
     // const toggleKalimba = () => {
     //     setIsKalimbaMinimized(prevState => !prevState)
     // }
@@ -159,7 +157,7 @@ const Tablimba = props => {
     const handleChangeKeyNumber = e => {
         const newKeyNumber = e.target.value
         const halvedDeltaKeys = (17 - newKeyNumber) / 2
-        const newTuning = props.tuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
+        const newTuning = tuning.slice(Math.floor(halvedDeltaKeys), 17 - Math.ceil(halvedDeltaKeys))
         setTuning(newTuning)
     }
     const tunableNotes = tuning.map((pitch, i) => (
@@ -237,7 +235,6 @@ const Tablimba = props => {
 
             <Tab
                 tab={tab}
-                tuning={tuning}
                 highlightedNotes={highlightedNotes}
                 editNote={editNote}
                 deleteRow={deleteRow}
@@ -248,7 +245,6 @@ const Tablimba = props => {
 
             <Footer>
                 <Kalimba
-                    tuning={tuning}
                     onPlayNote={playNote}
                     highlightedNotes={highlightedNotes}
                     onKeyRtClick={toggleHighlight}
