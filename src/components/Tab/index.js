@@ -6,7 +6,7 @@ import TabBar from "../TabBar/"
 import TabContainer from "./TabContainer"
 
 const Tab = props => {
-    const {tab, tuning, highlightedNotes, editNote, deleteRow, insertRow, playFromPos, className} = props
+    const {tab, highlightedNotes, editNote, deleteRow, insertRow, playFromPos, className} = props
     let prevNoteBarNumber = 0
     let currentTime = Tone.Time(0)
 
@@ -23,7 +23,6 @@ const Tab = props => {
 
             currentBarRows.push(<TabRow key={i}
                                         note={note}
-                                        tuning={tuning}
                                         highlightedNotes={highlightedNotes}
                                         editNote={editNote}
                                         index={i}
@@ -49,7 +48,11 @@ const Tab = props => {
         return bars
     }
 
-    return <TabContainer>{renderTab()}</TabContainer>
+    return (
+        <TabContainer>
+            {renderTab()}
+        </TabContainer>
+    )
 
 }
 
