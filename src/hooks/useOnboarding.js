@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {isMobile} from "react-device-detect"
 import Joyride, { STATUS } from "react-joyride"
-import theme from "../components/styled/theme"
+import {ThemeContext} from "styled-components"
 
 export const useOnboarding = () => {
 
+    const theme = useContext(ThemeContext)
     const [isRunning, setIsRunning] = useState(false)
     const [isFinished, setIsFinished] = useState(true)
     const actionText = isMobile ? 'Long tap' : 'Right click'
@@ -34,7 +35,7 @@ export const useOnboarding = () => {
 
     useEffect(() => {
         setIsFinished(localStorage.getItem('onboardingFinished') === 'true')
-    }, [])
+    })
 
     const start = () => setIsRunning(true)
     const stop = () => setIsRunning(false)
