@@ -1,8 +1,7 @@
 import React, {useContext} from 'react'
 import Key from "./Key"
-import Container from "../Lib/Container"
 import {TuningContext} from "../../contexts/tuningContext"
-import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer";
+import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer"
 
 const Kalimba = props => {
     const {onPlayNote, highlightedNotes, onKeyRtClick, minimized = true, className} = props

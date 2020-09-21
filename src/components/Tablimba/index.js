@@ -19,8 +19,7 @@ import TuneSwitch from "./TuneSwitch";
 import SelectKeyNumber from "./SelectKeyNumber"
 import {useOnboarding} from "../../hooks/useOnboarding"
 import {TuningContext} from "../../contexts/tuningContext"
-import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer";
-import ContainerTuning from "./ContainerTuning";
+import ContainerTuning from "./ContainerTuning"
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
