@@ -15,7 +15,6 @@ const Ul = styled.ul`
   
   li {
     display:block;
-    
     margin-bottom: 1rem;
     height: 3rem;
     overflow: hidden;
@@ -29,22 +28,28 @@ const StyledLink = styled(Link)`
   color: #4393e6;
 `
 
-const Navbar = () => {
+const linkData = [
+  { path: '/', name: 'Home' },
+  { path: '/about', name: 'About' },
+  { path: '/contacts', name: 'Contacts' },
+]
+
+const Navbar = ({onClickLink}) => {
+
+  const links = linkData.map((link, i) => (
+    <StyledLink
+      key={i}
+      onClick={onClickLink}
+      to={link.path}
+    >
+      {link.name}
+    </StyledLink>
+  ))
+
   return (
     <Nav>
       <Ul>
-        <li>
-          <StyledLink to='/'>Home</StyledLink>
-        </li>
-        <li>
-          <StyledLink to='/about'>About</StyledLink>
-        </li>
-        <li>
-          <StyledLink to='/contacts'>Contacts</StyledLink>
-        </li>
-        {/*<li>*/}
-        {/*  <Link to='/donate'>Donate</Link>*/}
-        {/*</li>*/}
+        {links}
       </Ul>
     </Nav>
   )

@@ -13,7 +13,7 @@ const SideMenu = () => {
 
       <SideMenuContainer isOpen={isOpen}>
         <Logo />
-        <Navbar />
+        <Navbar onClickLink={() => setIsOpen(false)} />
       </SideMenuContainer>
     </>
   )
