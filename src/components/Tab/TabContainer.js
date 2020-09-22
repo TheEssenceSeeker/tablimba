@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import DynamicTablimbaContainer from "../Lib/DynamicTablimbaContainer"
+import {FOOTER_HEIGHT, HEADER_HEIGHT} from "../styled/global"
 
 const TabContainer = styled(DynamicTablimbaContainer)`
-  margin-top: 11.5rem;
-  margin-bottom: 3rem; 
+  margin-top: ${HEADER_HEIGHT};
+  margin-bottom: ${FOOTER_HEIGHT}; 
   display: flex;
   flex-direction: column-reverse;
 `

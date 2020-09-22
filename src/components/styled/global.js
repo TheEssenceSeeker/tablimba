@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 
+export const HEADER_HEIGHT = '11.5rem';
+export const FOOTER_HEIGHT = '3rem';
+
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -48,7 +51,6 @@ const GlobalStyle = createGlobalStyle`
   div[class^="Snackbar_snackbar-wrapper"] {
       z-index: 10;
   }
-
 `
 
 export default GlobalStyle

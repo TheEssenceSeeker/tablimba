@@ -21,6 +21,10 @@ import {useOnboarding} from "../../hooks/useOnboarding"
 import {TuningContext} from "../../contexts/tuningContext"
 import ContainerTuning from "./ContainerTuning"
 import SideMenu from "../SideMenu"
+import {Switch, Route} from "react-router-dom"
+import Contacts from "../../pages/Contacts";
+import About from "../../pages/About";
+import DefaultHeader from "../Lib/DefaultHeader";
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -179,83 +183,112 @@ const Tablimba = props => {
             {onboarding}
             <SideMenu />
             <Header>
-                <Title>
-                    {/*Tablimba -*/}
-                    <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
-                                  onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
-                                  contentEditable
-                                  suppressContentEditableWarning={true}
-                                  ref={editTabNameRef}
-                                  onFocus={selectFirstChild}>
-                        {tabName}
-                    </EditableSpan>
-                    <i className="fas fa-edit tab-title__edit-icon"
-                       onClick={() => editTabNameRef.current.focus()}/>
-                </Title>
+                <Switch>
+                    <Route path='/:pageName'>
+                        <DefaultHeader />
+                    </Route>
+                    <Route path='/'>
+                        <Title>
+                            {/*Tablimba -*/}
+                            <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
+                                          onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
+                                          contentEditable
+                                          suppressContentEditableWarning={true}
+                                          ref={editTabNameRef}
+                                          onFocus={selectFirstChild}>
+                                {tabName}
+                            </EditableSpan>
+                            <i className="fas fa-edit tab-title__edit-icon"
+                               onClick={() => editTabNameRef.current.focus()}/>
+                        </Title>
 
-                <ControlsContainer>
-                    <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
-                        <i className="far fa-folder-open"/>
-                    </BrowseTextFileButton>
-                    <SaveTextFileButton title={'Save current tab into a file'}
-                                        fileName={tabName}
-                                        dataToSave={{tuning, tab, tempo, tabName}}
-                                        extension='tbl'>
-                        <i className="far fa-save"/>
-                    </SaveTextFileButton>
-                    <Button onClick={shareTab} title='Copy link to this tab to share it'><i className="fas fa-link"/></Button>
-                    <Button onClick={resetTab} title='Reset current tab'>Reset Tab</Button>
-                    <Button onClick={undoTab} title='Undo last tab change' disabled={!canUndoTab}><i className="fas fa-undo"/></Button>
-                    <Button onClick={redoTab} title='Redo last tab change' disabled={!canRedoTab}><i className="fas fa-redo"/></Button>
-                    <Button onClick={playMelody} title='Play current tab'><i className="fas fa-play"/></Button>
-                    <Button onClick={resetTuning} title='Reset tuning'>Reset Tuning</Button>
-                    <InputTempo title='Set tempo (bpm)' value={tempo} onChange={e => setTempo(+e.target.value)} />
-                    <SelectKeyNumber title='Select the number of keys' value={tuning.length} onChange={handleChangeKeyNumber}  />
-                </ControlsContainer>
+                        <ControlsContainer>
+                            <BrowseTextFileButton title={'Open saved tab file (.tbl)'} extension='tbl' handleFile={loadTab}>
+                                <i className="far fa-folder-open"/>
+                            </BrowseTextFileButton>
+                            <SaveTextFileButton title={'Save current tab into a file'}
+                                                fileName={tabName}
+                                                dataToSave={{tuning, tab, tempo, tabName}}
+                                                extension='tbl'>
+                                <i className="far fa-save"/>
+                            </SaveTextFileButton>
+                            <Button onClick={shareTab} title='Copy link to this tab to share it'><i className="fas fa-link"/></Button>
+                            <Button onClick={resetTab} title='Reset current tab'>Reset Tab</Button>
+                            <Button onClick={undoTab} title='Undo last tab change' disabled={!canUndoTab}><i className="fas fa-undo"/></Button>
+                            <Button onClick={redoTab} title='Redo last tab change' disabled={!canRedoTab}><i className="fas fa-redo"/></Button>
+                            <Button onClick={playMelody} title='Play current tab'><i className="fas fa-play"/></Button>
+                            <Button onClick={resetTuning} title='Reset tuning'>Reset Tuning</Button>
+                            <InputTempo title='Set tempo (bpm)' value={tempo} onChange={e => setTempo(+e.target.value)} />
+                            <SelectKeyNumber title='Select the number of keys' value={tuning.length} onChange={handleChangeKeyNumber}  />
+                        </ControlsContainer>
 
-                <DurationEditor name='duration'
-                                editorActiveDuration={editorActiveDuration}
-                                onChange={handleEditorActiveDuration}
-                                isDotChecked={isAddDot}
-                                handleDotCheck={handleIsAddDot}
-                                isRestChecked={isAddRest}
-                                handleRestCheck={handleIsAddRest}
-                                className={'duration-editor'}
-                />
+                        <DurationEditor name='duration'
+                                        editorActiveDuration={editorActiveDuration}
+                                        onChange={handleEditorActiveDuration}
+                                        isDotChecked={isAddDot}
+                                        handleDotCheck={handleIsAddDot}
+                                        isRestChecked={isAddRest}
+                                        handleRestCheck={handleIsAddRest}
+                                        className={'duration-editor'}
+                        />
 
-                <br/>
-                <ContainerTuning tuning={tuning}
-                                 onContextMenu={handleTuningRowContext}
-                                 className={'container-tuning'}>
-                    {tunableNotes}
-                    <TuneSwitch title={'Edit tuning'}
-                                pressed={isShowTuneControls}
-                                onClick={() => setIsShowTuneControls(prevState => !prevState)}
-                    >
-                        <i className="fas fa-wrench"/>
-                    </TuneSwitch>
-                </ContainerTuning>
+                        <br/>
+                        <ContainerTuning tuning={tuning}
+                                         onContextMenu={handleTuningRowContext}
+                                         className={'container-tuning'}>
+                            {tunableNotes}
+                            <TuneSwitch title={'Edit tuning'}
+                                        pressed={isShowTuneControls}
+                                        onClick={() => setIsShowTuneControls(prevState => !prevState)}
+                            >
+                                <i className="fas fa-wrench"/>
+                            </TuneSwitch>
+                        </ContainerTuning>
+                    </Route>
+                </Switch>
+
 
             </Header>
 
-            <Tab
-                tab={tab}
-                highlightedNotes={highlightedNotes}
-                editNote={editNote}
-                deleteRow={deleteRow}
-                insertRow={insertRow}
-                playFromPos={playMelody}
-                className='tab'
-            />
+            <Switch>
+                <Route path='/about'>
+                    <About />
+                </Route>
+                <Route path='/contacts'>
+                    <Contacts />
+                </Route>
+                <Route path='/'>
+                    <Tab
+                      tab={tab}
+                      highlightedNotes={highlightedNotes}
+                      editNote={editNote}
+                      deleteRow={deleteRow}
+                      insertRow={insertRow}
+                      playFromPos={playMelody}
+                      className='tab'
+                    />
+                </Route>
+
+                {/*<Route path='/about'></Route>*/}
+            </Switch>
+
 
             <Footer>
-                <Kalimba
-                    onPlayNote={playNote}
-                    highlightedNotes={highlightedNotes}
-                    onKeyRtClick={toggleHighlight}
-                    minimized={true}
-                    className={'kalimba'}
-                />
+                <Switch>
+                    <Route path='/:pageName'>
+                        12345
+                    </Route>
+                    <Route path='/'>
+                        <Kalimba
+                          onPlayNote={playNote}
+                          highlightedNotes={highlightedNotes}
+                          onKeyRtClick={toggleHighlight}
+                          minimized={true}
+                          className={'kalimba'}
+                        />
+                    </Route>
+                </Switch>
+
             </Footer>
         </>
     )

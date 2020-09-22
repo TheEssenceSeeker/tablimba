@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {HEADER_HEIGHT} from "../styled/global"
 
 const Header = styled.div`
   position: fixed;
@@ -10,7 +11,7 @@ const Header = styled.div`
   //justify-content:space-between;
   align-items: center;
   background: ${p => p.theme.darkbg};
-  height: 11.5rem;
+  height: ${HEADER_HEIGHT};
 `
 
 export default Header
