@@ -7,8 +7,9 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  //justify-content:space-between;
   align-items: center;
-  background: #a7a7a7;
+  background: ${p => p.theme.darkbg};
   height: 11.5rem;
 `
 

@@ -9,8 +9,10 @@ const Footer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: #a7a7a7;
+  background: ${p => p.theme.darkbg};
   height: 3rem;
+  
+  //box-shadow: 0px 2px 21px 0px rgba(0,0,0,0.75);
 `
 
 export default Footer

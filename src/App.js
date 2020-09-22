@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from "./components/styled/theme"
 import GlobalStyle from "./components/styled/global"
 import {TuningContextProvider} from "./contexts/tuningContext"
+import MainWrapper from "./components/Lib/MainWrapper";
 
 class App extends React.Component {
     constructor(props) {
@@ -22,11 +23,11 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <SnackbarProvider>
-            <div className={'main-wrapper'}>
+            <MainWrapper>
                 <TuningContextProvider initialTuning={this.tabJSON ? this.tabJSON['tuning'] : this.tuning}>
                     <Tablimba tabJSON={this.tabJSON} initialTab={this.initialTab} synth={this.synth} />
                 </TuningContextProvider>
-            </div>
+            </MainWrapper>
         </SnackbarProvider>
       </ThemeProvider>
     )

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 const EditableSpan = styled.span`  
   padding: 0.3rem 5px 0 5px;
   font-size: inherit;
+  overflow: hidden;
+  max-width: 70%;
   
   &:focus {
       outline: none;

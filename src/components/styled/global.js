@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   
   div[class^="Snackbar_snackbar-wrapper"] {
       z-index: 10;
-    }
+  }
 
 `
 
