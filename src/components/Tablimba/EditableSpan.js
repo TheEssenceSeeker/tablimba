@@ -1,12 +1,9 @@
 import styled from 'styled-components'
 
-const EditableSpan = styled.span`
-  //height: 3rem;
-  padding: 2px 5px;
+const EditableSpan = styled.span`  
+  padding: 0.3rem 5px 0 5px;
   font-size: inherit;
-  
   overflow: hidden;
-  
   max-width: 70%;
   
   &:focus {

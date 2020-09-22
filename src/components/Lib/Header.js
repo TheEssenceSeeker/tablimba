@@ -9,9 +9,7 @@ const Header = styled.div`
   justify-content: flex-end;
   align-items: center;
   background: ${p => p.theme.darkbg};
-  height: calc(8rem + 48px);
-  
-  //box-shadow: 0px 2px 21px 0px rgba(0,0,0,0.75);
+  height: 11.5rem;
 `
 
 export default Header
