@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from "./components/styled/theme"
 import GlobalStyle from "./components/styled/global"
 import {TuningContextProvider} from "./contexts/tuningContext"
-import MainWrapper from "./components/Lib/MainWrapper";
+import MainWrapper from "./components/Lib/MainWrapper"
 
 class App extends React.Component {
     constructor(props) {
