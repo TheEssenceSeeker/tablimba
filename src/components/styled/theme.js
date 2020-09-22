@@ -8,7 +8,6 @@ const theme = {
     darkbg: '#a7a7a7',
     dark: '#395D9F',
 
-
     bdradius: '3px'
 }
 

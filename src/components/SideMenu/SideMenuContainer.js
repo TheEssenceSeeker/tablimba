@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import HamburgerContainer from "./HamburgerContainer";
 
 const SideMenuContainer = styled.div`
   flex-direction: column;
@@ -16,16 +15,12 @@ const SideMenuContainer = styled.div`
   
   transition: transform .3s ease-in-out;
  
-  @media (max-width: 1300px) {
+  @media (max-width: 1299px) {
     transform: ${p => p.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
-    
-    ${HamburgerContainer} {
-      //display: block;
-    }
   }
   
   @media (max-width: 768px) {
-      width: 100%;
+    width: 100%;
   }
 `
 
