@@ -20,6 +20,7 @@ import SelectKeyNumber from "./SelectKeyNumber"
 import {useOnboarding} from "../../hooks/useOnboarding"
 import {TuningContext} from "../../contexts/tuningContext"
 import ContainerTuning from "./ContainerTuning"
+import SideMenu from "../SideMenu"
 
 const TITLE = 'Tablimba - Tab editor for kalimba'
 
@@ -35,6 +36,7 @@ const Tablimba = props => {
     const [highlightedNotes, setHighlightedNotes] = useState([2, 5, 8, 11, 14])
     // const [isKalimbaMinimized, setIsKalimbaMinimized] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
+
     const [onboarding, startOnboarding] = useOnboarding()
 
     const [tabState, {
@@ -175,10 +177,10 @@ const Tablimba = props => {
     return (
         <>
             {onboarding}
-
+            <SideMenu />
             <Header>
                 <Title>
-                    Tablimba -
+                    {/*Tablimba -*/}
                     <EditableSpan onBlur={e => setTabName(e.currentTarget.textContent)}
                                   onKeyDown={e => e.key === 'Enter' ? console.log(e.currentTarget.blur()) : null}
                                   contentEditable

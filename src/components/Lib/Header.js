@@ -8,8 +8,10 @@ const Header = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background: #a7a7a7;
-  height: 10.5rem;
+  background: ${p => p.theme.darkbg};
+  height: calc(8rem + 48px);
+  
+  //box-shadow: 0px 2px 21px 0px rgba(0,0,0,0.75);
 `
 
 export default Header
