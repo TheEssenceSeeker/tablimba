@@ -9,7 +9,7 @@ const Header = styled.div`
   justify-content: flex-end;
   align-items: center;
   background: #a7a7a7;
-  height: 10.5rem;
+  height: 11.5rem;
 `
 
 export default Header
