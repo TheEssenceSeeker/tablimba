@@ -8,7 +8,7 @@ const SideMenuContainer = styled.div`
   
   background: ${p => p.theme.white};
   position: fixed;
-  width: 300px;
+  width: 400px;
   z-index: 11;
   border-right: 1px solid #000;
   padding: 0 25px;
@@ -16,7 +16,7 @@ const SideMenuContainer = styled.div`
   
   transition: transform .3s ease-in-out;
  
-  @media (max-width: 1475px) {
+  @media (max-width: 1300px) {
     transform: ${p => p.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
     
     ${HamburgerContainer} {
